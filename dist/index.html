@@ -38,8 +38,13 @@
     .preview-label { display:flex; align-items:center; justify-content:space-between; padding-bottom:17px; border-bottom:1px dashed #c6ccd4; color:#7d8a99; font-size:.78rem; font-weight:800; letter-spacing:.11em; text-transform:uppercase; }
     .preview-label strong { color:var(--red); font-size:1rem; letter-spacing:0; }
     .lesson-map { display:grid; gap:0; margin:10px 0 0; padding:0; list-style:none; }
-    .lesson-map li { display:grid; grid-template-columns:36px 1fr; align-items:center; gap:12px; min-height:48px; border-bottom:1px solid #ece8df; color:#36475d; font-size:.95rem; font-weight:720; }
+    .lesson-map li { min-height:48px; border-bottom:1px solid #ece8df; }
     .lesson-map li:last-child { border-bottom:0; }
+    .lesson-entry { display:grid; grid-template-columns:36px 1fr 18px; align-items:center; gap:12px; width:100%; min-height:48px; padding:0; border:0; color:#36475d; background:transparent; text-align:left; cursor:pointer; font-size:.95rem; font-weight:720; }
+    .lesson-entry:hover { color:var(--red-dark); }
+    .lesson-entry::after { content:"→"; color:#aab4bf; font-size:1.1rem; transition:transform .2s ease, color .2s ease; }
+    .lesson-entry:hover::after, .lesson-entry:focus-visible::after { color:var(--red); transform:translateX(3px); }
+    .lesson-entry:focus-visible { border-radius:9px; outline:none; box-shadow:0 0 0 3px rgba(228,72,72,.2); }
     .lesson-num { display:grid; place-items:center; width:28px; height:28px; border-radius:50%; color:white; background:var(--navy); font-size:.8rem; }
     .home-footer { display:flex; justify-content:space-between; gap:20px; color:#8290a0; font-size:.82rem; }
     .viewer-screen { padding-top:20px; }
@@ -70,7 +75,8 @@
     .study-hint { max-width:760px; margin:13px 0 22px; color:#617187; font-size:1rem; line-height:1.6; }
     .canvas-wrap { position:relative; width:100%; overflow:hidden; border:1px solid #d6dce3; border-radius:16px; background:#eef2f4; box-shadow:0 8px 25px rgba(20,37,61,.09); }
     .canvas-wrap img { display:block; width:100%; height:auto; }
-    .canvas-wrap canvas { position:absolute; inset:0; width:100%; height:100%; cursor:crosshair; touch-action:none; }
+    .canvas-wrap canvas { position:absolute; z-index:2; inset:0; display:block; width:100%; height:100%; cursor:crosshair; touch-action:none; pointer-events:auto; }
+    .canvas-wrap img { pointer-events:none; }
     .toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:17px; }
     .toolbar-group { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
     .tool-btn { display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:0 14px; border:1px solid #d5dbe2; border-radius:11px; color:#46566b; background:#fff; cursor:pointer; font-size:.9rem; font-weight:780; }
@@ -79,6 +85,7 @@
     .tool-btn:disabled { cursor:not-allowed; opacity:.42; }
     .pen-control { display:inline-flex; align-items:center; gap:9px; min-height:42px; padding:0 11px; border:1px solid #d5dbe2; border-radius:11px; color:#65748a; background:#fff; font-size:.83rem; font-weight:750; }
     .pen-control input { width:94px; accent-color:var(--red); }
+    .pen-control select { max-width:92px; border:0; color:#46566b; background:transparent; cursor:pointer; font-size:.83rem; font-weight:750; }
     .save-state { min-height:20px; margin:12px 2px 0; color:#7b8997; font-size:.82rem; }
     .page-nav { display:flex; justify-content:space-between; gap:10px; margin-top:24px; padding-top:20px; border-top:1px dashed #d2d8df; }
     .page-nav .tool-btn { min-width:120px; }
@@ -102,13 +109,13 @@
         <aside class="lesson-preview" aria-label="학습 목차">
           <div class="preview-label"><span>STUDY INDEX</span><strong>7 PAGES</strong></div>
           <ol class="lesson-map">
-            <li><span class="lesson-num">1</span><span>사출 한 사이클 이해하기</span></li>
-            <li><span class="lesson-num">2</span><span>금형 구조 기초</span></li>
-            <li><span class="lesson-num">3</span><span>사출기의 구조</span></li>
-            <li><span class="lesson-num">4</span><span>사출 조건의 기본</span></li>
-            <li><span class="lesson-num">5</span><span>자주 쓰는 수지 특성</span></li>
-            <li><span class="lesson-num">6</span><span>대표 불량 빠르게 보기</span></li>
-            <li><span class="lesson-num">7</span><span>유동을 추적하는 방법</span></li>
+            <li><button class="lesson-entry" type="button" data-page="0"><span class="lesson-num">1</span><span>사출 한 사이클 이해하기</span></button></li>
+            <li><button class="lesson-entry" type="button" data-page="1"><span class="lesson-num">2</span><span>금형 구조 기초</span></button></li>
+            <li><button class="lesson-entry" type="button" data-page="2"><span class="lesson-num">3</span><span>사출기의 구조</span></button></li>
+            <li><button class="lesson-entry" type="button" data-page="3"><span class="lesson-num">4</span><span>사출 조건의 기본</span></button></li>
+            <li><button class="lesson-entry" type="button" data-page="4"><span class="lesson-num">5</span><span>자주 쓰는 수지 특성</span></button></li>
+            <li><button class="lesson-entry" type="button" data-page="5"><span class="lesson-num">6</span><span>대표 불량 빠르게 보기</span></button></li>
+            <li><button class="lesson-entry" type="button" data-page="6"><span class="lesson-num">7</span><span>유동을 추적하는 방법</span></button></li>
           </ol>
         </aside>
       </div>
@@ -133,7 +140,7 @@
             <canvas id="inkCanvas" aria-label="이미지 위에 빨간펜으로 필기하는 영역"></canvas>
           </div>
           <div class="toolbar">
-            <div class="toolbar-group"><button id="undoBtn" class="tool-btn" type="button">실행 취소</button><button id="clearBtn" class="tool-btn" type="button">전체 지우기</button><label class="pen-control">펜 굵기 <input id="penSize" type="range" min="2" max="14" value="5"><span id="penValue">5px</span></label></div>
+            <div class="toolbar-group"><button id="undoBtn" class="tool-btn" type="button">실행 취소</button><button id="clearBtn" class="tool-btn" type="button">전체 지우기</button><label class="pen-control">색상 <select id="penColor" aria-label="필기 색상"><option value="#e44848">빨강</option><option value="#ef7d32">주황</option><option value="#2e6fae">파랑</option><option value="#1f7a5a">초록</option><option value="#5d4fc7">보라</option></select></label><label class="pen-control">굵기 <input id="penSize" type="range" min="2" max="14" value="5"><span id="penValue">5px</span></label><label class="pen-control">투명도 <input id="penOpacity" type="range" min="20" max="100" value="85"><span id="opacityValue">85%</span></label></div>
             <div class="toolbar-group"><button id="saveBtn" class="tool-btn primary-tool" type="button">필기 저장</button></div>
           </div>
           <p id="saveState" class="save-state" aria-live="polite">필기는 이 기기에 저장됩니다.</p>
@@ -149,7 +156,7 @@
       { src:'images/02-mold-structure.png', title:'금형 구조 기초', subtitle:'고정측 · 가동측 · 파팅라인', hint:'제품을 만드는 빈 공간은 캐비티, 밀어내는 부품은 이젝터 핀입니다. 고정측과 가동측을 먼저 구분해 보세요.' },
       { src:'images/03-injection-machine.png', title:'사출기의 구조', subtitle:'사출 유닛 · 형체 유닛', hint:'호퍼에서 노즐까지가 사출 유닛, 타이바와 형체 실린더 주변이 형체 유닛입니다.' },
       { src:'images/04-settings.png', title:'사출 조건의 기본', subtitle:'온도 · 속도 · 압력 · 시간', hint:'조건을 바꿀 때는 한 번에 하나씩. 온도와 압력, 냉각 시간이 제품에 어떤 흔적을 남기는지 연결해 보세요.' },
-      { src:'images/05-resin.png', title:'자주 쓰는 수지 특성', subtitle:'PP · PE · ABS · PC · PA', hint:'수지 이름과 대표 용도를 짝지어 외워 보세요. PA와 PC는 성형 전 건조가 특히 중요합니다.' },
+      { src:'images/05-resin.png', title:'자주 쓰는 수지 특성', subtitle:'PP · ABS · PC · PA · POM · TPE', hint:'수지 이름과 대표 용도를 짝지어 외워 보세요. PC·PA·ABS는 성형 전 건조가 특히 중요하고, POM·TPE의 특성도 함께 비교합니다.' },
       { src:'images/06-defects.png', title:'대표 불량 빠르게 보기', subtitle:'미성형 · 버 · 싱크 · 웰드라인', hint:'불량 이름을 먼저 보고 원인 후보를 좁혀 보세요. 사출 조건 → 금형 → 수지 순서로 진단하면 빠릅니다.' },
       { src:'images/07-flow-tracing.png', title:'유동을 추적하는 방법', subtitle:'노즐 → 러너 → 게이트 → 제품', hint:'게이트에서 제품 끝단까지 흐름을 손가락으로 따라가며 웰드라인과 에어 트랩 위치를 예상해 보세요.' }
     ];
@@ -168,6 +175,9 @@
     const noteCount = document.getElementById('noteCount');
     const penSize = document.getElementById('penSize');
     const penValue = document.getElementById('penValue');
+    const penColor = document.getElementById('penColor');
+    const penOpacity = document.getElementById('penOpacity');
+    const opacityValue = document.getElementById('opacityValue');
     let currentIndex = null;
     let strokes = [];
     let activeStroke = null;
@@ -175,14 +185,16 @@
     const readStrokes = (index) => { try { return JSON.parse(localStorage.getItem(storageKey(index)) || '[]'); } catch (_) { return []; } };
     const hasNotes = (index) => readStrokes(index).length > 0;
     const saveCurrent = (message = '필기가 저장되었습니다.') => { if (currentIndex === null) return; try { localStorage.setItem(storageKey(currentIndex), JSON.stringify(strokes)); saveState.textContent = message; } catch (_) { saveState.textContent = '브라우저 저장 공간을 사용할 수 없습니다.'; } updatePageList(); };
-    const pointFromEvent = (event) => { const rect = canvas.getBoundingClientRect(); return { x:Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)), y:Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height)) }; };
-    const drawStroke = (stroke) => { if (!stroke || !stroke.points || !stroke.points.length) return; const width = canvas.clientWidth; const height = canvas.clientHeight; ctx.strokeStyle = '#e44848'; ctx.fillStyle = '#e44848'; ctx.lineWidth = stroke.width || 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; if (stroke.points.length === 1) { ctx.beginPath(); ctx.arc(stroke.points[0].x * width, stroke.points[0].y * height, Math.max(2, ctx.lineWidth / 2), 0, Math.PI * 2); ctx.fill(); return; } ctx.beginPath(); ctx.moveTo(stroke.points[0].x * width, stroke.points[0].y * height); stroke.points.slice(1).forEach((point) => ctx.lineTo(point.x * width, point.y * height)); ctx.stroke(); };
-    const redraw = () => { ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight); strokes.forEach(drawStroke); if (activeStroke) drawStroke(activeStroke); };
+    const pointFromEvent = (event) => { const source = event.touches && event.touches[0] ? event.touches[0] : (event.changedTouches && event.changedTouches[0] ? event.changedTouches[0] : event); const rect = canvas.getBoundingClientRect(); return { x:Math.max(0, Math.min(1, (source.clientX - rect.left) / rect.width)), y:Math.max(0, Math.min(1, (source.clientY - rect.top) / rect.height)) }; };
+    const drawStroke = (stroke) => { if (!stroke || !stroke.points || !stroke.points.length) return; const width = canvas.clientWidth; const height = canvas.clientHeight; ctx.globalAlpha = typeof stroke.opacity === 'number' ? stroke.opacity : 0.85; ctx.strokeStyle = stroke.color || '#e44848'; ctx.fillStyle = stroke.color || '#e44848'; ctx.lineWidth = stroke.width || 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; if (stroke.points.length === 1) { ctx.beginPath(); ctx.arc(stroke.points[0].x * width, stroke.points[0].y * height, Math.max(2, ctx.lineWidth / 2), 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1; return; } ctx.beginPath(); ctx.moveTo(stroke.points[0].x * width, stroke.points[0].y * height); stroke.points.slice(1).forEach((point) => ctx.lineTo(point.x * width, point.y * height)); ctx.stroke(); ctx.globalAlpha = 1; };
+    const redraw = () => { ctx.globalAlpha = 1; ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight); strokes.forEach(drawStroke); if (activeStroke) drawStroke(activeStroke); ctx.globalAlpha = 1; };
     const resizeCanvas = () => { const width = studyImage.clientWidth; const height = studyImage.clientHeight; if (!width || !height) return; const dpr = Math.min(window.devicePixelRatio || 1, 2); canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr); canvas.style.width = `${width}px`; canvas.style.height = `${height}px`; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); redraw(); };
     const updatePageList = () => { [...pageList.children].forEach((button, index) => { button.classList.toggle('has-notes', hasNotes(index)); button.setAttribute('aria-current', String(index === currentIndex)); }); const count = pages.reduce((total, _, index) => total + (hasNotes(index) ? 1 : 0), 0); noteCount.textContent = `${count} 필기`; };
     const renderPage = (index) => { if (currentIndex !== null) saveCurrent('페이지를 바꾸며 필기를 저장했습니다.'); currentIndex = index; const page = pages[index]; strokes = readStrokes(index); activeStroke = null; pageNumber.textContent = String(index + 1).padStart(2, '0'); studyTitle.textContent = page.title; studyHint.textContent = page.hint; progressText.textContent = `${index + 1} / ${pages.length}`; progressBar.style.width = `${((index + 1) / pages.length) * 100}%`; document.getElementById('prevBtn').disabled = index === 0; document.getElementById('nextBtn').textContent = index === pages.length - 1 ? '처음 페이지로 ↺' : '다음 페이지 →'; studyImage.alt = `${page.title} 학습 이미지`; studyImage.onload = resizeCanvas; studyImage.src = page.src; if (studyImage.complete) requestAnimationFrame(resizeCanvas); saveState.textContent = strokes.length ? '저장된 필기를 불러왔습니다.' : '필기는 이 기기에 저장됩니다.'; updatePageList(); window.scrollTo({ top:0, behavior:'smooth' }); };
     pages.forEach((page, index) => { const button = document.createElement('button'); button.type = 'button'; button.className = 'page-button'; button.innerHTML = `<span class="page-index">${String(index + 1).padStart(2, '0')}</span><span><strong>${page.title}</strong><small>${page.subtitle}</small></span><span class="page-check" aria-hidden="true">✓</span>`; button.addEventListener('click', () => renderPage(index)); pageList.appendChild(button); });
-    document.getElementById('startBtn').addEventListener('click', () => { home.hidden = true; viewer.hidden = false; renderPage(currentIndex === null ? 0 : currentIndex); });
+    const openViewer = (index) => { home.hidden = true; viewer.hidden = false; renderPage(index); };
+    document.querySelectorAll('.lesson-entry').forEach((button) => button.addEventListener('click', () => openViewer(Number(button.dataset.page))));
+    document.getElementById('startBtn').addEventListener('click', () => openViewer(currentIndex === null ? 0 : currentIndex));
     document.getElementById('backBtn').addEventListener('click', () => { saveCurrent(); viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); });
     document.getElementById('prevBtn').addEventListener('click', () => { if (currentIndex > 0) renderPage(currentIndex - 1); });
     document.getElementById('nextBtn').addEventListener('click', () => { renderPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); });
@@ -190,11 +202,24 @@
     document.getElementById('clearBtn').addEventListener('click', () => { if (!strokes.length) return; strokes = []; redraw(); saveCurrent('이 페이지의 필기를 지웠습니다.'); });
     document.getElementById('saveBtn').addEventListener('click', () => saveCurrent());
     penSize.addEventListener('input', () => { penValue.textContent = `${penSize.value}px`; });
-    canvas.addEventListener('pointerdown', (event) => { activeStroke = { width:Number(penSize.value), points:[pointFromEvent(event)] }; canvas.setPointerCapture(event.pointerId); redraw(); });
-    canvas.addEventListener('pointermove', (event) => { if (!activeStroke) return; activeStroke.points.push(pointFromEvent(event)); redraw(); });
-    const finishStroke = () => { if (!activeStroke) return; strokes.push(activeStroke); activeStroke = null; redraw(); saveCurrent('필기를 자동 저장했습니다.'); };
-    canvas.addEventListener('pointerup', finishStroke);
-    canvas.addEventListener('pointercancel', finishStroke);
+    penOpacity.addEventListener('input', () => { opacityValue.textContent = `${penOpacity.value}%`; });
+    const beginStroke = (event) => { if (activeStroke) return; event.preventDefault(); activeStroke = { width:Number(penSize.value), color:penColor.value, opacity:Number(penOpacity.value) / 100, points:[pointFromEvent(event)] }; if (event.pointerId !== undefined && canvas.setPointerCapture) { try { canvas.setPointerCapture(event.pointerId); } catch (_) {} } redraw(); };
+    const addStrokePoint = (event) => { if (!activeStroke) return; event.preventDefault(); activeStroke.points.push(pointFromEvent(event)); redraw(); };
+    const finishStroke = (event) => { if (!activeStroke) return; if (event) event.preventDefault(); strokes.push(activeStroke); activeStroke = null; redraw(); saveCurrent('필기를 자동 저장했습니다.'); };
+    canvas.addEventListener('pointerdown', beginStroke, { passive:false });
+    canvas.addEventListener('pointermove', addStrokePoint, { passive:false });
+    canvas.addEventListener('pointerup', finishStroke, { passive:false });
+    canvas.addEventListener('pointercancel', finishStroke, { passive:false });
+    if (!window.PointerEvent) {
+      canvas.addEventListener('mousedown', beginStroke);
+      canvas.addEventListener('mousemove', addStrokePoint);
+      canvas.addEventListener('mouseup', finishStroke);
+      canvas.addEventListener('mouseleave', finishStroke);
+      canvas.addEventListener('touchstart', beginStroke, { passive:false });
+      canvas.addEventListener('touchmove', addStrokePoint, { passive:false });
+      canvas.addEventListener('touchend', finishStroke, { passive:false });
+      canvas.addEventListener('touchcancel', finishStroke, { passive:false });
+    }
     window.addEventListener('resize', resizeCanvas);
     document.addEventListener('keydown', (event) => { if (viewer.hidden || ['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if (event.key === 'ArrowLeft' && currentIndex > 0) renderPage(currentIndex - 1); if (event.key === 'ArrowRight') renderPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); if (event.key === 'Escape') document.getElementById('backBtn').click(); });
     updatePageList();
