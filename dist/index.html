@@ -259,7 +259,7 @@
     document.getElementById('undoBtn').addEventListener('click', () => { if (!strokes.length) return; strokes.pop(); redraw(); markDraft('마지막 표시를 취소했습니다. 저장하려면 저장 버튼을 누르세요.'); });
     document.getElementById('clearBtn').addEventListener('click', () => { if (!strokes.length) return; strokes = []; redraw(); markDraft('그림을 지웠습니다. 저장하려면 저장 버튼을 누르세요.'); });
     document.getElementById('saveBtn').addEventListener('click', () => saveCurrent());
-    focusBtn.addEventListener('click', () => { const focused = viewer.classList.toggle('focus-mode'); focusBtn.textContent = focused ? '일반 보기' : '이미지 집중 보기'; if (!focused) resizeCanvas(); });
+    focusBtn.addEventListener('click', () => { const focused = viewer.classList.toggle('focus-mode'); focusBtn.textContent = focused ? '일반 보기' : '이미지 집중 보기'; requestAnimationFrame(resizeCanvas); });
     textMemo.addEventListener('input', () => markDraft('메모를 수정했습니다. 저장하려면 저장 버튼을 누르세요.'));
     penSize.addEventListener('input', () => { penValue.textContent = `${penSize.value}px`; });
     penOpacity.addEventListener('input', () => { opacityValue.textContent = `${penOpacity.value}%`; });
