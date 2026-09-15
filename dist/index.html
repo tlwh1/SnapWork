@@ -136,7 +136,7 @@
           <h2 id="studyTitle">사출 한 사이클 이해하기</h2>
           <p id="studyHint" class="study-hint"></p>
           <div class="canvas-wrap">
-            <img id="studyImage" src="images/01-cycle.png" alt="사출 한 사이클 이해하기 학습 이미지">
+            <img id="studyImage" src="images/01-cycle.webp" alt="사출 한 사이클 이해하기 학습 이미지" decoding="async" loading="eager" fetchpriority="high">
             <canvas id="inkCanvas" aria-label="이미지 위에 빨간펜으로 필기하는 영역"></canvas>
           </div>
           <div class="toolbar">
@@ -152,13 +152,13 @@
   </main>
   <script>
     const pages = [
-      { src:'images/01-cycle.png', title:'사출 한 사이클 이해하기', subtitle:'형체 · 사출 · 보압 · 냉각', hint:'나사 회전은 계량, 나사 전진은 사출입니다. 형체부터 취출까지 순서를 소리 내어 따라가 보세요.' },
-      { src:'images/02-mold-structure.png', title:'금형 구조 기초', subtitle:'고정측 · 가동측 · 파팅라인', hint:'제품을 만드는 빈 공간은 캐비티, 밀어내는 부품은 이젝터 핀입니다. 고정측과 가동측을 먼저 구분해 보세요.' },
-      { src:'images/03-injection-machine.png', title:'사출기의 구조', subtitle:'사출 유닛 · 형체 유닛', hint:'호퍼에서 노즐까지가 사출 유닛, 타이바와 형체 실린더 주변이 형체 유닛입니다.' },
-      { src:'images/04-settings.png', title:'사출 조건의 기본', subtitle:'온도 · 속도 · 압력 · 시간', hint:'조건을 바꿀 때는 한 번에 하나씩. 온도와 압력, 냉각 시간이 제품에 어떤 흔적을 남기는지 연결해 보세요.' },
-      { src:'images/05-resin.png', title:'자주 쓰는 수지 특성', subtitle:'PP · ABS · PC · PA · POM · TPE', hint:'수지 이름과 대표 용도를 짝지어 외워 보세요. PC·PA·ABS는 성형 전 건조가 특히 중요하고, POM·TPE의 특성도 함께 비교합니다.' },
-      { src:'images/06-defects.png', title:'대표 불량 빠르게 보기', subtitle:'미성형 · 버 · 싱크 · 웰드라인', hint:'불량 이름을 먼저 보고 원인 후보를 좁혀 보세요. 사출 조건 → 금형 → 수지 순서로 진단하면 빠릅니다.' },
-      { src:'images/07-flow-tracing.png', title:'유동을 추적하는 방법', subtitle:'노즐 → 러너 → 게이트 → 제품', hint:'게이트에서 제품 끝단까지 흐름을 손가락으로 따라가며 웰드라인과 에어 트랩 위치를 예상해 보세요.' }
+      { src:'images/01-cycle.webp', fallback:'images/01-cycle.png', title:'사출 한 사이클 이해하기', subtitle:'형체 · 사출 · 보압 · 냉각', hint:'나사 회전은 계량, 나사 전진은 사출입니다. 형체부터 취출까지 순서를 소리 내어 따라가 보세요.' },
+      { src:'images/02-mold-structure.webp', fallback:'images/02-mold-structure.png', title:'금형 구조 기초', subtitle:'고정측 · 가동측 · 파팅라인', hint:'제품을 만드는 빈 공간은 캐비티, 밀어내는 부품은 이젝터 핀입니다. 고정측과 가동측을 먼저 구분해 보세요.' },
+      { src:'images/03-injection-machine.webp', fallback:'images/03-injection-machine.png', title:'사출기의 구조', subtitle:'사출 유닛 · 형체 유닛', hint:'호퍼에서 노즐까지가 사출 유닛, 타이바와 형체 실린더 주변이 형체 유닛입니다.' },
+      { src:'images/04-settings.webp', fallback:'images/04-settings.png', title:'사출 조건의 기본', subtitle:'온도 · 속도 · 압력 · 시간', hint:'조건을 바꿀 때는 한 번에 하나씩. 온도와 압력, 냉각 시간이 제품에 어떤 흔적을 남기는지 연결해 보세요.' },
+      { src:'images/05-resin.webp', fallback:'images/05-resin.png', title:'자주 쓰는 수지 특성', subtitle:'PP · ABS · PC · PA · POM · TPE', hint:'수지 이름과 대표 용도를 짝지어 외워 보세요. PC·PA·ABS는 성형 전 건조가 특히 중요하고, POM·TPE의 특성도 함께 비교합니다.' },
+      { src:'images/06-defects.webp', fallback:'images/06-defects.png', title:'대표 불량 빠르게 보기', subtitle:'미성형 · 버 · 싱크 · 웰드라인', hint:'불량 이름을 먼저 보고 원인 후보를 좁혀 보세요. 사출 조건 → 금형 → 수지 순서로 진단하면 빠릅니다.' },
+      { src:'images/07-flow-tracing.webp', fallback:'images/07-flow-tracing.png', title:'유동을 추적하는 방법', subtitle:'노즐 → 러너 → 게이트 → 제품', hint:'게이트에서 제품 끝단까지 흐름을 손가락으로 따라가며 웰드라인과 에어 트랩 위치를 예상해 보세요.' }
     ];
     const home = document.getElementById('home');
     const viewer = document.getElementById('viewer');
@@ -181,6 +181,7 @@
     let currentIndex = null;
     let strokes = [];
     let activeStroke = null;
+    const imageCache = new Map();
     const storageKey = (index) => `snapwork-redpen-${index}`;
     const readStrokes = (index) => { try { return JSON.parse(localStorage.getItem(storageKey(index)) || '[]'); } catch (_) { return []; } };
     const hasNotes = (index) => readStrokes(index).length > 0;
@@ -189,10 +190,12 @@
     const drawStroke = (stroke) => { if (!stroke || !stroke.points || !stroke.points.length) return; const width = canvas.clientWidth; const height = canvas.clientHeight; ctx.globalAlpha = typeof stroke.opacity === 'number' ? stroke.opacity : 0.85; ctx.strokeStyle = stroke.color || '#e44848'; ctx.fillStyle = stroke.color || '#e44848'; ctx.lineWidth = stroke.width || 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; if (stroke.points.length === 1) { ctx.beginPath(); ctx.arc(stroke.points[0].x * width, stroke.points[0].y * height, Math.max(2, ctx.lineWidth / 2), 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1; return; } ctx.beginPath(); ctx.moveTo(stroke.points[0].x * width, stroke.points[0].y * height); stroke.points.slice(1).forEach((point) => ctx.lineTo(point.x * width, point.y * height)); ctx.stroke(); ctx.globalAlpha = 1; };
     const redraw = () => { ctx.globalAlpha = 1; ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight); strokes.forEach(drawStroke); if (activeStroke) drawStroke(activeStroke); ctx.globalAlpha = 1; };
     const resizeCanvas = () => { const width = studyImage.clientWidth; const height = studyImage.clientHeight; if (!width || !height) return; const dpr = Math.min(window.devicePixelRatio || 1, 2); canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr); canvas.style.width = `${width}px`; canvas.style.height = `${height}px`; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); redraw(); };
+    const preloadPage = (index) => { if (index < 0 || index >= pages.length || imageCache.has(index)) return; const page = pages[index]; const image = new Image(); image.decoding = 'async'; image.fetchPriority = 'low'; image.onerror = () => { if (page.fallback && image.src.endsWith('.webp')) image.src = page.fallback; }; image.src = page.src; imageCache.set(index, image); };
+    const preloadAllPages = () => pages.forEach((_, index) => preloadPage(index));
     const updatePageList = () => { [...pageList.children].forEach((button, index) => { button.classList.toggle('has-notes', hasNotes(index)); button.setAttribute('aria-current', String(index === currentIndex)); }); const count = pages.reduce((total, _, index) => total + (hasNotes(index) ? 1 : 0), 0); noteCount.textContent = `${count} 필기`; };
-    const renderPage = (index) => { if (currentIndex !== null) saveCurrent('페이지를 바꾸며 필기를 저장했습니다.'); currentIndex = index; const page = pages[index]; strokes = readStrokes(index); activeStroke = null; pageNumber.textContent = String(index + 1).padStart(2, '0'); studyTitle.textContent = page.title; studyHint.textContent = page.hint; progressText.textContent = `${index + 1} / ${pages.length}`; progressBar.style.width = `${((index + 1) / pages.length) * 100}%`; document.getElementById('prevBtn').disabled = index === 0; document.getElementById('nextBtn').textContent = index === pages.length - 1 ? '처음 페이지로 ↺' : '다음 페이지 →'; studyImage.alt = `${page.title} 학습 이미지`; studyImage.onload = resizeCanvas; studyImage.src = page.src; if (studyImage.complete) requestAnimationFrame(resizeCanvas); saveState.textContent = strokes.length ? '저장된 필기를 불러왔습니다.' : '필기는 이 기기에 저장됩니다.'; updatePageList(); window.scrollTo({ top:0, behavior:'smooth' }); };
+    const renderPage = (index) => { if (currentIndex !== null) saveCurrent('페이지를 바꾸며 필기를 저장했습니다.'); currentIndex = index; const page = pages[index]; preloadPage(index); strokes = readStrokes(index); activeStroke = null; pageNumber.textContent = String(index + 1).padStart(2, '0'); studyTitle.textContent = page.title; studyHint.textContent = page.hint; progressText.textContent = `${index + 1} / ${pages.length}`; progressBar.style.width = `${((index + 1) / pages.length) * 100}%`; document.getElementById('prevBtn').disabled = index === 0; document.getElementById('nextBtn').textContent = index === pages.length - 1 ? '처음 페이지로 ↺' : '다음 페이지 →'; studyImage.alt = `${page.title} 학습 이미지`; studyImage.decoding = 'async'; studyImage.fetchPriority = 'high'; studyImage.onload = resizeCanvas; studyImage.onerror = () => { studyImage.onerror = null; if (page.fallback) studyImage.src = page.fallback; }; studyImage.src = page.src; if (studyImage.complete) requestAnimationFrame(resizeCanvas); saveState.textContent = strokes.length ? '저장된 필기를 불러왔습니다.' : '필기는 이 기기에 저장됩니다.'; updatePageList(); window.scrollTo({ top:0, behavior:'smooth' }); };
     pages.forEach((page, index) => { const button = document.createElement('button'); button.type = 'button'; button.className = 'page-button'; button.innerHTML = `<span class="page-index">${String(index + 1).padStart(2, '0')}</span><span><strong>${page.title}</strong><small>${page.subtitle}</small></span><span class="page-check" aria-hidden="true">✓</span>`; button.addEventListener('click', () => renderPage(index)); pageList.appendChild(button); });
-    const openViewer = (index) => { home.hidden = true; viewer.hidden = false; renderPage(index); };
+    const openViewer = (index) => { preloadAllPages(); home.hidden = true; viewer.hidden = false; renderPage(index); };
     document.querySelectorAll('.lesson-entry').forEach((button) => button.addEventListener('click', () => openViewer(Number(button.dataset.page))));
     document.getElementById('startBtn').addEventListener('click', () => openViewer(currentIndex === null ? 0 : currentIndex));
     document.getElementById('backBtn').addEventListener('click', () => { saveCurrent(); viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); });
@@ -223,6 +226,8 @@
     window.addEventListener('resize', resizeCanvas);
     document.addEventListener('keydown', (event) => { if (viewer.hidden || ['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if (event.key === 'ArrowLeft' && currentIndex > 0) renderPage(currentIndex - 1); if (event.key === 'ArrowRight') renderPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); if (event.key === 'Escape') document.getElementById('backBtn').click(); });
     updatePageList();
+    const scheduleImagePreload = () => { const run = () => preloadAllPages(); if ('requestIdleCallback' in window) window.requestIdleCallback(run, { timeout:1200 }); else setTimeout(run, 200); };
+    if (document.readyState === 'complete') scheduleImagePreload(); else window.addEventListener('load', scheduleImagePreload, { once:true });
   </script>
 </body>
 </html>
