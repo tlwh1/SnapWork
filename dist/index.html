@@ -3,45 +3,201 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SnapWork</title>
-  <meta name="description" content="작게 시작하고 빠르게 공개하는 SnapWork.">
-  <meta name="theme-color" content="#10131a">
+  <title>사출입문 | SnapWork 학습장</title>
+  <meta name="description" content="사출공장 초보 입문 7장을 한 장씩 보고 빨간펜으로 외워 보는 학습장입니다.">
+  <meta name="theme-color" content="#14253d">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="SnapWork">
-  <meta property="og:description" content="작게 시작하고 빠르게 공개하는 SnapWork.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236d5dfc'/%3E%3Cpath d='M18 34 31 13h9L31 29h15L27 51h-9l9-17H18Z' fill='white'/%3E%3C/svg%3E">
+  <meta property="og:title" content="사출입문 | SnapWork 학습장">
+  <meta property="og:description" content="사출공장 초보 입문 7장을 한 장씩 보고 빨간펜으로 외워 보세요.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23e44848'/%3E%3Cpath d='M18 34 31 13h9L31 29h15L27 51h-9l9-17H18Z' fill='white'/%3E%3C/svg%3E">
   <style>
-    :root { color-scheme: dark; --bg:#10131a; --panel:#171c27; --text:#f4f6fb; --muted:#a9b2c4; --accent:#8b7cff; --line:rgba(255,255,255,.11); }
+    :root { color-scheme: light; --navy:#14253d; --navy-2:#1e3858; --ink:#172335; --muted:#65748a; --paper:#fffdf8; --paper-2:#f4efe5; --line:#dfe3e8; --red:#e44848; --red-dark:#b9323c; --blue:#2e6fae; }
     * { box-sizing:border-box; }
-    html { min-height:100%; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px; background:radial-gradient(circle at 20% 10%, rgba(139,124,255,.18), transparent 34%), var(--bg); color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    main { width:min(100%, 720px); }
-    .card { padding:clamp(32px, 8vw, 72px); border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.02)); box-shadow:0 24px 80px rgba(0,0,0,.28); }
-    .mark { display:inline-grid; place-items:center; width:44px; height:44px; margin-bottom:28px; border-radius:14px; background:var(--accent); color:white; font-weight:800; letter-spacing:-.04em; }
-    .eyebrow { margin:0 0 14px; color:var(--accent); font-size:.82rem; font-weight:750; letter-spacing:.14em; text-transform:uppercase; }
-    h1 { margin:0; max-width:12ch; font-size:clamp(2.4rem, 8vw, 5.5rem); line-height:.98; letter-spacing:-.065em; }
-    p { max-width:36rem; margin:24px 0 0; color:var(--muted); font-size:clamp(1rem, 2.2vw, 1.2rem); line-height:1.65; }
-    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
-    a { display:inline-flex; align-items:center; min-height:46px; padding:0 18px; border-radius:999px; color:var(--text); text-decoration:none; font-weight:700; border:1px solid var(--line); transition:transform .2s ease, border-color .2s ease, background .2s ease; }
-    a.primary { background:var(--accent); border-color:transparent; }
-    a:hover, a:focus-visible { transform:translateY(-2px); border-color:rgba(255,255,255,.35); outline:none; }
-    a:focus-visible { box-shadow:0 0 0 3px rgba(139,124,255,.45); }
-    footer { margin-top:22px; color:#788399; font-size:.85rem; }
-    @media (max-width:480px) { body { padding:16px; } .card { border-radius:22px; } }
+    html { min-height:100%; scroll-behavior:smooth; }
+    body { margin:0; min-height:100vh; color:var(--ink); background:linear-gradient(135deg,#e9eef4 0%,#f8f5ee 52%,#e9edf1 100%); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.32; background-image:radial-gradient(#b6bdc8 .65px, transparent .65px); background-size:17px 17px; mask-image:linear-gradient(to bottom,black,transparent 80%); }
+    button { font:inherit; }
+    .screen { width:min(1180px,100%); margin:0 auto; padding:clamp(22px,4vw,54px) clamp(16px,4vw,52px) 64px; position:relative; }
+    [hidden] { display:none !important; }
+    .home-shell { min-height:100vh; display:flex; flex-direction:column; }
+    .topline { display:flex; align-items:center; justify-content:space-between; gap:16px; color:var(--navy); font-size:.82rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .brand-dot { display:inline-flex; align-items:center; gap:9px; }
+    .brand-dot::before { content:""; width:10px; height:10px; border-radius:50%; background:var(--red); box-shadow:0 0 0 5px rgba(228,72,72,.12); }
+    .edition { color:#7e8b9a; letter-spacing:.04em; }
+    .hero { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr); gap:clamp(32px,7vw,92px); align-items:center; flex:1; padding:clamp(48px,10vh,112px) 0 60px; }
+    .eyebrow { margin:0 0 18px; color:var(--red-dark); font-size:.9rem; font-weight:850; letter-spacing:.13em; }
+    h1 { margin:0; color:var(--navy); font-size:clamp(2.7rem,7vw,6.6rem); line-height:.97; letter-spacing:-.075em; }
+    h1 em { color:var(--red); font-style:normal; }
+    .hero-copy { max-width:590px; margin:28px 0 0; color:#53647b; font-size:clamp(1.04rem,2vw,1.3rem); line-height:1.75; }
+    .primary-btn { display:inline-flex; align-items:center; justify-content:center; gap:16px; min-height:60px; margin-top:34px; padding:0 28px; border:0; border-radius:17px; color:white; background:var(--red); box-shadow:0 14px 28px rgba(184,50,60,.23); cursor:pointer; font-size:1.06rem; font-weight:850; transition:transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .primary-btn span { font-size:1.4rem; line-height:0; }
+    .primary-btn:hover, .primary-btn:focus-visible { background:var(--red-dark); transform:translateY(-2px); box-shadow:0 17px 32px rgba(184,50,60,.3); outline:none; }
+    .primary-btn:focus-visible, .tool-btn:focus-visible, .back-btn:focus-visible, .page-button:focus-visible { box-shadow:0 0 0 4px rgba(228,72,72,.24); outline:none; }
+    .local-note { margin:15px 0 0; color:#7c8997; font-size:.88rem; }
+    .lesson-preview { padding:26px; border:1px solid rgba(20,37,61,.1); border-radius:25px; background:rgba(255,253,248,.77); box-shadow:0 22px 60px rgba(28,51,77,.11); transform:rotate(1.1deg); }
+    .preview-label { display:flex; align-items:center; justify-content:space-between; padding-bottom:17px; border-bottom:1px dashed #c6ccd4; color:#7d8a99; font-size:.78rem; font-weight:800; letter-spacing:.11em; text-transform:uppercase; }
+    .preview-label strong { color:var(--red); font-size:1rem; letter-spacing:0; }
+    .lesson-map { display:grid; gap:0; margin:10px 0 0; padding:0; list-style:none; }
+    .lesson-map li { display:grid; grid-template-columns:36px 1fr; align-items:center; gap:12px; min-height:48px; border-bottom:1px solid #ece8df; color:#36475d; font-size:.95rem; font-weight:720; }
+    .lesson-map li:last-child { border-bottom:0; }
+    .lesson-num { display:grid; place-items:center; width:28px; height:28px; border-radius:50%; color:white; background:var(--navy); font-size:.8rem; }
+    .home-footer { display:flex; justify-content:space-between; gap:20px; color:#8290a0; font-size:.82rem; }
+    .viewer-screen { padding-top:20px; }
+    .viewer-header { display:flex; align-items:center; justify-content:space-between; gap:18px; padding-bottom:22px; border-bottom:1px solid rgba(20,37,61,.12); }
+    .back-btn { display:inline-flex; align-items:center; gap:8px; padding:9px 0; border:0; color:var(--navy); background:transparent; cursor:pointer; font-size:.95rem; font-weight:820; }
+    .back-btn span { font-size:1.4rem; line-height:0; }
+    .progress-wrap { display:flex; align-items:center; gap:13px; min-width:min(330px,48%); }
+    .progress-track { flex:1; height:8px; overflow:hidden; border-radius:99px; background:#d9e0e8; }
+    .progress-bar { width:14.28%; height:100%; border-radius:inherit; background:var(--red); transition:width .25s ease; }
+    .progress-text { color:#65748a; font-size:.88rem; font-weight:800; white-space:nowrap; }
+    .viewer-grid { display:grid; grid-template-columns:235px minmax(0,1fr); gap:26px; align-items:start; padding-top:28px; }
+    .page-list-card { position:sticky; top:18px; padding:18px 14px; border:1px solid rgba(20,37,61,.1); border-radius:19px; background:rgba(255,253,248,.82); box-shadow:0 14px 35px rgba(28,51,77,.08); }
+    .list-heading { display:flex; justify-content:space-between; align-items:center; padding:0 6px 11px; color:#7b8897; font-size:.77rem; font-weight:850; letter-spacing:.1em; text-transform:uppercase; }
+    .list-heading strong { color:var(--red); font-size:.9rem; letter-spacing:0; }
+    .page-list { display:grid; gap:5px; }
+    .page-button { display:grid; grid-template-columns:30px 1fr 16px; align-items:center; gap:8px; width:100%; padding:10px 7px; border:1px solid transparent; border-radius:12px; color:#44546a; background:transparent; text-align:left; cursor:pointer; }
+    .page-button:hover { background:#f7f2e9; }
+    .page-button[aria-current="true"] { border-color:rgba(228,72,72,.28); color:var(--navy); background:#fff5f1; }
+    .page-button .page-index { display:grid; place-items:center; width:27px; height:27px; border-radius:8px; color:#6e7d8c; background:#e9edf1; font-size:.75rem; font-weight:850; }
+    .page-button[aria-current="true"] .page-index { color:white; background:var(--red); }
+    .page-button strong { display:block; overflow:hidden; font-size:.82rem; font-weight:800; text-overflow:ellipsis; white-space:nowrap; }
+    .page-button small { display:block; overflow:hidden; margin-top:2px; color:#8592a0; font-size:.7rem; text-overflow:ellipsis; white-space:nowrap; }
+    .page-check { color:var(--red); font-size:.9rem; opacity:0; }
+    .page-button.has-notes .page-check { opacity:1; }
+    .study-card { min-width:0; padding:clamp(19px,3vw,32px); border:1px solid rgba(20,37,61,.12); border-radius:25px; background:var(--paper); box-shadow:0 20px 50px rgba(28,51,77,.12); }
+    .study-kicker { margin:0 0 9px; color:var(--red-dark); font-size:.8rem; font-weight:850; letter-spacing:.1em; text-transform:uppercase; }
+    h2 { margin:0; color:var(--navy); font-size:clamp(1.7rem,3.5vw,3rem); line-height:1.1; letter-spacing:-.055em; }
+    .study-hint { max-width:760px; margin:13px 0 22px; color:#617187; font-size:1rem; line-height:1.6; }
+    .canvas-wrap { position:relative; width:100%; overflow:hidden; border:1px solid #d6dce3; border-radius:16px; background:#eef2f4; box-shadow:0 8px 25px rgba(20,37,61,.09); }
+    .canvas-wrap img { display:block; width:100%; height:auto; }
+    .canvas-wrap canvas { position:absolute; inset:0; width:100%; height:100%; cursor:crosshair; touch-action:none; }
+    .toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:17px; }
+    .toolbar-group { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+    .tool-btn { display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:0 14px; border:1px solid #d5dbe2; border-radius:11px; color:#46566b; background:#fff; cursor:pointer; font-size:.9rem; font-weight:780; }
+    .tool-btn:hover { border-color:#aab7c5; background:#f7f9fa; }
+    .tool-btn.primary-tool { border-color:var(--red); color:var(--red-dark); background:#fff5f1; }
+    .tool-btn:disabled { cursor:not-allowed; opacity:.42; }
+    .pen-control { display:inline-flex; align-items:center; gap:9px; min-height:42px; padding:0 11px; border:1px solid #d5dbe2; border-radius:11px; color:#65748a; background:#fff; font-size:.83rem; font-weight:750; }
+    .pen-control input { width:94px; accent-color:var(--red); }
+    .save-state { min-height:20px; margin:12px 2px 0; color:#7b8997; font-size:.82rem; }
+    .page-nav { display:flex; justify-content:space-between; gap:10px; margin-top:24px; padding-top:20px; border-top:1px dashed #d2d8df; }
+    .page-nav .tool-btn { min-width:120px; }
+    .tip { margin:28px 0 0; padding:13px 15px; border-left:4px solid #e6b44a; border-radius:0 10px 10px 0; color:#6b5a37; background:#fff8e7; font-size:.86rem; line-height:1.55; }
+    @media (max-width:820px) { .hero { grid-template-columns:1fr; padding-top:66px; } .lesson-preview { max-width:600px; transform:none; } .viewer-grid { grid-template-columns:1fr; } .page-list-card { position:static; } .page-list { grid-template-columns:repeat(2,minmax(0,1fr)); } .page-button { grid-template-columns:29px 1fr 14px; } }
+    @media (max-width:560px) { .screen { padding-left:14px; padding-right:14px; } .topline, .viewer-header { align-items:flex-start; flex-direction:column; } .progress-wrap { width:100%; min-width:0; } .home-footer { flex-direction:column; gap:7px; } .page-list { grid-template-columns:1fr; } .toolbar { align-items:stretch; flex-direction:column; } .toolbar-group { width:100%; } .tool-btn { flex:1; } .pen-control { justify-content:space-between; } .pen-control input { flex:1; } .page-nav .tool-btn { min-width:0; } }
   </style>
 </head>
 <body>
   <main>
-    <section class="card" aria-labelledby="page-title">
-      <div class="mark" aria-hidden="true">S</div>
-      <p class="eyebrow">SnapWork</p>
-      <h1 id="page-title">작게 시작하고, 빠르게 공개하세요.</h1>
-      <p>필요한 내용을 가볍게 정리하고 바로 공유할 수 있는 작은 작업 공간입니다.</p>
-      <div class="actions">
-        <a class="primary" href="https://github.com/tlwh1/SnapWork" target="_blank" rel="noreferrer">GitHub 저장소 보기</a>
+    <section id="home" class="screen home-shell" aria-labelledby="home-title">
+      <div class="topline"><span class="brand-dot">SnapWork · 사출입문</span><span class="edition">MEMORY NOTE / 2026</span></div>
+      <div class="hero">
+        <div>
+          <p class="eyebrow">초보 입문 01—07</p>
+          <h1 id="home-title">사출공장,<br><em>한 장씩</em> 익히기</h1>
+          <p class="hero-copy">사출 사이클부터 금형·조건·수지·불량·유동까지, 사진 7장을 페이지별로 넘겨 보세요. 화면 위에 빨간펜으로 직접 표시하며 외울 수 있습니다.</p>
+          <button id="startBtn" class="primary-btn" type="button">학습 시작하기 <span aria-hidden="true">→</span></button>
+          <p class="local-note">필기는 이 기기의 브라우저에 자동 저장됩니다.</p>
+        </div>
+        <aside class="lesson-preview" aria-label="학습 목차">
+          <div class="preview-label"><span>STUDY INDEX</span><strong>7 PAGES</strong></div>
+          <ol class="lesson-map">
+            <li><span class="lesson-num">1</span><span>사출 한 사이클 이해하기</span></li>
+            <li><span class="lesson-num">2</span><span>금형 구조 기초</span></li>
+            <li><span class="lesson-num">3</span><span>사출기의 구조</span></li>
+            <li><span class="lesson-num">4</span><span>사출 조건의 기본</span></li>
+            <li><span class="lesson-num">5</span><span>자주 쓰는 수지 특성</span></li>
+            <li><span class="lesson-num">6</span><span>대표 불량 빠르게 보기</span></li>
+            <li><span class="lesson-num">7</span><span>유동을 추적하는 방법</span></li>
+          </ol>
+        </aside>
+      </div>
+      <div class="home-footer"><span>사진 기반 사출 학습 노트</span><span>빨간펜으로 핵심만 표시해 보세요.</span></div>
+    </section>
+    <section id="viewer" class="screen viewer-screen" hidden aria-labelledby="studyTitle">
+      <div class="viewer-header">
+        <button id="backBtn" class="back-btn" type="button"><span aria-hidden="true">←</span> 목차로 돌아가기</button>
+        <div class="progress-wrap" aria-label="학습 진행률"><div class="progress-track"><div id="progressBar" class="progress-bar"></div></div><span id="progressText" class="progress-text">1 / 7</span></div>
+      </div>
+      <div class="viewer-grid">
+        <aside class="page-list-card" aria-label="페이지 목록">
+          <div class="list-heading"><span>페이지 선택</span><strong id="noteCount">0 필기</strong></div>
+          <div id="pageList" class="page-list"></div>
+        </aside>
+        <article class="study-card">
+          <p class="study-kicker">PAGE <span id="pageNumber">01</span></p>
+          <h2 id="studyTitle">사출 한 사이클 이해하기</h2>
+          <p id="studyHint" class="study-hint"></p>
+          <div class="canvas-wrap">
+            <img id="studyImage" src="images/01-cycle.png" alt="사출 한 사이클 이해하기 학습 이미지">
+            <canvas id="inkCanvas" aria-label="이미지 위에 빨간펜으로 필기하는 영역"></canvas>
+          </div>
+          <div class="toolbar">
+            <div class="toolbar-group"><button id="undoBtn" class="tool-btn" type="button">실행 취소</button><button id="clearBtn" class="tool-btn" type="button">전체 지우기</button><label class="pen-control">펜 굵기 <input id="penSize" type="range" min="2" max="14" value="5"><span id="penValue">5px</span></label></div>
+            <div class="toolbar-group"><button id="saveBtn" class="tool-btn primary-tool" type="button">필기 저장</button></div>
+          </div>
+          <p id="saveState" class="save-state" aria-live="polite">필기는 이 기기에 저장됩니다.</p>
+          <div class="page-nav"><button id="prevBtn" class="tool-btn" type="button">← 이전 페이지</button><button id="nextBtn" class="tool-btn primary-tool" type="button">다음 페이지 →</button></div>
+          <p class="tip">사용 팁: 이미지 위에서 마우스나 손가락으로 드래그해 표시하세요. 페이지를 바꿔도 필기는 자동으로 보관됩니다.</p>
+        </article>
       </div>
     </section>
-    <footer>© 2026 SnapWork</footer>
   </main>
+  <script>
+    const pages = [
+      { src:'images/01-cycle.png', title:'사출 한 사이클 이해하기', subtitle:'형체 · 사출 · 보압 · 냉각', hint:'나사 회전은 계량, 나사 전진은 사출입니다. 형체부터 취출까지 순서를 소리 내어 따라가 보세요.' },
+      { src:'images/02-mold-structure.png', title:'금형 구조 기초', subtitle:'고정측 · 가동측 · 파팅라인', hint:'제품을 만드는 빈 공간은 캐비티, 밀어내는 부품은 이젝터 핀입니다. 고정측과 가동측을 먼저 구분해 보세요.' },
+      { src:'images/03-injection-machine.png', title:'사출기의 구조', subtitle:'사출 유닛 · 형체 유닛', hint:'호퍼에서 노즐까지가 사출 유닛, 타이바와 형체 실린더 주변이 형체 유닛입니다.' },
+      { src:'images/04-settings.png', title:'사출 조건의 기본', subtitle:'온도 · 속도 · 압력 · 시간', hint:'조건을 바꿀 때는 한 번에 하나씩. 온도와 압력, 냉각 시간이 제품에 어떤 흔적을 남기는지 연결해 보세요.' },
+      { src:'images/05-resin.png', title:'자주 쓰는 수지 특성', subtitle:'PP · PE · ABS · PC · PA', hint:'수지 이름과 대표 용도를 짝지어 외워 보세요. PA와 PC는 성형 전 건조가 특히 중요합니다.' },
+      { src:'images/06-defects.png', title:'대표 불량 빠르게 보기', subtitle:'미성형 · 버 · 싱크 · 웰드라인', hint:'불량 이름을 먼저 보고 원인 후보를 좁혀 보세요. 사출 조건 → 금형 → 수지 순서로 진단하면 빠릅니다.' },
+      { src:'images/07-flow-tracing.png', title:'유동을 추적하는 방법', subtitle:'노즐 → 러너 → 게이트 → 제품', hint:'게이트에서 제품 끝단까지 흐름을 손가락으로 따라가며 웰드라인과 에어 트랩 위치를 예상해 보세요.' }
+    ];
+    const home = document.getElementById('home');
+    const viewer = document.getElementById('viewer');
+    const pageList = document.getElementById('pageList');
+    const studyImage = document.getElementById('studyImage');
+    const canvas = document.getElementById('inkCanvas');
+    const ctx = canvas.getContext('2d');
+    const studyTitle = document.getElementById('studyTitle');
+    const studyHint = document.getElementById('studyHint');
+    const pageNumber = document.getElementById('pageNumber');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const saveState = document.getElementById('saveState');
+    const noteCount = document.getElementById('noteCount');
+    const penSize = document.getElementById('penSize');
+    const penValue = document.getElementById('penValue');
+    let currentIndex = null;
+    let strokes = [];
+    let activeStroke = null;
+    const storageKey = (index) => `snapwork-redpen-${index}`;
+    const readStrokes = (index) => { try { return JSON.parse(localStorage.getItem(storageKey(index)) || '[]'); } catch (_) { return []; } };
+    const hasNotes = (index) => readStrokes(index).length > 0;
+    const saveCurrent = (message = '필기가 저장되었습니다.') => { if (currentIndex === null) return; try { localStorage.setItem(storageKey(currentIndex), JSON.stringify(strokes)); saveState.textContent = message; } catch (_) { saveState.textContent = '브라우저 저장 공간을 사용할 수 없습니다.'; } updatePageList(); };
+    const pointFromEvent = (event) => { const rect = canvas.getBoundingClientRect(); return { x:Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)), y:Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height)) }; };
+    const drawStroke = (stroke) => { if (!stroke || !stroke.points || !stroke.points.length) return; const width = canvas.clientWidth; const height = canvas.clientHeight; ctx.strokeStyle = '#e44848'; ctx.fillStyle = '#e44848'; ctx.lineWidth = stroke.width || 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; if (stroke.points.length === 1) { ctx.beginPath(); ctx.arc(stroke.points[0].x * width, stroke.points[0].y * height, Math.max(2, ctx.lineWidth / 2), 0, Math.PI * 2); ctx.fill(); return; } ctx.beginPath(); ctx.moveTo(stroke.points[0].x * width, stroke.points[0].y * height); stroke.points.slice(1).forEach((point) => ctx.lineTo(point.x * width, point.y * height)); ctx.stroke(); };
+    const redraw = () => { ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight); strokes.forEach(drawStroke); if (activeStroke) drawStroke(activeStroke); };
+    const resizeCanvas = () => { const width = studyImage.clientWidth; const height = studyImage.clientHeight; if (!width || !height) return; const dpr = Math.min(window.devicePixelRatio || 1, 2); canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr); canvas.style.width = `${width}px`; canvas.style.height = `${height}px`; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); redraw(); };
+    const updatePageList = () => { [...pageList.children].forEach((button, index) => { button.classList.toggle('has-notes', hasNotes(index)); button.setAttribute('aria-current', String(index === currentIndex)); }); const count = pages.reduce((total, _, index) => total + (hasNotes(index) ? 1 : 0), 0); noteCount.textContent = `${count} 필기`; };
+    const renderPage = (index) => { if (currentIndex !== null) saveCurrent('페이지를 바꾸며 필기를 저장했습니다.'); currentIndex = index; const page = pages[index]; strokes = readStrokes(index); activeStroke = null; pageNumber.textContent = String(index + 1).padStart(2, '0'); studyTitle.textContent = page.title; studyHint.textContent = page.hint; progressText.textContent = `${index + 1} / ${pages.length}`; progressBar.style.width = `${((index + 1) / pages.length) * 100}%`; document.getElementById('prevBtn').disabled = index === 0; document.getElementById('nextBtn').textContent = index === pages.length - 1 ? '처음 페이지로 ↺' : '다음 페이지 →'; studyImage.alt = `${page.title} 학습 이미지`; studyImage.onload = resizeCanvas; studyImage.src = page.src; if (studyImage.complete) requestAnimationFrame(resizeCanvas); saveState.textContent = strokes.length ? '저장된 필기를 불러왔습니다.' : '필기는 이 기기에 저장됩니다.'; updatePageList(); window.scrollTo({ top:0, behavior:'smooth' }); };
+    pages.forEach((page, index) => { const button = document.createElement('button'); button.type = 'button'; button.className = 'page-button'; button.innerHTML = `<span class="page-index">${String(index + 1).padStart(2, '0')}</span><span><strong>${page.title}</strong><small>${page.subtitle}</small></span><span class="page-check" aria-hidden="true">✓</span>`; button.addEventListener('click', () => renderPage(index)); pageList.appendChild(button); });
+    document.getElementById('startBtn').addEventListener('click', () => { home.hidden = true; viewer.hidden = false; renderPage(currentIndex === null ? 0 : currentIndex); });
+    document.getElementById('backBtn').addEventListener('click', () => { saveCurrent(); viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); });
+    document.getElementById('prevBtn').addEventListener('click', () => { if (currentIndex > 0) renderPage(currentIndex - 1); });
+    document.getElementById('nextBtn').addEventListener('click', () => { renderPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); });
+    document.getElementById('undoBtn').addEventListener('click', () => { if (!strokes.length) return; strokes.pop(); redraw(); saveCurrent('마지막 표시를 취소했습니다.'); });
+    document.getElementById('clearBtn').addEventListener('click', () => { if (!strokes.length) return; strokes = []; redraw(); saveCurrent('이 페이지의 필기를 지웠습니다.'); });
+    document.getElementById('saveBtn').addEventListener('click', () => saveCurrent());
+    penSize.addEventListener('input', () => { penValue.textContent = `${penSize.value}px`; });
+    canvas.addEventListener('pointerdown', (event) => { activeStroke = { width:Number(penSize.value), points:[pointFromEvent(event)] }; canvas.setPointerCapture(event.pointerId); redraw(); });
+    canvas.addEventListener('pointermove', (event) => { if (!activeStroke) return; activeStroke.points.push(pointFromEvent(event)); redraw(); });
+    const finishStroke = () => { if (!activeStroke) return; strokes.push(activeStroke); activeStroke = null; redraw(); saveCurrent('필기를 자동 저장했습니다.'); };
+    canvas.addEventListener('pointerup', finishStroke);
+    canvas.addEventListener('pointercancel', finishStroke);
+    window.addEventListener('resize', resizeCanvas);
+    document.addEventListener('keydown', (event) => { if (viewer.hidden || ['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if (event.key === 'ArrowLeft' && currentIndex > 0) renderPage(currentIndex - 1); if (event.key === 'ArrowRight') renderPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); if (event.key === 'Escape') document.getElementById('backBtn').click(); });
+    updatePageList();
+  </script>
 </body>
 </html>
