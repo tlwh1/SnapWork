@@ -73,9 +73,11 @@
     .study-kicker { margin:0 0 9px; color:var(--red-dark); font-size:.8rem; font-weight:850; letter-spacing:.1em; text-transform:uppercase; }
     h2 { margin:0; color:var(--navy); font-size:clamp(1.7rem,3.5vw,3rem); line-height:1.1; letter-spacing:-.055em; }
     .study-hint { max-width:760px; margin:13px 0 22px; color:#617187; font-size:1rem; line-height:1.6; }
-    .canvas-wrap { position:relative; width:100%; overflow:hidden; border:1px solid #d6dce3; border-radius:16px; background:#eef2f4; box-shadow:0 8px 25px rgba(20,37,61,.09); }
-    .canvas-wrap img { display:block; width:100%; height:auto; }
-    .canvas-wrap canvas { position:absolute; z-index:2; inset:0; display:block; width:100%; height:100%; cursor:crosshair; touch-action:none; pointer-events:auto; }
+    .canvas-wrap { position:relative; width:100%; overflow:hidden; border:1px solid #d6dce3; border-radius:16px; background:#eef2f4; box-shadow:0 8px 25px rgba(20,37,61,.09); touch-action:none; }
+    .canvas-stage { position:relative; width:100%; transform-origin:top left; will-change:transform; }
+    .canvas-stage img { display:block; width:100%; height:auto; pointer-events:none; }
+    .canvas-stage canvas { position:absolute; z-index:2; inset:0; display:block; width:100%; height:100%; cursor:default; touch-action:none; pointer-events:auto; }
+    .focus-mode .canvas-stage canvas { cursor:crosshair; }
     .canvas-wrap img { pointer-events:none; }
     .toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:17px; }
     .toolbar-group { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
@@ -86,6 +88,11 @@
     .pen-control { display:inline-flex; align-items:center; gap:9px; min-height:42px; padding:0 11px; border:1px solid #d5dbe2; border-radius:11px; color:#65748a; background:#fff; font-size:.83rem; font-weight:750; }
     .pen-control input { width:94px; accent-color:var(--red); }
     .pen-control select { max-width:92px; border:0; color:#46566b; background:transparent; cursor:pointer; font-size:.83rem; font-weight:750; }
+    .zoom-controls { display:none; align-items:center; gap:4px; }
+    .draw-tools { display:none; }
+    .focus-mode .draw-tools { display:flex; }
+    .zoom-controls .tool-btn { min-width:40px; padding:0 9px; }
+    .focus-exit { display:none; position:absolute; z-index:4; top:12px; right:12px; min-height:40px; padding:0 13px; border:1px solid rgba(255,255,255,.26); border-radius:10px; color:#fff; background:rgba(10,18,32,.78); cursor:pointer; font-size:.85rem; font-weight:800; backdrop-filter:blur(8px); }
     .save-state { min-height:20px; margin:12px 2px 0; color:#7b8997; font-size:.82rem; }
     .page-nav { display:flex; justify-content:space-between; gap:10px; margin-top:24px; padding-top:20px; border-top:1px dashed #d2d8df; }
     .page-nav .tool-btn { min-width:120px; }
@@ -110,6 +117,8 @@
     .focus-mode .viewer-header, .focus-mode .page-picker, .focus-mode .study-kicker, .focus-mode #studyTitle, .focus-mode .study-hint, .focus-mode .memo-wrap, .focus-mode .page-nav, .focus-mode .tip { display:none; }
     .focus-mode .viewer-grid { padding-top:0; }
     .focus-mode .study-card { padding:0; border:0; border-radius:0; box-shadow:none; background:transparent; }
+    .focus-mode .zoom-controls { display:flex; }
+    .focus-mode .focus-exit { display:inline-flex; align-items:center; }
     .focus-mode .canvas-wrap { border:0; border-radius:0; box-shadow:none; }
     .focus-mode .toolbar { margin:0; padding:12px 14px; background:#0d1726; }
     :root { color-scheme:dark; --navy:#f1f5fb; --navy-2:#294263; --ink:#e9eff7; --muted:#a8b6c8; --paper:#131e2f; --paper-2:#1a293e; --line:#344861; --red:#ff6d68; --red-dark:#ff918b; --blue:#66a9e5; }
@@ -185,17 +194,20 @@
           <h2 id="studyTitle">사출 한 사이클 이해하기</h2>
           <p id="studyHint" class="study-hint"></p>
           <div class="canvas-wrap">
-            <img id="studyImage" src="images/01-cycle.webp" alt="사출 한 사이클 이해하기 학습 이미지" decoding="async" loading="eager" fetchpriority="high">
-            <canvas id="inkCanvas" aria-label="이미지 위에 빨간펜으로 필기하는 영역"></canvas>
+            <div id="canvasStage" class="canvas-stage">
+              <img id="studyImage" src="images/01-cycle.webp" alt="사출 한 사이클 이해하기 학습 이미지" decoding="async" loading="eager" fetchpriority="high">
+              <canvas id="inkCanvas" aria-label="이미지 위에 빨간펜으로 필기하는 영역"></canvas>
+            </div>
+            <button id="exitFocusBtn" class="focus-exit" type="button">집중 보기 종료 ×</button>
           </div>
           <div class="memo-wrap"><label for="textMemo">텍스트 메모 <span>저장 버튼을 눌러 보관</span></label><textarea id="textMemo" class="text-memo" rows="3" placeholder="이 페이지에서 외울 내용을 적어 보세요."></textarea></div>
           <div class="toolbar">
-            <div class="toolbar-group"><button id="undoBtn" class="tool-btn" type="button">실행 취소</button><button id="clearBtn" class="tool-btn" type="button">그림 전체 지우기</button><label class="pen-control">색상 <select id="penColor" aria-label="필기 색상"><option value="#e44848">빨강</option><option value="#ef7d32">주황</option><option value="#2e6fae">파랑</option><option value="#1f7a5a">초록</option><option value="#5d4fc7">보라</option></select></label><label class="pen-control">굵기 <input id="penSize" type="range" min="2" max="14" value="5"><span id="penValue">5px</span></label><label class="pen-control">투명도 <input id="penOpacity" type="range" min="20" max="100" value="85"><span id="opacityValue">85%</span></label></div>
-            <div class="toolbar-group"><button id="focusBtn" class="tool-btn" type="button">이미지 집중 보기</button><button id="saveBtn" class="tool-btn primary-tool" type="button">필기·메모 저장</button></div>
+            <div class="toolbar-group draw-tools"><button id="undoBtn" class="tool-btn" type="button">실행 취소</button><button id="clearBtn" class="tool-btn" type="button">그림 전체 지우기</button><label class="pen-control">색상 <select id="penColor" aria-label="필기 색상"><option value="#e44848">빨강</option><option value="#ef7d32">주황</option><option value="#2e6fae">파랑</option><option value="#1f7a5a">초록</option><option value="#5d4fc7">보라</option></select></label><label class="pen-control">굵기 <input id="penSize" type="range" min="2" max="14" value="5"><span id="penValue">5px</span></label><label class="pen-control">투명도 <input id="penOpacity" type="range" min="20" max="100" value="85"><span id="opacityValue">85%</span></label></div>
+            <div class="toolbar-group"><div class="zoom-controls" aria-label="이미지 확대 축소"><button id="zoomOutBtn" class="tool-btn" type="button" aria-label="이미지 축소">−</button><button id="zoomResetBtn" class="tool-btn" type="button" aria-label="확대 초기화">100%</button><button id="zoomInBtn" class="tool-btn" type="button" aria-label="이미지 확대">＋</button></div><button id="saveBtn" class="tool-btn primary-tool" type="button">필기·메모 저장</button></div>
           </div>
           <p id="saveState" class="save-state" aria-live="polite">필기와 메모는 저장 버튼을 눌러 보관합니다.</p>
           <div class="page-nav"><button id="prevBtn" class="tool-btn" type="button">← 이전 페이지</button><button id="nextBtn" class="tool-btn primary-tool" type="button">다음 페이지 →</button></div>
-          <p class="tip">사용 팁: 이미지 위에서 마우스나 손가락으로 표시하고 메모를 적은 뒤, 저장 버튼을 눌러야 두 내용이 함께 보관됩니다. 저장하지 않은 변경은 페이지 이동·새로고침 시 사라집니다.</p>
+          <p class="tip">사용 팁: 기본 화면에서 이미지를 탭하면 집중 보기로 전환됩니다. 집중 보기에서는 한 손가락으로 표시하고 두 손가락으로 확대·이동하세요. 필기와 메모는 저장 버튼을 눌러야 함께 보관되며, 저장하지 않은 변경은 페이지 이동·새로고침 시 사라집니다.</p>
         </article>
       </div>
     </section>
@@ -225,7 +237,12 @@
     const pickerSummary = document.getElementById('pickerSummary');
     const pagePicker = document.getElementById('pagePicker');
     const textMemo = document.getElementById('textMemo');
-    const focusBtn = document.getElementById('focusBtn');
+    const canvasWrap = document.querySelector('.canvas-wrap');
+    const canvasStage = document.getElementById('canvasStage');
+    const exitFocusBtn = document.getElementById('exitFocusBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
+    const zoomResetBtn = document.getElementById('zoomResetBtn');
+    const zoomInBtn = document.getElementById('zoomInBtn');
     const penSize = document.getElementById('penSize');
     const penValue = document.getElementById('penValue');
     const penColor = document.getElementById('penColor');
@@ -235,37 +252,61 @@
     let strokes = [];
     let activeStroke = null;
     let dirty = false;
+    let zoom = 1;
+    let panX = 0;
+    let panY = 0;
+    const pointers = new Map();
+    let pinchStart = null;
+    let tapCandidate = null;
     const imageCache = new Map();
     const storageKey = (index) => `snapwork-study-${index}`;
     const readSavedState = (index) => { try { const saved = localStorage.getItem(storageKey(index)); if (saved) { const parsed = JSON.parse(saved); if (Array.isArray(parsed)) return { strokes:parsed, memo:'' }; return { strokes:Array.isArray(parsed.strokes) ? parsed.strokes : [], memo:typeof parsed.memo === 'string' ? parsed.memo : '' }; } const legacy = localStorage.getItem(`snapwork-redpen-${index}`); return { strokes:legacy ? JSON.parse(legacy) : [], memo:'' }; } catch (_) { return { strokes:[], memo:'' }; } };
     const hasNotes = (index) => { const saved = readSavedState(index); return saved.strokes.length > 0 || saved.memo.trim().length > 0; };
     const markDraft = (message = '저장 버튼을 눌러 보관하세요.') => { dirty = true; saveState.textContent = message; };
     const saveCurrent = (message = '필기와 메모를 저장했습니다.') => { if (currentIndex === null) return; try { localStorage.setItem(storageKey(currentIndex), JSON.stringify({ strokes, memo:textMemo.value })); dirty = false; saveState.textContent = message; } catch (_) { saveState.textContent = '브라우저 저장 공간을 사용할 수 없습니다.'; } updatePageList(); };
+    const clampZoom = (value) => Math.max(1, Math.min(4, value));
+    const clampPan = () => { const maxX = Math.max(0, studyImage.clientWidth * zoom - canvasWrap.clientWidth); const maxY = Math.max(0, studyImage.clientHeight * zoom - canvasWrap.clientHeight); panX = Math.min(0, Math.max(-maxX, panX)); panY = Math.min(0, Math.max(-maxY, panY)); };
+    const applyZoom = () => { clampPan(); canvasStage.style.transform = zoom === 1 && panX === 0 && panY === 0 ? 'none' : `translate(${panX}px, ${panY}px) scale(${zoom})`; zoomResetBtn.textContent = `${Math.round(zoom * 100)}%`; };
+    const resetZoom = () => { zoom = 1; panX = 0; panY = 0; applyZoom(); };
+    const setZoom = (value) => { zoom = clampZoom(value); applyZoom(); };
+    const distanceBetween = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+    const midpoint = (a, b) => ({ x:(a.x + b.x) / 2, y:(a.y + b.y) / 2 });
+    const enterFocusMode = (pushHistory = true) => { if (currentIndex === null) return; viewer.classList.add('focus-mode'); resetZoom(); if (pushHistory) history.pushState({ viewer:true, index:currentIndex, focus:true }, '', `#page-${currentIndex + 1}-focus`); requestAnimationFrame(resizeCanvas); };
+    const exitFocusMode = (useHistory = true) => { if (useHistory && history.state && history.state.focus) { history.back(); return; } viewer.classList.remove('focus-mode'); resetZoom(); requestAnimationFrame(resizeCanvas); };
+    const navigateHome = () => { if (history.state && history.state.viewer) history.back(); else { viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); } };
     const pointFromEvent = (event) => { const source = event.touches && event.touches[0] ? event.touches[0] : (event.changedTouches && event.changedTouches[0] ? event.changedTouches[0] : event); const rect = canvas.getBoundingClientRect(); return { x:Math.max(0, Math.min(1, (source.clientX - rect.left) / rect.width)), y:Math.max(0, Math.min(1, (source.clientY - rect.top) / rect.height)) }; };
     const drawStroke = (stroke) => { if (!stroke || !stroke.points || !stroke.points.length) return; const width = canvas.clientWidth; const height = canvas.clientHeight; ctx.globalAlpha = typeof stroke.opacity === 'number' ? stroke.opacity : 0.85; ctx.strokeStyle = stroke.color || '#e44848'; ctx.fillStyle = stroke.color || '#e44848'; ctx.lineWidth = stroke.width || 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; if (stroke.points.length === 1) { ctx.beginPath(); ctx.arc(stroke.points[0].x * width, stroke.points[0].y * height, Math.max(2, ctx.lineWidth / 2), 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1; return; } ctx.beginPath(); ctx.moveTo(stroke.points[0].x * width, stroke.points[0].y * height); stroke.points.slice(1).forEach((point) => ctx.lineTo(point.x * width, point.y * height)); ctx.stroke(); ctx.globalAlpha = 1; };
     const redraw = () => { ctx.globalAlpha = 1; ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight); strokes.forEach(drawStroke); if (activeStroke) drawStroke(activeStroke); ctx.globalAlpha = 1; };
-    const resizeCanvas = () => { const width = studyImage.clientWidth; const height = studyImage.clientHeight; if (!width || !height) return; const dpr = Math.min(window.devicePixelRatio || 1, 2); canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr); canvas.style.width = `${width}px`; canvas.style.height = `${height}px`; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); redraw(); };
+    const resizeCanvas = () => { const width = studyImage.clientWidth; const height = studyImage.clientHeight; if (!width || !height) return; const dpr = Math.min(window.devicePixelRatio || 1, 2); canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr); canvas.style.width = `${width}px`; canvas.style.height = `${height}px`; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); redraw(); applyZoom(); };
     const preloadPage = (index) => { if (index < 0 || index >= pages.length || imageCache.has(index)) return; const page = pages[index]; const image = new Image(); image.decoding = 'async'; image.fetchPriority = 'low'; image.onerror = () => { if (page.fallback && image.src.endsWith('.webp')) image.src = page.fallback; }; image.src = page.src; imageCache.set(index, image); };
     const preloadAllPages = () => pages.forEach((_, index) => preloadPage(index));
     const updatePageList = () => { [...pageList.children].forEach((button, index) => { button.classList.toggle('has-notes', hasNotes(index)); button.setAttribute('aria-current', String(index === currentIndex)); }); const count = pages.reduce((total, _, index) => total + (hasNotes(index) ? 1 : 0), 0); pickerSummary.textContent = `${currentIndex === null ? 1 : currentIndex + 1} / ${pages.length} · ${count} 필기`; };
-    const renderPage = (index) => { currentIndex = index; const page = pages[index]; const saved = readSavedState(index); preloadPage(index); strokes = saved.strokes; textMemo.value = saved.memo; dirty = false; activeStroke = null; pagePicker.open = false; pageNumber.textContent = String(index + 1).padStart(2, '0'); studyTitle.textContent = page.title; studyHint.textContent = page.hint; progressText.textContent = `${index + 1} / ${pages.length}`; progressBar.style.width = `${((index + 1) / pages.length) * 100}%`; document.getElementById('prevBtn').disabled = index === 0; document.getElementById('nextBtn').textContent = index === pages.length - 1 ? '처음 페이지로 ↺' : '다음 페이지 →'; studyImage.alt = `${page.title} 학습 이미지`; studyImage.decoding = 'async'; studyImage.fetchPriority = 'high'; studyImage.onload = resizeCanvas; studyImage.onerror = () => { studyImage.onerror = null; if (page.fallback) studyImage.src = page.fallback; }; studyImage.src = page.src; if (studyImage.complete) requestAnimationFrame(resizeCanvas); saveState.textContent = strokes.length || textMemo.value ? '저장된 필기와 메모를 불러왔습니다.' : '필기와 메모는 저장 버튼을 눌러 보관합니다.'; updatePageList(); window.scrollTo({ top:0, behavior:'smooth' }); };
-    pages.forEach((page, index) => { const button = document.createElement('button'); button.type = 'button'; button.className = 'page-button'; button.dataset.page = String(index); button.innerHTML = `<span class="page-index">${String(index + 1).padStart(2, '0')}</span><span><strong>${page.title}</strong><small>${page.subtitle}</small></span><span class="page-check" aria-hidden="true">✓</span>`; button.addEventListener('click', () => renderPage(index)); pageList.appendChild(button); });
-    const openViewer = (index) => { preloadAllPages(); home.hidden = true; viewer.hidden = false; renderPage(index); };
+    const renderPage = (index) => { currentIndex = index; const page = pages[index]; const saved = readSavedState(index); preloadPage(index); strokes = saved.strokes; textMemo.value = saved.memo; dirty = false; activeStroke = null; tapCandidate = null; pinchStart = null; pointers.clear(); pagePicker.open = false; resetZoom(); pageNumber.textContent = String(index + 1).padStart(2, '0'); studyTitle.textContent = page.title; studyHint.textContent = page.hint; progressText.textContent = `${index + 1} / ${pages.length}`; progressBar.style.width = `${((index + 1) / pages.length) * 100}%`; document.getElementById('prevBtn').disabled = index === 0; document.getElementById('nextBtn').textContent = index === pages.length - 1 ? '처음 페이지로 ↺' : '다음 페이지 →'; studyImage.alt = `${page.title} 학습 이미지`; studyImage.decoding = 'async'; studyImage.fetchPriority = 'high'; studyImage.onload = resizeCanvas; studyImage.onerror = () => { studyImage.onerror = null; if (page.fallback) studyImage.src = page.fallback; }; studyImage.src = page.src; if (studyImage.complete) requestAnimationFrame(resizeCanvas); saveState.textContent = strokes.length || textMemo.value ? '저장된 필기와 메모를 불러왔습니다.' : '필기와 메모는 저장 버튼을 눌러 보관합니다.'; updatePageList(); window.scrollTo({ top:0, behavior:'smooth' }); };
+    pages.forEach((page, index) => { const button = document.createElement('button'); button.type = 'button'; button.className = 'page-button'; button.dataset.page = String(index); button.innerHTML = `<span class="page-index">${String(index + 1).padStart(2, '0')}</span><span><strong>${page.title}</strong><small>${page.subtitle}</small></span><span class="page-check" aria-hidden="true">✓</span>`; button.addEventListener('click', () => navigateToPage(index)); pageList.appendChild(button); });
+    const openViewer = (index, pushHistory = true) => { preloadAllPages(); home.hidden = true; viewer.hidden = false; if (pushHistory) history.pushState({ viewer:true, index, focus:false }, '', `#page-${index + 1}`); renderPage(index); };
+    const navigateToPage = (index) => { if (viewer.classList.contains('focus-mode')) viewer.classList.remove('focus-mode'); resetZoom(); history.replaceState({ viewer:true, index, focus:false }, '', `#page-${index + 1}`); renderPage(index); };
+    history.replaceState({ home:true }, '', `${window.location.pathname}${window.location.search}`);
     document.querySelectorAll('.lesson-entry').forEach((button) => button.addEventListener('click', () => openViewer(Number(button.dataset.page))));
     document.getElementById('startBtn').addEventListener('click', () => openViewer(currentIndex === null ? 0 : currentIndex));
-    document.getElementById('backBtn').addEventListener('click', () => { viewer.classList.remove('focus-mode'); focusBtn.textContent = '이미지 집중 보기'; viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); });
-    document.getElementById('prevBtn').addEventListener('click', () => { if (currentIndex > 0) renderPage(currentIndex - 1); });
-    document.getElementById('nextBtn').addEventListener('click', () => { renderPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); });
+    document.getElementById('backBtn').addEventListener('click', navigateHome);
+    exitFocusBtn.addEventListener('click', (event) => { event.stopPropagation(); exitFocusMode(true); });
+    document.getElementById('prevBtn').addEventListener('click', () => { if (currentIndex > 0) navigateToPage(currentIndex - 1); });
+    document.getElementById('nextBtn').addEventListener('click', () => { navigateToPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); });
     document.getElementById('undoBtn').addEventListener('click', () => { if (!strokes.length) return; strokes.pop(); redraw(); markDraft('마지막 표시를 취소했습니다. 저장하려면 저장 버튼을 누르세요.'); });
     document.getElementById('clearBtn').addEventListener('click', () => { if (!strokes.length) return; strokes = []; redraw(); markDraft('그림을 지웠습니다. 저장하려면 저장 버튼을 누르세요.'); });
     document.getElementById('saveBtn').addEventListener('click', () => saveCurrent());
-    focusBtn.addEventListener('click', () => { const focused = viewer.classList.toggle('focus-mode'); focusBtn.textContent = focused ? '일반 보기' : '이미지 집중 보기'; requestAnimationFrame(resizeCanvas); });
+    zoomOutBtn.addEventListener('click', () => setZoom(zoom - 0.25));
+    zoomResetBtn.addEventListener('click', resetZoom);
+    zoomInBtn.addEventListener('click', () => setZoom(zoom + 0.25));
     textMemo.addEventListener('input', () => markDraft('메모를 수정했습니다. 저장하려면 저장 버튼을 누르세요.'));
     penSize.addEventListener('input', () => { penValue.textContent = `${penSize.value}px`; });
     penOpacity.addEventListener('input', () => { opacityValue.textContent = `${penOpacity.value}%`; });
-    const beginStroke = (event) => { if (activeStroke) return; event.preventDefault(); activeStroke = { width:Number(penSize.value), color:penColor.value, opacity:Number(penOpacity.value) / 100, points:[pointFromEvent(event)] }; if (event.pointerId !== undefined && canvas.setPointerCapture) { try { canvas.setPointerCapture(event.pointerId); } catch (_) {} } redraw(); };
-    const addStrokePoint = (event) => { if (!activeStroke) return; event.preventDefault(); activeStroke.points.push(pointFromEvent(event)); redraw(); };
-    const finishStroke = (event) => { if (!activeStroke) return; if (event) event.preventDefault(); strokes.push(activeStroke); activeStroke = null; redraw(); markDraft('필기를 수정했습니다. 저장하려면 저장 버튼을 누르세요.'); };
+    const pointerPosition = (event) => { const source = event.touches && event.touches[0] ? event.touches[0] : (event.changedTouches && event.changedTouches[0] ? event.changedTouches[0] : event); return { x:source.clientX, y:source.clientY }; };
+    const startPinch = () => { if (pointers.size < 2) return; const [a, b] = [...pointers.values()]; pinchStart = { distance:Math.max(1, distanceBetween(a, b)), center:midpoint(a, b), zoom, panX, panY }; activeStroke = null; tapCandidate = null; redraw(); };
+    const updatePinch = () => { if (!pinchStart || pointers.size < 2) return; const [a, b] = [...pointers.values()]; const center = midpoint(a, b); zoom = clampZoom(pinchStart.zoom * distanceBetween(a, b) / pinchStart.distance); panX = pinchStart.panX + (center.x - pinchStart.center.x); panY = pinchStart.panY + (center.y - pinchStart.center.y); applyZoom(); };
+    const beginStroke = (event) => { event.preventDefault(); const id = event.pointerId !== undefined ? event.pointerId : 'mouse'; pointers.set(id, pointerPosition(event)); if (pointers.size >= 2) { if (viewer.classList.contains('focus-mode')) startPinch(); else { activeStroke = null; tapCandidate = null; } return; } if (!viewer.classList.contains('focus-mode')) { tapCandidate = { id, start:pointerPosition(event), moved:false }; return; } activeStroke = { width:Number(penSize.value), color:penColor.value, opacity:Number(penOpacity.value) / 100, points:[pointFromEvent(event)] }; if (event.pointerId !== undefined && canvas.setPointerCapture) { try { canvas.setPointerCapture(event.pointerId); } catch (_) {} } redraw(); };
+    const addStrokePoint = (event) => { event.preventDefault(); const id = event.pointerId !== undefined ? event.pointerId : 'mouse'; if (pointers.has(id)) pointers.set(id, pointerPosition(event)); if (pointers.size >= 2) { updatePinch(); return; } if (!viewer.classList.contains('focus-mode')) { if (tapCandidate && distanceBetween(tapCandidate.start, pointerPosition(event)) > 8) tapCandidate.moved = true; return; } if (!activeStroke) return; activeStroke.points.push(pointFromEvent(event)); redraw(); };
+    const finishStroke = (event) => { if (event) event.preventDefault(); const id = event && event.pointerId !== undefined ? event.pointerId : 'mouse'; pointers.delete(id); if (pinchStart) { if (pointers.size < 2) pinchStart = null; activeStroke = null; redraw(); return; } if (!viewer.classList.contains('focus-mode')) { if (tapCandidate && tapCandidate.id === id && !tapCandidate.moved) enterFocusMode(true); tapCandidate = null; return; } if (!activeStroke) return; strokes.push(activeStroke); activeStroke = null; redraw(); markDraft('필기를 수정했습니다. 저장하려면 저장 버튼을 누르세요.'); };
     canvas.addEventListener('pointerdown', beginStroke, { passive:false });
     canvas.addEventListener('pointermove', addStrokePoint, { passive:false });
     canvas.addEventListener('pointerup', finishStroke, { passive:false });
@@ -281,7 +322,8 @@
       canvas.addEventListener('touchcancel', finishStroke, { passive:false });
     }
     window.addEventListener('resize', resizeCanvas);
-    document.addEventListener('keydown', (event) => { if (viewer.hidden || ['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if (event.key === 'ArrowLeft' && currentIndex > 0) renderPage(currentIndex - 1); if (event.key === 'ArrowRight') renderPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); if (event.key === 'Escape') document.getElementById('backBtn').click(); });
+    window.addEventListener('popstate', (event) => { const state = event.state; if (state && state.viewer) { home.hidden = true; viewer.hidden = false; if (state.focus) { viewer.classList.add('focus-mode'); renderPage(state.index); } else { viewer.classList.remove('focus-mode'); renderPage(state.index); } requestAnimationFrame(resizeCanvas); } else { viewer.classList.remove('focus-mode'); resetZoom(); viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); } });
+    document.addEventListener('keydown', (event) => { if (viewer.hidden || ['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if (event.key === 'ArrowLeft' && currentIndex > 0) navigateToPage(currentIndex - 1); if (event.key === 'ArrowRight') navigateToPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); if (event.key === 'Escape') document.getElementById('backBtn').click(); });
     updatePageList();
     const scheduleImagePreload = () => { const run = () => preloadAllPages(); if ('requestIdleCallback' in window) window.requestIdleCallback(run, { timeout:1200 }); else setTimeout(run, 200); };
     if (document.readyState === 'complete') scheduleImagePreload(); else window.addEventListener('load', scheduleImagePreload, { once:true });
