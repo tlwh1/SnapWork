@@ -92,6 +92,55 @@
     .tip { margin:28px 0 0; padding:13px 15px; border-left:4px solid #e6b44a; border-radius:0 10px 10px 0; color:#6b5a37; background:#fff8e7; font-size:.86rem; line-height:1.55; }
     @media (max-width:820px) { .hero { grid-template-columns:1fr; padding-top:66px; } .lesson-preview { max-width:600px; transform:none; } .viewer-grid { grid-template-columns:1fr; } .page-list-card { position:static; } .page-list { grid-template-columns:repeat(2,minmax(0,1fr)); } .page-button { grid-template-columns:29px 1fr 14px; } }
     @media (max-width:560px) { .screen { padding-left:14px; padding-right:14px; } .topline, .viewer-header { align-items:flex-start; flex-direction:column; } .progress-wrap { width:100%; min-width:0; } .home-footer { flex-direction:column; gap:7px; } .page-list { grid-template-columns:1fr; } .toolbar { align-items:stretch; flex-direction:column; } .toolbar-group { width:100%; } .tool-btn { flex:1; } .pen-control { justify-content:space-between; } .pen-control input { flex:1; } .page-nav .tool-btn { min-width:0; } }
+    .page-picker { margin-top:24px; border:1px solid rgba(20,37,61,.12); border-radius:16px; background:rgba(255,253,248,.8); box-shadow:0 10px 26px rgba(28,51,77,.07); }
+    .page-picker summary { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:15px 17px; color:var(--navy); cursor:pointer; font-size:.95rem; font-weight:820; list-style:none; }
+    .page-picker summary::-webkit-details-marker { display:none; }
+    .page-picker summary::after { content:"＋"; color:var(--red); font-size:1.2rem; line-height:1; }
+    .page-picker[open] summary::after { content:"−"; }
+    .page-picker summary strong { margin-left:auto; color:#8794a3; font-size:.82rem; font-weight:760; }
+    .page-picker .page-list { grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); padding:0 12px 12px; }
+    .viewer-grid { display:block; padding-top:18px; }
+    .memo-wrap { margin-top:18px; }
+    .memo-wrap label { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; color:var(--navy); font-size:.9rem; font-weight:820; }
+    .memo-wrap label span { color:#8a97a4; font-size:.77rem; font-weight:650; }
+    .text-memo { display:block; width:100%; min-height:84px; padding:13px 14px; resize:vertical; border:1px solid #d5dbe2; border-radius:12px; color:#33445a; background:#fff; font:inherit; font-size:.96rem; line-height:1.55; }
+    .text-memo::placeholder { color:#9aa6b3; }
+    .text-memo:focus-visible { border-color:var(--red); outline:none; box-shadow:0 0 0 3px rgba(228,72,72,.18); }
+    .focus-mode { padding-left:0; padding-right:0; }
+    .focus-mode .viewer-header, .focus-mode .page-picker, .focus-mode .study-kicker, .focus-mode #studyTitle, .focus-mode .study-hint, .focus-mode .memo-wrap, .focus-mode .page-nav, .focus-mode .tip { display:none; }
+    .focus-mode .viewer-grid { padding-top:0; }
+    .focus-mode .study-card { padding:0; border:0; border-radius:0; box-shadow:none; background:transparent; }
+    .focus-mode .canvas-wrap { border:0; border-radius:0; box-shadow:none; }
+    .focus-mode .toolbar { margin:0; padding:12px 14px; background:#0d1726; }
+    :root { color-scheme:dark; --navy:#f1f5fb; --navy-2:#294263; --ink:#e9eff7; --muted:#a8b6c8; --paper:#131e2f; --paper-2:#1a293e; --line:#344861; --red:#ff6d68; --red-dark:#ff918b; --blue:#66a9e5; }
+    body { color:var(--ink); background:radial-gradient(circle at 18% 8%,rgba(75,128,190,.22),transparent 36%),radial-gradient(circle at 88% 80%,rgba(228,72,72,.1),transparent 34%),#0a1220; }
+    body::before { opacity:.12; background-image:radial-gradient(#91a5bc .65px,transparent .65px); }
+    .topline, .back-btn, .page-picker summary, .memo-wrap label, h1, h2 { color:var(--navy); }
+    .edition, .home-footer, .local-note { color:#91a1b4; }
+    .hero-copy { color:#b8c4d2; }
+    .lesson-preview, .page-picker, .study-card { border-color:rgba(160,181,206,.2); background:rgba(17,28,45,.9); box-shadow:0 22px 60px rgba(0,0,0,.25); }
+    .preview-label { border-color:#3b4d64; color:#94a4b8; }
+    .lesson-map li { border-color:#2b3c53; }
+    .lesson-entry { color:#d1dae6; }
+    .lesson-entry:hover { color:#ff9a93; }
+    .lesson-num { color:#fff; background:#31547c; }
+    .study-hint { color:#aebdcd; }
+    .progress-track { background:#2a3b52; }
+    .page-picker summary strong, .memo-wrap label span { color:#93a4b8; }
+    .page-button { color:#bdc9d7; }
+    .page-button:hover { background:#1b2b41; }
+    .page-button[aria-current="true"] { border-color:rgba(255,109,104,.4); color:#fff; background:#2a1f2b; }
+    .page-button .page-index { color:#a9b8c8; background:#263a52; }
+    .tool-btn, .pen-control { border-color:#3a4d65; color:#d4deea; background:#1b2a3e; }
+    .tool-btn:hover { border-color:#6c819a; background:#243750; }
+    .tool-btn.primary-tool { border-color:var(--red); color:#ffaaa4; background:#3a202e; }
+    .pen-control select { color:#d4deea; }
+    .text-memo { border-color:#3a4d65; color:#e2e9f1; background:#101b2b; }
+    .text-memo::placeholder { color:#8292a6; }
+    .save-state { color:#91a1b4; }
+    .page-nav { border-color:#3a4d65; }
+    .tip { color:#e0c990; background:#2c281d; }
+    @media (max-width:560px) { .screen { padding-left:0; padding-right:0; } .topline, .hero, .home-footer { margin-left:14px; margin-right:14px; } .topline, .viewer-header { align-items:flex-start; flex-direction:column; } .viewer-header { padding-left:14px; padding-right:14px; } .progress-wrap { width:100%; min-width:0; } .home-footer { flex-direction:column; gap:7px; } .page-picker { margin:12px 10px 0; } .page-list { grid-template-columns:1fr; } .viewer-grid { padding-top:12px; } .study-card { padding:0; border-left:0; border-right:0; border-radius:0; box-shadow:none; } .study-kicker, .study-card h2, .study-hint, .memo-wrap, .toolbar, .save-state, .page-nav, .tip { margin-left:14px; margin-right:14px; } .canvas-wrap { border-left:0; border-right:0; border-radius:0; } .toolbar { align-items:stretch; flex-direction:column; } .toolbar-group { width:100%; } .tool-btn { flex:1; } .pen-control { justify-content:space-between; } .pen-control input { flex:1; } .page-nav .tool-btn { min-width:0; } .focus-mode .toolbar { margin:0; } }
   </style>
 </head>
 <body>
@@ -104,7 +153,7 @@
           <h1 id="home-title">사출공장,<br><em>한 장씩</em> 익히기</h1>
           <p class="hero-copy">사출 사이클부터 금형·조건·수지·불량·유동까지, 사진 7장을 페이지별로 넘겨 보세요. 화면 위에 빨간펜으로 직접 표시하며 외울 수 있습니다.</p>
           <button id="startBtn" class="primary-btn" type="button">학습 시작하기 <span aria-hidden="true">→</span></button>
-          <p class="local-note">필기는 이 기기의 브라우저에 자동 저장됩니다.</p>
+          <p class="local-note">필기와 메모는 저장 버튼을 눌렀을 때만 이 기기에 저장됩니다.</p>
         </div>
         <aside class="lesson-preview" aria-label="학습 목차">
           <div class="preview-label"><span>STUDY INDEX</span><strong>7 PAGES</strong></div>
@@ -126,11 +175,11 @@
         <button id="backBtn" class="back-btn" type="button"><span aria-hidden="true">←</span> 목차로 돌아가기</button>
         <div class="progress-wrap" aria-label="학습 진행률"><div class="progress-track"><div id="progressBar" class="progress-bar"></div></div><span id="progressText" class="progress-text">1 / 7</span></div>
       </div>
+      <details id="pagePicker" class="page-picker">
+        <summary><span>페이지 선택</span><strong id="pickerSummary">1 / 7 · 0 필기</strong></summary>
+        <div id="pageList" class="page-list"></div>
+      </details>
       <div class="viewer-grid">
-        <aside class="page-list-card" aria-label="페이지 목록">
-          <div class="list-heading"><span>페이지 선택</span><strong id="noteCount">0 필기</strong></div>
-          <div id="pageList" class="page-list"></div>
-        </aside>
         <article class="study-card">
           <p class="study-kicker">PAGE <span id="pageNumber">01</span></p>
           <h2 id="studyTitle">사출 한 사이클 이해하기</h2>
@@ -139,13 +188,14 @@
             <img id="studyImage" src="images/01-cycle.webp" alt="사출 한 사이클 이해하기 학습 이미지" decoding="async" loading="eager" fetchpriority="high">
             <canvas id="inkCanvas" aria-label="이미지 위에 빨간펜으로 필기하는 영역"></canvas>
           </div>
+          <div class="memo-wrap"><label for="textMemo">텍스트 메모 <span>저장 버튼을 눌러 보관</span></label><textarea id="textMemo" class="text-memo" rows="3" placeholder="이 페이지에서 외울 내용을 적어 보세요."></textarea></div>
           <div class="toolbar">
-            <div class="toolbar-group"><button id="undoBtn" class="tool-btn" type="button">실행 취소</button><button id="clearBtn" class="tool-btn" type="button">전체 지우기</button><label class="pen-control">색상 <select id="penColor" aria-label="필기 색상"><option value="#e44848">빨강</option><option value="#ef7d32">주황</option><option value="#2e6fae">파랑</option><option value="#1f7a5a">초록</option><option value="#5d4fc7">보라</option></select></label><label class="pen-control">굵기 <input id="penSize" type="range" min="2" max="14" value="5"><span id="penValue">5px</span></label><label class="pen-control">투명도 <input id="penOpacity" type="range" min="20" max="100" value="85"><span id="opacityValue">85%</span></label></div>
-            <div class="toolbar-group"><button id="saveBtn" class="tool-btn primary-tool" type="button">필기 저장</button></div>
+            <div class="toolbar-group"><button id="undoBtn" class="tool-btn" type="button">실행 취소</button><button id="clearBtn" class="tool-btn" type="button">그림 전체 지우기</button><label class="pen-control">색상 <select id="penColor" aria-label="필기 색상"><option value="#e44848">빨강</option><option value="#ef7d32">주황</option><option value="#2e6fae">파랑</option><option value="#1f7a5a">초록</option><option value="#5d4fc7">보라</option></select></label><label class="pen-control">굵기 <input id="penSize" type="range" min="2" max="14" value="5"><span id="penValue">5px</span></label><label class="pen-control">투명도 <input id="penOpacity" type="range" min="20" max="100" value="85"><span id="opacityValue">85%</span></label></div>
+            <div class="toolbar-group"><button id="focusBtn" class="tool-btn" type="button">이미지 집중 보기</button><button id="saveBtn" class="tool-btn primary-tool" type="button">필기·메모 저장</button></div>
           </div>
-          <p id="saveState" class="save-state" aria-live="polite">필기는 이 기기에 저장됩니다.</p>
+          <p id="saveState" class="save-state" aria-live="polite">필기와 메모는 저장 버튼을 눌러 보관합니다.</p>
           <div class="page-nav"><button id="prevBtn" class="tool-btn" type="button">← 이전 페이지</button><button id="nextBtn" class="tool-btn primary-tool" type="button">다음 페이지 →</button></div>
-          <p class="tip">사용 팁: 이미지 위에서 마우스나 손가락으로 드래그해 표시하세요. 페이지를 바꿔도 필기는 자동으로 보관됩니다.</p>
+          <p class="tip">사용 팁: 이미지 위에서 마우스나 손가락으로 표시하고 메모를 적은 뒤, 저장 버튼을 눌러야 두 내용이 함께 보관됩니다. 저장하지 않은 변경은 페이지 이동·새로고침 시 사라집니다.</p>
         </article>
       </div>
     </section>
@@ -172,7 +222,10 @@
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
     const saveState = document.getElementById('saveState');
-    const noteCount = document.getElementById('noteCount');
+    const pickerSummary = document.getElementById('pickerSummary');
+    const pagePicker = document.getElementById('pagePicker');
+    const textMemo = document.getElementById('textMemo');
+    const focusBtn = document.getElementById('focusBtn');
     const penSize = document.getElementById('penSize');
     const penValue = document.getElementById('penValue');
     const penColor = document.getElementById('penColor');
@@ -181,34 +234,38 @@
     let currentIndex = null;
     let strokes = [];
     let activeStroke = null;
+    let dirty = false;
     const imageCache = new Map();
-    const storageKey = (index) => `snapwork-redpen-${index}`;
-    const readStrokes = (index) => { try { return JSON.parse(localStorage.getItem(storageKey(index)) || '[]'); } catch (_) { return []; } };
-    const hasNotes = (index) => readStrokes(index).length > 0;
-    const saveCurrent = (message = '필기가 저장되었습니다.') => { if (currentIndex === null) return; try { localStorage.setItem(storageKey(currentIndex), JSON.stringify(strokes)); saveState.textContent = message; } catch (_) { saveState.textContent = '브라우저 저장 공간을 사용할 수 없습니다.'; } updatePageList(); };
+    const storageKey = (index) => `snapwork-study-${index}`;
+    const readSavedState = (index) => { try { const saved = localStorage.getItem(storageKey(index)); if (saved) { const parsed = JSON.parse(saved); if (Array.isArray(parsed)) return { strokes:parsed, memo:'' }; return { strokes:Array.isArray(parsed.strokes) ? parsed.strokes : [], memo:typeof parsed.memo === 'string' ? parsed.memo : '' }; } const legacy = localStorage.getItem(`snapwork-redpen-${index}`); return { strokes:legacy ? JSON.parse(legacy) : [], memo:'' }; } catch (_) { return { strokes:[], memo:'' }; } };
+    const hasNotes = (index) => { const saved = readSavedState(index); return saved.strokes.length > 0 || saved.memo.trim().length > 0; };
+    const markDraft = (message = '저장 버튼을 눌러 보관하세요.') => { dirty = true; saveState.textContent = message; };
+    const saveCurrent = (message = '필기와 메모를 저장했습니다.') => { if (currentIndex === null) return; try { localStorage.setItem(storageKey(currentIndex), JSON.stringify({ strokes, memo:textMemo.value })); dirty = false; saveState.textContent = message; } catch (_) { saveState.textContent = '브라우저 저장 공간을 사용할 수 없습니다.'; } updatePageList(); };
     const pointFromEvent = (event) => { const source = event.touches && event.touches[0] ? event.touches[0] : (event.changedTouches && event.changedTouches[0] ? event.changedTouches[0] : event); const rect = canvas.getBoundingClientRect(); return { x:Math.max(0, Math.min(1, (source.clientX - rect.left) / rect.width)), y:Math.max(0, Math.min(1, (source.clientY - rect.top) / rect.height)) }; };
     const drawStroke = (stroke) => { if (!stroke || !stroke.points || !stroke.points.length) return; const width = canvas.clientWidth; const height = canvas.clientHeight; ctx.globalAlpha = typeof stroke.opacity === 'number' ? stroke.opacity : 0.85; ctx.strokeStyle = stroke.color || '#e44848'; ctx.fillStyle = stroke.color || '#e44848'; ctx.lineWidth = stroke.width || 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; if (stroke.points.length === 1) { ctx.beginPath(); ctx.arc(stroke.points[0].x * width, stroke.points[0].y * height, Math.max(2, ctx.lineWidth / 2), 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1; return; } ctx.beginPath(); ctx.moveTo(stroke.points[0].x * width, stroke.points[0].y * height); stroke.points.slice(1).forEach((point) => ctx.lineTo(point.x * width, point.y * height)); ctx.stroke(); ctx.globalAlpha = 1; };
     const redraw = () => { ctx.globalAlpha = 1; ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight); strokes.forEach(drawStroke); if (activeStroke) drawStroke(activeStroke); ctx.globalAlpha = 1; };
     const resizeCanvas = () => { const width = studyImage.clientWidth; const height = studyImage.clientHeight; if (!width || !height) return; const dpr = Math.min(window.devicePixelRatio || 1, 2); canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr); canvas.style.width = `${width}px`; canvas.style.height = `${height}px`; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); redraw(); };
     const preloadPage = (index) => { if (index < 0 || index >= pages.length || imageCache.has(index)) return; const page = pages[index]; const image = new Image(); image.decoding = 'async'; image.fetchPriority = 'low'; image.onerror = () => { if (page.fallback && image.src.endsWith('.webp')) image.src = page.fallback; }; image.src = page.src; imageCache.set(index, image); };
     const preloadAllPages = () => pages.forEach((_, index) => preloadPage(index));
-    const updatePageList = () => { [...pageList.children].forEach((button, index) => { button.classList.toggle('has-notes', hasNotes(index)); button.setAttribute('aria-current', String(index === currentIndex)); }); const count = pages.reduce((total, _, index) => total + (hasNotes(index) ? 1 : 0), 0); noteCount.textContent = `${count} 필기`; };
-    const renderPage = (index) => { if (currentIndex !== null) saveCurrent('페이지를 바꾸며 필기를 저장했습니다.'); currentIndex = index; const page = pages[index]; preloadPage(index); strokes = readStrokes(index); activeStroke = null; pageNumber.textContent = String(index + 1).padStart(2, '0'); studyTitle.textContent = page.title; studyHint.textContent = page.hint; progressText.textContent = `${index + 1} / ${pages.length}`; progressBar.style.width = `${((index + 1) / pages.length) * 100}%`; document.getElementById('prevBtn').disabled = index === 0; document.getElementById('nextBtn').textContent = index === pages.length - 1 ? '처음 페이지로 ↺' : '다음 페이지 →'; studyImage.alt = `${page.title} 학습 이미지`; studyImage.decoding = 'async'; studyImage.fetchPriority = 'high'; studyImage.onload = resizeCanvas; studyImage.onerror = () => { studyImage.onerror = null; if (page.fallback) studyImage.src = page.fallback; }; studyImage.src = page.src; if (studyImage.complete) requestAnimationFrame(resizeCanvas); saveState.textContent = strokes.length ? '저장된 필기를 불러왔습니다.' : '필기는 이 기기에 저장됩니다.'; updatePageList(); window.scrollTo({ top:0, behavior:'smooth' }); };
-    pages.forEach((page, index) => { const button = document.createElement('button'); button.type = 'button'; button.className = 'page-button'; button.innerHTML = `<span class="page-index">${String(index + 1).padStart(2, '0')}</span><span><strong>${page.title}</strong><small>${page.subtitle}</small></span><span class="page-check" aria-hidden="true">✓</span>`; button.addEventListener('click', () => renderPage(index)); pageList.appendChild(button); });
+    const updatePageList = () => { [...pageList.children].forEach((button, index) => { button.classList.toggle('has-notes', hasNotes(index)); button.setAttribute('aria-current', String(index === currentIndex)); }); const count = pages.reduce((total, _, index) => total + (hasNotes(index) ? 1 : 0), 0); pickerSummary.textContent = `${currentIndex === null ? 1 : currentIndex + 1} / ${pages.length} · ${count} 필기`; };
+    const renderPage = (index) => { currentIndex = index; const page = pages[index]; const saved = readSavedState(index); preloadPage(index); strokes = saved.strokes; textMemo.value = saved.memo; dirty = false; activeStroke = null; pagePicker.open = false; pageNumber.textContent = String(index + 1).padStart(2, '0'); studyTitle.textContent = page.title; studyHint.textContent = page.hint; progressText.textContent = `${index + 1} / ${pages.length}`; progressBar.style.width = `${((index + 1) / pages.length) * 100}%`; document.getElementById('prevBtn').disabled = index === 0; document.getElementById('nextBtn').textContent = index === pages.length - 1 ? '처음 페이지로 ↺' : '다음 페이지 →'; studyImage.alt = `${page.title} 학습 이미지`; studyImage.decoding = 'async'; studyImage.fetchPriority = 'high'; studyImage.onload = resizeCanvas; studyImage.onerror = () => { studyImage.onerror = null; if (page.fallback) studyImage.src = page.fallback; }; studyImage.src = page.src; if (studyImage.complete) requestAnimationFrame(resizeCanvas); saveState.textContent = strokes.length || textMemo.value ? '저장된 필기와 메모를 불러왔습니다.' : '필기와 메모는 저장 버튼을 눌러 보관합니다.'; updatePageList(); window.scrollTo({ top:0, behavior:'smooth' }); };
+    pages.forEach((page, index) => { const button = document.createElement('button'); button.type = 'button'; button.className = 'page-button'; button.dataset.page = String(index); button.innerHTML = `<span class="page-index">${String(index + 1).padStart(2, '0')}</span><span><strong>${page.title}</strong><small>${page.subtitle}</small></span><span class="page-check" aria-hidden="true">✓</span>`; button.addEventListener('click', () => renderPage(index)); pageList.appendChild(button); });
     const openViewer = (index) => { preloadAllPages(); home.hidden = true; viewer.hidden = false; renderPage(index); };
     document.querySelectorAll('.lesson-entry').forEach((button) => button.addEventListener('click', () => openViewer(Number(button.dataset.page))));
     document.getElementById('startBtn').addEventListener('click', () => openViewer(currentIndex === null ? 0 : currentIndex));
-    document.getElementById('backBtn').addEventListener('click', () => { saveCurrent(); viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); });
+    document.getElementById('backBtn').addEventListener('click', () => { viewer.classList.remove('focus-mode'); focusBtn.textContent = '이미지 집중 보기'; viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); });
     document.getElementById('prevBtn').addEventListener('click', () => { if (currentIndex > 0) renderPage(currentIndex - 1); });
     document.getElementById('nextBtn').addEventListener('click', () => { renderPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); });
-    document.getElementById('undoBtn').addEventListener('click', () => { if (!strokes.length) return; strokes.pop(); redraw(); saveCurrent('마지막 표시를 취소했습니다.'); });
-    document.getElementById('clearBtn').addEventListener('click', () => { if (!strokes.length) return; strokes = []; redraw(); saveCurrent('이 페이지의 필기를 지웠습니다.'); });
+    document.getElementById('undoBtn').addEventListener('click', () => { if (!strokes.length) return; strokes.pop(); redraw(); markDraft('마지막 표시를 취소했습니다. 저장하려면 저장 버튼을 누르세요.'); });
+    document.getElementById('clearBtn').addEventListener('click', () => { if (!strokes.length) return; strokes = []; redraw(); markDraft('그림을 지웠습니다. 저장하려면 저장 버튼을 누르세요.'); });
     document.getElementById('saveBtn').addEventListener('click', () => saveCurrent());
+    focusBtn.addEventListener('click', () => { const focused = viewer.classList.toggle('focus-mode'); focusBtn.textContent = focused ? '일반 보기' : '이미지 집중 보기'; if (!focused) resizeCanvas(); });
+    textMemo.addEventListener('input', () => markDraft('메모를 수정했습니다. 저장하려면 저장 버튼을 누르세요.'));
     penSize.addEventListener('input', () => { penValue.textContent = `${penSize.value}px`; });
     penOpacity.addEventListener('input', () => { opacityValue.textContent = `${penOpacity.value}%`; });
     const beginStroke = (event) => { if (activeStroke) return; event.preventDefault(); activeStroke = { width:Number(penSize.value), color:penColor.value, opacity:Number(penOpacity.value) / 100, points:[pointFromEvent(event)] }; if (event.pointerId !== undefined && canvas.setPointerCapture) { try { canvas.setPointerCapture(event.pointerId); } catch (_) {} } redraw(); };
     const addStrokePoint = (event) => { if (!activeStroke) return; event.preventDefault(); activeStroke.points.push(pointFromEvent(event)); redraw(); };
-    const finishStroke = (event) => { if (!activeStroke) return; if (event) event.preventDefault(); strokes.push(activeStroke); activeStroke = null; redraw(); saveCurrent('필기를 자동 저장했습니다.'); };
+    const finishStroke = (event) => { if (!activeStroke) return; if (event) event.preventDefault(); strokes.push(activeStroke); activeStroke = null; redraw(); markDraft('필기를 수정했습니다. 저장하려면 저장 버튼을 누르세요.'); };
     canvas.addEventListener('pointerdown', beginStroke, { passive:false });
     canvas.addEventListener('pointermove', addStrokePoint, { passive:false });
     canvas.addEventListener('pointerup', finishStroke, { passive:false });
