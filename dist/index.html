@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SnapWork</title>
+  <meta name="description" content="작게 시작하고 빠르게 공개하는 SnapWork.">
+  <meta name="theme-color" content="#10131a">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SnapWork">
+  <meta property="og:description" content="작게 시작하고 빠르게 공개하는 SnapWork.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236d5dfc'/%3E%3Cpath d='M18 34 31 13h9L31 29h15L27 51h-9l9-17H18Z' fill='white'/%3E%3C/svg%3E">
+  <style>
+    :root { color-scheme: dark; --bg:#10131a; --panel:#171c27; --text:#f4f6fb; --muted:#a9b2c4; --accent:#8b7cff; --line:rgba(255,255,255,.11); }
+    * { box-sizing:border-box; }
+    html { min-height:100%; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px; background:radial-gradient(circle at 20% 10%, rgba(139,124,255,.18), transparent 34%), var(--bg); color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { width:min(100%, 720px); }
+    .card { padding:clamp(32px, 8vw, 72px); border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.02)); box-shadow:0 24px 80px rgba(0,0,0,.28); }
+    .mark { display:inline-grid; place-items:center; width:44px; height:44px; margin-bottom:28px; border-radius:14px; background:var(--accent); color:white; font-weight:800; letter-spacing:-.04em; }
+    .eyebrow { margin:0 0 14px; color:var(--accent); font-size:.82rem; font-weight:750; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { margin:0; max-width:12ch; font-size:clamp(2.4rem, 8vw, 5.5rem); line-height:.98; letter-spacing:-.065em; }
+    p { max-width:36rem; margin:24px 0 0; color:var(--muted); font-size:clamp(1rem, 2.2vw, 1.2rem); line-height:1.65; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
+    a { display:inline-flex; align-items:center; min-height:46px; padding:0 18px; border-radius:999px; color:var(--text); text-decoration:none; font-weight:700; border:1px solid var(--line); transition:transform .2s ease, border-color .2s ease, background .2s ease; }
+    a.primary { background:var(--accent); border-color:transparent; }
+    a:hover, a:focus-visible { transform:translateY(-2px); border-color:rgba(255,255,255,.35); outline:none; }
+    a:focus-visible { box-shadow:0 0 0 3px rgba(139,124,255,.45); }
+    footer { margin-top:22px; color:#788399; font-size:.85rem; }
+    @media (max-width:480px) { body { padding:16px; } .card { border-radius:22px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="card" aria-labelledby="page-title">
+      <div class="mark" aria-hidden="true">S</div>
+      <p class="eyebrow">SnapWork</p>
+      <h1 id="page-title">작게 시작하고, 빠르게 공개하세요.</h1>
+      <p>필요한 내용을 가볍게 정리하고 바로 공유할 수 있는 작은 작업 공간입니다.</p>
+      <div class="actions">
+        <a class="primary" href="https://github.com/tlwh1/SnapWork" target="_blank" rel="noreferrer">GitHub 저장소 보기</a>
+      </div>
+    </section>
+    <footer>© 2026 SnapWork</footer>
+  </main>
+</body>
+</html>
