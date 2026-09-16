@@ -47,6 +47,68 @@
     .lesson-entry:focus-visible { border-radius:9px; outline:none; box-shadow:0 0 0 3px rgba(228,72,72,.2); }
     .lesson-num { display:grid; place-items:center; width:28px; height:28px; border-radius:50%; color:white; background:var(--navy); font-size:.8rem; }
     .home-footer { display:flex; justify-content:space-between; gap:20px; color:#8290a0; font-size:.82rem; }
+    .home-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:34px; }
+    .home-actions .primary-btn { margin-top:0; }
+    .secondary-btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:0 21px; border:1px solid rgba(20,37,61,.2); border-radius:14px; color:var(--navy); background:transparent; cursor:pointer; font-size:.95rem; font-weight:820; }
+    .secondary-btn:hover, .secondary-btn:focus-visible { border-color:var(--red); color:var(--red-dark); background:rgba(228,72,72,.07); outline:none; }
+    .quiz-screen { max-width:900px; padding-top:20px; }
+    .quiz-topbar { display:flex; align-items:center; justify-content:space-between; gap:15px; padding-bottom:12px; border-bottom:1px solid rgba(20,37,61,.12); }
+    .quiz-top-label { color:#8a97a5; font-size:.82rem; font-weight:780; }
+    .quiz-shell { width:min(720px,100%); margin:0 auto; padding-top:clamp(28px,7vw,68px); }
+    .quiz-intro { text-align:center; }
+    .quiz-kicker { margin:0 0 12px; color:var(--red-dark); font-size:.78rem; font-weight:900; letter-spacing:.13em; text-transform:uppercase; }
+    .quiz-intro h1 { font-size:clamp(2.3rem,6vw,4.8rem); }
+    .quiz-intro h1 em { color:var(--red); font-style:normal; }
+    .quiz-lead { max-width:600px; margin:22px auto 0; color:#65748a; font-size:1rem; line-height:1.7; }
+    .quiz-rule-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:30px; text-align:left; }
+    .quiz-rule-grid div { display:flex; flex-direction:column; gap:5px; min-height:92px; padding:16px; border:1px solid rgba(20,37,61,.12); border-radius:14px; background:rgba(255,253,248,.7); }
+    .quiz-rule-grid strong { color:var(--navy); font-size:.86rem; }
+    .quiz-rule-grid span { color:#748398; font-size:.78rem; line-height:1.45; }
+    .quiz-stats { margin:20px 0 0; color:#8a97a5; font-size:.84rem; }
+    .quiz-intro .primary-btn { margin-top:20px; }
+    .quiz-progress-line { display:flex; justify-content:space-between; align-items:center; color:#8a97a5; font-size:.86rem; font-weight:780; }
+    .quiz-progress-line strong { color:var(--red-dark); font-size:1rem; }
+    .quiz-progress-track { height:8px; margin-top:10px; overflow:hidden; border-radius:99px; background:#dce2e8; }
+    .quiz-progress-bar { width:10%; height:100%; border-radius:inherit; background:var(--red); transition:width .3s ease; }
+    .question-card { margin-top:16px; padding:clamp(20px,5vw,34px); border:1px solid rgba(20,37,61,.13); border-radius:23px; background:var(--paper); box-shadow:0 18px 50px rgba(28,51,77,.12); }
+    .question-meta { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+    .question-topic { color:var(--red-dark); font-size:.78rem; font-weight:850; }
+    .question-type { padding:5px 8px; border-radius:7px; color:#758398; background:#eef1f4; font-size:.72rem; font-weight:800; }
+    .question-number { margin:26px 0 10px; color:#9aa5b1; font-size:.75rem; font-weight:850; letter-spacing:.12em; }
+    .question-text { margin:0; color:var(--navy); font-size:clamp(1.22rem,3.5vw,1.8rem); line-height:1.45; letter-spacing:-.03em; }
+    .answer-area { display:grid; gap:9px; margin-top:23px; }
+    .answer-option { display:flex; align-items:flex-start; gap:11px; width:100%; padding:14px 15px; border:1px solid #d5dbe2; border-radius:12px; color:#3d4e63; background:#fff; cursor:pointer; font:inherit; font-size:.95rem; line-height:1.45; text-align:left; transition:border-color .15s ease,background .15s ease,transform .15s ease; }
+    .answer-option:hover { border-color:#aab7c5; background:#f8fafb; transform:translateY(-1px); }
+    .answer-option.selected { border-color:var(--red); color:var(--navy); background:#fff5f1; box-shadow:0 0 0 2px rgba(228,72,72,.12); }
+    .answer-option.correct { border-color:#43a477; color:#145c3c; background:#eaf8f0; }
+    .answer-option.incorrect { border-color:#dc6861; color:#7c2727; background:#fff0ef; }
+    .answer-option:disabled { cursor:default; transform:none; }
+    .option-key { display:grid; place-items:center; flex:none; width:25px; height:25px; border-radius:50%; color:#718095; background:#edf0f3; font-size:.75rem; font-weight:900; }
+    .answer-option.selected .option-key { color:#fff; background:var(--red); }
+    .short-answer { width:100%; min-height:108px; padding:14px; resize:vertical; border:1px solid #d5dbe2; border-radius:12px; color:#33445a; background:#fff; font:inherit; font-size:1rem; line-height:1.55; }
+    .short-answer:focus-visible { border-color:var(--red); outline:none; box-shadow:0 0 0 3px rgba(228,72,72,.16); }
+    .short-hint { margin:0 0 -10px; color:#8793a1; font-size:.78rem; }
+    .question-submit { width:100%; min-height:48px; margin-top:14px; padding:0 16px; border-radius:11px; font-size:.92rem; }
+    .feedback { margin-top:18px; padding:15px 16px; border-left:4px solid #43a477; border-radius:0 12px 12px 0; background:#edf9f2; }
+    .feedback.is-wrong { border-left-color:#d85f5a; background:#fff1f0; }
+    .feedback strong { color:#14603f; font-size:.95rem; }
+    .feedback.is-wrong strong { color:#8c2e2e; }
+    .feedback p { margin:7px 0 0; color:#4f6b5b; font-size:.86rem; line-height:1.55; }
+    .feedback.is-wrong p { color:#795353; }
+    .feedback-answer { font-weight:780; }
+    .next-question { width:100%; margin-top:14px; }
+    .quiz-result { text-align:center; }
+    .quiz-result h2 { margin:0; color:var(--red); font-size:clamp(3.8rem,12vw,7rem); line-height:1; }
+    .quiz-result h2 small { color:#8b97a5; font-size:1.1rem; }
+    .result-message { margin:16px 0 0; color:var(--navy); font-size:1.08rem; font-weight:820; }
+    .result-summary { margin-top:10px; color:#7d8b9c; font-size:.86rem; }
+    .wrong-list { display:grid; gap:8px; margin-top:25px; text-align:left; }
+    .wrong-heading { margin:0 0 2px; color:#8c2e2e; font-size:.86rem; font-weight:850; }
+    .all-correct { margin:25px 0 0; padding:14px; border-radius:11px; color:#24694c; background:#edf9f2; font-size:.86rem; font-weight:780; }
+    .wrong-item { padding:12px 14px; border:1px solid rgba(216,95,90,.25); border-radius:11px; background:#fff6f5; }
+    .wrong-item strong { display:block; color:#8c2e2e; font-size:.8rem; }
+    .wrong-item span { display:block; margin-top:4px; color:#6d5960; font-size:.82rem; line-height:1.4; }
+    .result-actions { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:24px; }
     .viewer-screen { padding-top:12px; }
     .viewer-header { display:flex; align-items:center; justify-content:space-between; gap:14px; padding-bottom:12px; border-bottom:1px solid rgba(20,37,61,.12); }
     .back-btn { display:inline-flex; align-items:center; gap:8px; padding:9px 0; border:0; color:var(--navy); background:transparent; cursor:pointer; font-size:.95rem; font-weight:820; }
@@ -143,6 +205,29 @@
     .edition, .home-footer, .local-note { color:#91a1b4; }
     .hero-copy { color:#b8c4d2; }
     .lesson-preview, .page-picker, .study-card { border-color:rgba(160,181,206,.2); background:rgba(17,28,45,.9); box-shadow:0 22px 60px rgba(0,0,0,.25); }
+    .secondary-btn { border-color:#3a4d65; color:#d4deea; background:#15243a; }
+    .secondary-btn:hover, .secondary-btn:focus-visible { border-color:var(--red); color:#ffaaa4; background:#3a202e; }
+    .quiz-topbar { border-color:#2b3d55; }
+    .quiz-top-label, .quiz-lead, .quiz-stats, .quiz-rule-grid span, .result-summary { color:#91a1b4; }
+    .quiz-rule-grid div, .question-card { border-color:rgba(160,181,206,.2); background:rgba(17,28,45,.9); box-shadow:0 22px 60px rgba(0,0,0,.25); }
+    .quiz-rule-grid strong, .result-message, .question-text { color:#f1f5fb; }
+    .quiz-progress-track { background:#2a3b52; }
+    .question-type { color:#a8b6c8; background:#263a52; }
+    .answer-option { border-color:#3a4d65; color:#d4deea; background:#15243a; }
+    .answer-option:hover { border-color:#6c819a; background:#1d314b; }
+    .answer-option.selected { color:#fff; background:#3a202e; }
+    .option-key { color:#b7c5d5; background:#263a52; }
+    .short-answer { border-color:#3a4d65; color:#e2e9f1; background:#101b2b; }
+    .short-hint { color:#8ea0b5; }
+    .feedback { background:#17392d; }
+    .feedback strong, .feedback p { color:#a9e1c3; }
+    .feedback.is-wrong { background:#42282d; }
+    .feedback.is-wrong strong, .feedback.is-wrong p { color:#ffb8b2; }
+    .wrong-item { border-color:rgba(255,109,104,.32); background:#3a202e; }
+    .wrong-item strong { color:#ffaaa4; }
+    .wrong-item span { color:#d2afb0; }
+    .wrong-heading { color:#ffaaa4; }
+    .all-correct { color:#a9e1c3; background:#17392d; }
     .preview-label { border-color:#3b4d64; color:#94a4b8; }
     .lesson-map li { border-color:#2b3c53; }
     .lesson-entry { color:#d1dae6; }
@@ -175,6 +260,7 @@
     .heading-nav .tool-btn { min-width:116px; }
     @media (max-width:560px) { .screen { padding-left:0; padding-right:0; } .topline, .hero, .home-footer { margin-left:14px; margin-right:14px; } .topline { align-items:flex-start; flex-direction:column; } .viewer-screen { padding-top:8px; } .viewer-header { align-items:center; flex-direction:row; gap:10px; padding:0 14px 8px; } .back-btn { flex:0 0 auto; padding:4px 0; font-size:.82rem; } .back-btn span { font-size:1.15rem; } .progress-wrap { flex:1; width:auto; min-width:0; gap:8px; } .progress-track { height:6px; } .progress-text { font-size:.76rem; } .home-footer { flex-direction:column; gap:7px; } .page-picker { margin:8px 10px 0; border-radius:13px; } .page-picker summary { padding:10px 12px; font-size:.84rem; } .page-picker summary strong { font-size:.74rem; } .page-list { grid-template-columns:1fr; } .viewer-grid { padding-top:8px; } .study-card { padding:0; border-left:0; border-right:0; border-radius:0; box-shadow:none; } .study-kicker, .study-card h2, .study-hint, .memo-wrap, .toolbar, .save-state, .page-nav, .tip { margin-left:14px; margin-right:14px; } .canvas-wrap { border-left:0; border-right:0; border-radius:0; } .toolbar { align-items:stretch; flex-direction:column; } .toolbar-group { width:100%; } .tool-btn { flex:1; } .pen-control { justify-content:space-between; } .pen-control input { flex:1; } .page-nav .tool-btn { min-width:0; } .focus-mode .toolbar { margin:0; } }
     @media (max-width:560px) { .study-heading { align-items:stretch; flex-direction:column; gap:12px; margin:0 14px 18px; } .study-heading-copy .study-kicker, .study-heading-copy h2, .study-heading-copy .study-hint { margin-left:0; margin-right:0; } .study-heading .heading-nav { width:auto; margin:0; } .study-heading .heading-nav .tool-btn { min-width:0; } }
+    @media (max-width:560px) { .home-actions { align-items:stretch; flex-direction:column; margin-top:25px; } .home-actions .primary-btn, .home-actions .secondary-btn { width:100%; } .quiz-screen { padding:8px 14px 42px; } .quiz-topbar { gap:8px; padding-bottom:8px; } .quiz-top-label { font-size:.72rem; white-space:nowrap; } .quiz-shell { padding-top:28px; } .quiz-intro h1 { font-size:2.35rem; } .quiz-lead { margin-top:17px; font-size:.92rem; } .quiz-rule-grid { grid-template-columns:1fr; gap:7px; margin-top:22px; } .quiz-rule-grid div { min-height:0; padding:12px 14px; } .quiz-intro .primary-btn { width:100%; } .question-card { padding:20px 16px; border-radius:18px; } .question-number { margin-top:20px; } .question-text { font-size:1.2rem; } .answer-option { padding:13px 12px; font-size:.9rem; } .result-actions { flex-direction:column; } .result-actions .primary-btn, .result-actions .secondary-btn { width:100%; } }
   </style>
 </head>
 <body>
@@ -186,7 +272,7 @@
           <p class="eyebrow">초보 입문 01—07</p>
           <h1 id="home-title">사출공장,<br><em>한 장씩</em> 익히기</h1>
           <p class="hero-copy">사출 사이클부터 금형·조건·수지·불량·유동까지, 사진 7장을 페이지별로 넘겨 보세요. 화면 위에 빨간펜으로 직접 표시하며 외울 수 있습니다.</p>
-          <button id="startBtn" class="primary-btn" type="button">학습 시작하기 <span aria-hidden="true">→</span></button>
+          <div class="home-actions"><button id="startBtn" class="primary-btn" type="button">학습 시작하기 <span aria-hidden="true">→</span></button><button id="quizBtn" class="secondary-btn" type="button">10문제 문제풀이 <span aria-hidden="true">✦</span></button></div>
           <p class="local-note">필기와 메모는 저장 버튼을 눌렀을 때만 이 기기에 저장됩니다.</p>
         </div>
         <aside class="lesson-preview" aria-label="학습 목차">
@@ -203,6 +289,40 @@
         </aside>
       </div>
       <div class="home-footer"><span>사진 기반 사출 학습 노트</span><span>빨간펜으로 핵심만 표시해 보세요.</span></div>
+    </section>
+    <section id="quiz" class="screen quiz-screen" hidden aria-labelledby="quizTitle">
+      <div class="quiz-topbar"><button id="quizBackBtn" class="back-btn" type="button"><span aria-hidden="true">←</span> 학습장으로 돌아가기</button><span class="quiz-top-label">이해도 점검 · 100문제</span></div>
+      <div class="quiz-shell">
+        <div id="quizIntro" class="quiz-intro">
+          <p class="quiz-kicker">10문제 순환 학습</p>
+          <h1 id="quizTitle">내가 제대로 이해했는지<br><em>바로 확인하기</em></h1>
+          <p class="quiz-lead">주·객관식 문제를 한 번에 10개씩 풀어 보세요. 답을 고르면 즉시 해설을 보고, 틀린 문제는 다음 세션에 더 자주 만납니다.</p>
+          <div class="quiz-rule-grid"><div><strong>즉시 피드백</strong><span>정답·오답과 핵심 이유를 바로 확인</span></div><div><strong>오답 우선</strong><span>최근에 틀린 문제를 우선적으로 재출제</span></div><div><strong>간격 반복</strong><span>맞힌 문제는 간격을 늘려 효율적으로 복습</span></div></div>
+          <p id="quizStats" class="quiz-stats">아직 푼 문제가 없습니다.</p>
+          <button id="startQuizBtn" class="primary-btn" type="button">10문제 시작하기 <span aria-hidden="true">→</span></button>
+        </div>
+        <div id="quizPlay" class="quiz-play" hidden>
+          <div class="quiz-progress-line"><span id="quizProgressText">문제 1 / 10</span><strong id="quizScoreText">0점</strong></div>
+          <div class="quiz-progress-track"><div id="quizProgressBar" class="quiz-progress-bar"></div></div>
+          <article class="question-card">
+            <div class="question-meta"><span id="questionTopic" class="question-topic">사출 사이클</span><span id="questionType" class="question-type">객관식</span></div>
+            <p id="questionNumber" class="question-number">QUESTION 01</p>
+            <h2 id="questionText" class="question-text"></h2>
+            <div id="answerArea" class="answer-area"></div>
+            <button id="submitAnswerBtn" class="primary-btn question-submit" type="button" hidden>정답 확인</button>
+            <div id="feedback" class="feedback" hidden><strong id="feedbackTitle"></strong><p id="feedbackBody"></p><p id="feedbackAnswer"></p></div>
+            <button id="nextQuestionBtn" class="secondary-btn next-question" type="button" hidden>다음 문제 <span aria-hidden="true">→</span></button>
+          </article>
+        </div>
+        <div id="quizResult" class="quiz-result" hidden>
+          <p class="quiz-kicker">세션 완료</p>
+          <h2><span id="resultScore">0</span><small> / 100점</small></h2>
+          <p id="resultMessage" class="result-message"></p>
+          <div id="resultSummary" class="result-summary"></div>
+          <div id="wrongList" class="wrong-list"></div>
+          <div class="result-actions"><button id="retryQuizBtn" class="primary-btn" type="button">다시 10문제 풀기 <span aria-hidden="true">↻</span></button><button id="resultHomeBtn" class="secondary-btn" type="button">학습장으로</button></div>
+        </div>
+      </div>
     </section>
     <section id="viewer" class="screen viewer-screen" hidden aria-labelledby="studyTitle">
       <div class="viewer-header">
@@ -251,8 +371,141 @@
       { src:'images/06-defects.webp', fallback:'images/06-defects.png', title:'대표 불량 빠르게 보기', subtitle:'미성형 · 버 · 싱크 · 웰드라인', hint:'불량 이름을 먼저 보고 원인 후보를 좁혀 보세요. 사출 조건 → 금형 → 수지 순서로 진단하면 빠릅니다.' },
       { src:'images/07-flow-tracing.webp', fallback:'images/07-flow-tracing.png', title:'유동을 추적하는 방법', subtitle:'노즐 → 러너 → 게이트 → 제품', hint:'게이트에서 제품 끝단까지 흐름을 손가락으로 따라가며 웰드라인과 에어 트랩 위치를 예상해 보세요.' }
     ];
+    const mcQuestion = (id, page, topic, question, options, answer, explanation) => ({ id, page, topic, type:'mc', question, options, answer, answerText:options[answer], explanation });
+    const shortQuestion = (id, page, topic, question, answerText, keywords, explanation, minKeywords = keywords.length) => ({ id, page, topic, type:'short', question, answerText, keywords, explanation, minKeywords });
+    const quizQuestions = [
+      mcQuestion('q001',0,'사출 사이클','사출성형의 기본 흐름으로 가장 알맞은 것은?',['형체 → 사출 → 보압 → 냉각 → 취출','냉각 → 형체 → 취출 → 사출','사출 → 형체 → 냉각 → 보압','취출 → 보압 → 사출 → 형체'],0,'형체로 금형을 닫고 사출·보압·냉각을 거쳐 제품을 취출합니다.'),
+      shortQuestion('q002',0,'사출 사이클','사이클의 시작에서 금형을 닫고 잠그는 단계를 쓰세요.','형체',['형체'],'형체는 금형을 닫고 사출 압력을 견디도록 잠그는 단계입니다.'),
+      mcQuestion('q003',0,'사출 사이클','나사가 회전하며 수지를 앞쪽으로 모으는 작업은 무엇인가요?',['계량','보압','취출','냉각'],0,'나사 회전으로 다음 샷의 수지를 계량합니다.'),
+      mcQuestion('q004',0,'사출 사이클','나사가 앞으로 이동해 용융 수지를 금형 안으로 밀어 넣는 단계는?',['냉각','사출','형체','계량'],1,'나사 전진이 사출이며, 노즐을 통해 수지가 캐비티로 들어갑니다.'),
+      shortQuestion('q005',0,'사출 사이클','충전 뒤 수축을 보상하려고 압력을 유지하는 단계는 무엇인가요?','보압',['보압'],'보압은 게이트가 굳기 전 추가 수지를 밀어 수축을 보상합니다.'),
+      mcQuestion('q006',0,'사출 사이클','냉각 단계의 주된 목적은 무엇인가요?',['수지를 계량하기 위해','제품을 고화시켜 형상과 치수를 안정시키기 위해','금형을 열기 위해','노즐을 청소하기 위해'],1,'냉각이 충분해야 취출 후 변형이 줄고 치수가 안정됩니다.'),
+      mcQuestion('q007',0,'사출 사이클','제품을 금형에서 밀어내는 장치는 어느 시점에 작동하나요?',['형체 직후','냉각 후 금형이 열린 뒤','계량 중 항상','보압 전에'],1,'제품이 충분히 식고 금형이 열린 뒤 이젝터가 제품을 밀어냅니다.'),
+      shortQuestion('q008',0,'사출 사이클','사출 사이클의 순서를 네 단계 이상 연결해 쓰세요.','형체 → 사출 → 보압 → 냉각 → 취출',['형체','사출','보압','냉각','취출'],'각 단계의 순서를 연결하면 사이클 전체가 반복됩니다.',4),
+      mcQuestion('q009',0,'사출 사이클','한 제품이 취출된 뒤 다음 제품을 만들기 위해 다시 이어지는 것은?',['사이클 반복','금형 교체','수지 건조','압력 해제'],0,'사출성형은 일정한 사이클을 반복해 제품을 생산합니다.'),
+      mcQuestion('q010',0,'사출 사이클','냉각 시간이 지나치게 짧으면 가장 먼저 생기기 쉬운 문제는?',['취출 변형','수지 색상 변화만 발생','금형이 자동 세척됨','계량량이 항상 증가'],0,'고화 전 취출하면 제품이 휘거나 눌릴 수 있습니다.'),
+      mcQuestion('q011',0,'사출 사이클','사출과 보압의 차이를 바르게 설명한 것은?',['사출은 충전, 보압은 수축 보상','사출은 냉각, 보압은 취출','사출은 금형 개방, 보압은 계량','두 단계는 같은 의미'],0,'사출은 캐비티를 채우고 보압은 충전 후 압력을 유지합니다.'),
+      shortQuestion('q012',0,'사출 사이클','나사 회전으로 다음 샷의 수지를 준비하는 작업을 쓰세요.','계량',['계량'],'계량은 다음 사출에 필요한 수지량을 준비하는 과정입니다.'),
+      mcQuestion('q013',0,'사출 사이클','형체력이 필요한 이유는 무엇인가요?',['금형을 식히기 위해','사출 압력으로 금형이 벌어지는 것을 막기 위해','수지를 투명하게 만들기 위해','이젝터를 빠르게 하기 위해'],1,'형체력은 사출 압력에 의해 파팅라인이 벌어지는 것을 막습니다.'),
+      mcQuestion('q014',0,'사출 사이클','사이클 시간을 줄일 때 가장 안전한 접근은?',['모든 시간을 한 번에 줄인다','제품이 충분히 고화되는지 확인하며 한 요소씩 조정한다','보압을 항상 0으로 한다','냉각을 없앤다'],1,'품질을 확인하며 한 번에 하나씩 조정해야 원인을 추적할 수 있습니다.'),
+      shortQuestion('q015',0,'사출 사이클','조건을 바꿀 때 한 번에 하나씩 바꾸는 이유를 간단히 쓰세요.','원인 추적',['한번에 하나','원인','추적'],'변경 요인을 분리해야 품질 변화의 원인을 알 수 있습니다.',2),
+
+      mcQuestion('q016',1,'금형 구조','사출기에 고정되어 움직이지 않는 금형 쪽은?',['고정측','가동측','취출측','냉각측'],0,'고정측은 사출기 고정 플래튼에 장착됩니다.'),
+      mcQuestion('q017',1,'금형 구조','금형이 열릴 때 이동하는 쪽은?',['고정측','가동측','노즐측','호퍼측'],1,'가동측은 형체 유닛과 함께 움직여 금형을 열고 닫습니다.'),
+      shortQuestion('q018',1,'금형 구조','고정측과 가동측이 만나는 경계선을 무엇이라 하나요?','파팅라인',['파팅라인'],'파팅라인은 금형이 맞닿고 제품 외관에 흔적이 남을 수 있는 경계입니다.'),
+      mcQuestion('q019',1,'금형 구조','제품 형상이 만들어지는 금형의 오목한 공간은?',['캐비티','타이바','호퍼','노즐'],0,'캐비티가 제품 외형을 결정하는 공간입니다.'),
+      mcQuestion('q020',1,'금형 구조','제품 안쪽 형상을 만들고 금형에서 빠질 때 제품을 감싸는 부분은?',['코어','러너','스프루','형체 실린더'],0,'코어는 제품의 내부 형상이나 오목한 부분을 만듭니다.'),
+      mcQuestion('q021',1,'금형 구조','금형이 열린 뒤 제품을 밀어내는 부품은?',['이젝터 핀','히터 밴드','타이바','스크루'],0,'이젝터 핀이 제품을 밀어 취출을 돕습니다.'),
+      mcQuestion('q022',1,'금형 구조','스프루와 게이트 사이에서 수지가 여러 캐비티로 흐르는 통로는?',['러너','코어','파팅라인','냉각판'],0,'러너는 스프루에서 각 게이트까지 수지를 분배합니다.'),
+      mcQuestion('q023',1,'금형 구조','게이트의 역할로 맞는 것은?',['수지를 캐비티로 유입시키는 입구','금형을 여는 실린더','제품을 밀어내는 핀','금형 온도를 측정하는 센서'],0,'게이트는 러너와 캐비티를 연결하는 유입구입니다.'),
+      shortQuestion('q024',1,'금형 구조','노즐에서 금형으로 들어온 수지가 가장 먼저 지나는 주 통로를 쓰세요.','스프루',['스프루'],'스프루는 노즐에서 러너로 수지를 전달하는 주입 통로입니다.'),
+      mcQuestion('q025',1,'금형 구조','금형 내부 냉각수로의 목적은?',['제품과 금형의 열을 조절하기 위해','수지를 계량하기 위해','형체력을 높이기 위해','파팅라인을 표시하기 위해'],0,'냉각수로는 금형 온도를 조절해 냉각과 치수 안정에 영향을 줍니다.'),
+      mcQuestion('q026',1,'금형 구조','금형 설치 시 고정측과 가동측의 중심이 맞지 않으면?',['제품과 금형이 손상될 수 있다','항상 투명도가 좋아진다','냉각 시간이 0이 된다','수지 건조가 필요 없어진다'],0,'정렬이 어긋나면 금형 손상과 편육 등 품질 문제가 생길 수 있습니다.'),
+      mcQuestion('q027',1,'금형 구조','파팅라인 주변에 얇은 수지가 삐져나오는 불량은?',['버(플래시)','싱크','미성형','은줄'],0,'형체 부족이나 파팅면 문제로 버가 생길 수 있습니다.'),
+      shortQuestion('q028',1,'금형 구조','금형의 두 큰 부분을 순서 없이 두 가지 쓰세요.','고정측, 가동측',['고정측','가동측'],'금형은 고정측과 가동측으로 나누어 이해하면 쉽습니다.'),
+      mcQuestion('q029',1,'금형 구조','이젝터 작동 전에 확인해야 할 것은?',['제품이 충분히 식고 금형이 완전히 열렸는지','호퍼가 비어 있는지','노즐 온도가 항상 0도인지','러너를 제거했는지'],0,'고화와 금형 개방을 확인해야 제품과 금형 손상을 줄일 수 있습니다.'),
+
+      mcQuestion('q030',2,'사출기 구조','호퍼부터 노즐까지 수지를 녹이고 보내는 부분은?',['사출 유닛','형체 유닛','이젝터 유닛','냉각 유닛'],0,'사출 유닛은 투입·가소화·충전을 담당합니다.'),
+      mcQuestion('q031',2,'사출기 구조','금형을 열고 닫으며 형체력을 만드는 부분은?',['형체 유닛','사출 유닛','호퍼','노즐'],0,'형체 유닛은 금형의 개폐와 형체력을 담당합니다.'),
+      mcQuestion('q032',2,'사출기 구조','펠릿 형태의 수지가 처음 들어가는 저장통은?',['호퍼','배럴','러너','타이바'],0,'호퍼가 원재료를 저장하고 스크루 쪽으로 공급합니다.'),
+      mcQuestion('q033',2,'사출기 구조','스크루가 회전하며 수행하는 대표 기능은?',['수지 가소화와 계량','금형 개방','제품 취출만','냉각수 순환'],0,'스크루 회전은 수지를 녹이고 다음 샷을 계량합니다.'),
+      shortQuestion('q034',2,'사출기 구조','배럴 끝에서 용융 수지를 금형 쪽으로 전달하는 부품은?','노즐',['노즐'],'노즐은 배럴의 용융 수지를 금형 스프루로 전달합니다.'),
+      mcQuestion('q035',2,'사출기 구조','배럴 바깥쪽 히터의 주된 역할은?',['수지 용융 온도를 유지하는 것','금형을 여는 것','형체력을 측정하는 것','제품을 밀어내는 것'],0,'히터 밴드는 배럴 온도를 설정 범위로 유지합니다.'),
+      mcQuestion('q036',2,'사출기 구조','타이바가 주로 연결하는 것은?',['형체 플래튼을 지지하는 구조','호퍼와 노즐','러너와 게이트','히터와 냉각수'],0,'타이바는 형체 유닛의 플래튼을 지지하고 형체력을 전달합니다.'),
+      mcQuestion('q037',2,'사출기 구조','형체력의 단위가 의미하는 것은?',['금형이 벌어지지 않도록 누르는 힘','수지의 색상','냉각수의 유량','스크루 회전수'],0,'형체력은 충전 중 금형을 닫아 두는 힘입니다.'),
+      mcQuestion('q038',2,'사출기 구조','배압을 높이면 계량 중 주로 어떤 변화가 생기나요?',['혼련과 용융 균일성이 커질 수 있다','금형이 자동으로 열린다','노즐이 냉각된다','제품이 즉시 취출된다'],0,'배압은 계량 중 스크루 뒤쪽 저항으로 혼련과 밀도에 영향을 줍니다.'),
+      shortQuestion('q039',2,'사출기 구조','수지가 이동하는 사출 유닛의 시작과 끝을 쓰세요.','호퍼 → 노즐',['호퍼','노즐'],'호퍼에서 투입된 수지가 스크루와 배럴을 지나 노즐로 나갑니다.'),
+      mcQuestion('q040',2,'사출기 구조','유압식과 전동식 사출기의 공통 목적은?',['사출·형체 동작을 정밀하게 수행하는 것','수지를 항상 같은 색으로 만드는 것','금형을 수작업으로 여는 것','냉각수를 제거하는 것'],0,'구동 방식은 달라도 사출과 형체를 제어하는 목적은 같습니다.'),
+      mcQuestion('q041',2,'사출기 구조','금형은 일반적으로 어느 부위에 장착되나요?',['고정·가동 플래튼 사이','호퍼 위','노즐 안쪽','배럴 내부'],0,'금형은 두 플래튼 사이에서 열리고 닫힙니다.'),
+      mcQuestion('q042',2,'사출기 구조','스크루 끝의 역류 방지 기능이 필요한 이유는?',['사출 시 용융 수지가 뒤로 새는 것을 줄이기 위해','냉각 시간을 없애기 위해','금형을 정렬하기 위해','호퍼를 가열하기 위해'],0,'체크 링 등은 사출 압력이 뒤로 빠지는 것을 줄여 압력 전달을 돕습니다.'),
+      mcQuestion('q043',2,'사출기 구조','사출 유닛에서 가소화가 일어나는 곳은?',['스크루와 배럴','타이바와 플래튼','이젝터 핀과 코어','게이트와 캐비티'],0,'스크루 회전과 배럴 열로 펠릿이 용융·혼련됩니다.'),
+
+      mcQuestion('q044',3,'사출 조건','수지 온도를 너무 낮게 설정하면 생기기 쉬운 현상은?',['흐름 저하와 미성형','항상 버만 발생','색상만 자동 변경','냉각이 불필요해짐'],0,'점도가 높아져 충전이 어려워질 수 있습니다.'),
+      mcQuestion('q045',3,'사출 조건','사출 속도를 높이면 주로 어떤 효과가 있나요?',['충전 시간이 짧아지고 유동성이 커질 수 있다','형체력이 자동으로 0이 된다','금형 냉각수가 멈춘다','수지가 건조된다'],0,'속도는 충전 시간과 전단열, 유동 패턴에 영향을 줍니다.'),
+      mcQuestion('q046',3,'사출 조건','사출 압력이 부족할 때 우선 의심할 문제는?',['충전 부족','금형이 너무 잘 맞음','수지의 색상 과다','냉각수 과다'],0,'압력 여유가 부족하면 캐비티 끝까지 충전되지 않을 수 있습니다.'),
+      mcQuestion('q047',3,'사출 조건','보압을 조절하는 직접적인 목적은?',['충전 후 수축을 보상하는 것','금형을 설치하는 것','호퍼를 비우는 것','제품을 연마하는 것'],0,'보압 크기와 시간은 중량·수축·싱크에 영향을 줍니다.'),
+      shortQuestion('q048',3,'사출 조건','제품이 굳을 때까지 유지하는 시간을 쓰세요.','냉각 시간',['냉각 시간','냉각'],'냉각 시간은 취출 가능한 강성과 치수를 확보하는 데 필요합니다.'),
+      mcQuestion('q049',3,'사출 조건','배압은 언제 주로 설정하는 조건인가요?',['계량 중','금형 개방 후 취출 중','냉각수 교체 중','제품 포장 중'],0,'배압은 스크루가 회전하며 계량할 때 뒤쪽 저항으로 작용합니다.'),
+      mcQuestion('q050',3,'사출 조건','스크루 회전 속도가 너무 빠를 때 주의할 점은?',['전단열과 수지 손상이 커질 수 있다','항상 미성형만 생긴다','형체력이 자동 증가한다','게이트가 사라진다'],0,'회전 속도는 혼련과 전단열을 함께 바꾸므로 수지별 관리가 필요합니다.'),
+      mcQuestion('q051',3,'사출 조건','V/P 전환은 무엇을 전환하는 지점인가요?',['속도 제어에서 보압 제어로','냉각에서 가열로','형체에서 취출로','계량에서 호퍼 보충으로'],0,'충전 후반에 속도 중심 제어에서 압력·보압 중심으로 전환합니다.'),
+      mcQuestion('q052',3,'사출 조건','쿠션량이 의미하는 것은?',['사출 종료 후 스크루 앞에 남는 완충 수지량','금형 냉각수의 양','호퍼의 최대 용량','이젝터 스트로크'],0,'쿠션은 압력 전달과 반복성 확보에 필요한 잔류 수지량입니다.'),
+      shortQuestion('q053',3,'사출 조건','조건을 바꿀 때 한 번에 하나만 조정해야 하는 이유를 쓰세요.','변경 원인을 추적하기 위해',['한번에 하나','원인','추적'],'변수를 분리해야 결과를 해석할 수 있습니다.',2),
+      mcQuestion('q054',3,'사출 조건','금형 온도를 높이면 일반적으로 기대할 수 있는 것은?',['유동과 표면 전사가 좋아질 수 있다','수지가 항상 건조된다','형체력이 사라진다','냉각이 즉시 끝난다'],0,'금형 온도는 유동성·전사성·냉각 균형에 영향을 줍니다.'),
+      mcQuestion('q055',3,'사출 조건','미성형이 발생했을 때 조정 후보로 적절한 조합은?',['온도·속도·압력·충전량 확인','색상 이름만 변경','이젝터 핀 제거','금형을 무조건 교체'],0,'조건과 금형·수지 상태를 순서대로 확인하며 원인을 좁힙니다.'),
+      mcQuestion('q056',3,'사출 조건','버가 생겼을 때 우선 확인할 것은?',['형체력과 과도한 압력·속도','냉각수 색상만','호퍼 뚜껑','제품 포장재'],0,'파팅면이 벌어질 조건인지 형체와 충전 압력을 확인합니다.'),
+      shortQuestion('q057',3,'사출 조건','조건을 기록해 두면 좋은 이유를 한 가지 쓰세요.','재현과 비교가 쉬워진다',['기록','재현'],'조건 기록은 양산 재현성과 변경 전후 비교를 돕습니다.',1),
+      mcQuestion('q058',3,'사출 조건','냉각 시간이 너무 짧을 때 대표적으로 증가하는 것은?',['취출 후 변형','형체력','수지 건조도','금형 정렬도'],0,'제품 내부 열이 남으면 취출 후 휨과 치수 변화가 커질 수 있습니다.'),
+      mcQuestion('q059',3,'사출 조건','압력과 시간 조건을 함께 보는 이유는?',['같은 압력도 유지 시간이 다르면 충전·수축 결과가 달라져서','색상표가 바뀌어서','금형이 자동 교체되어서','호퍼가 닫혀서'],0,'보압은 크기뿐 아니라 유지 시간과 게이트 고화 시점의 영향을 받습니다.'),
+
+      mcQuestion('q060',4,'수지 특성','PP의 대표적인 특징으로 알맞은 것은?',['가볍고 내약품성이 좋은 편','항상 투명하고 매우 단단함','고무처럼 탄성이 가장 큼','흡습성이 매우 큼'],0,'PP는 가볍고 생활용품·힌지류 등에 널리 사용됩니다.'),
+      mcQuestion('q061',4,'수지 특성','ABS의 대표 용도로 알맞은 것은?',['가전·외관 부품','고온 투명 렌즈만','고무 패킹만','기어 윤활유'],0,'ABS는 외관과 가공성이 좋아 가전·외관 부품에 사용됩니다.'),
+      mcQuestion('q062',4,'수지 특성','PC의 특징으로 맞는 것은?',['투명성과 강도가 좋은 편','가볍지만 항상 불투명','고무 탄성만 있음','수분에 전혀 영향 없음'],0,'PC는 투명성과 강도가 필요한 커버·부품에 쓰입니다.'),
+      mcQuestion('q063',4,'수지 특성','PA(나일론)의 성형 전 관리에서 특히 중요한 것은?',['건조','착색제 제거','금형 개방','이젝터 제거'],0,'PA는 흡습성이 있어 건조 상태가 품질에 큰 영향을 줍니다.'),
+      mcQuestion('q064',4,'수지 특성','POM이 자주 쓰이는 부품은?',['정밀부품·기어류','일회용 포장 필름만','고무 호스만','투명 창문만'],0,'POM은 치수 안정성과 미끄럼성이 필요한 기어·정밀부품에 적합합니다.'),
+      mcQuestion('q065',4,'수지 특성','TPE의 대표적인 특징은?',['고무 같은 탄성과 부드러움','유리처럼 깨지기 쉬움','항상 금속처럼 단단함','흡습성이 가장 큼'],0,'TPE는 탄성과 부드러움이 필요한 그립·패킹 등에 사용됩니다.'),
+      shortQuestion('q066',4,'수지 특성','PC·PA·ABS 성형 전에 공통으로 특히 신경 쓸 관리는?','건조',['건조'],'이 재료들은 수분에 민감하므로 성형 전 건조가 중요합니다.'),
+      mcQuestion('q067',4,'수지 특성','수지에 수분이 남아 있을 때 생기기 쉬운 문제는?',['은줄·기포·물성 저하','형체력 증가','파팅라인 소멸','냉각수 자동 보충'],0,'수분은 기화 흔적과 기포, 물성 저하를 만들 수 있습니다.'),
+      mcQuestion('q068',4,'수지 특성','생활용품 힌지류에 PP가 자주 선택되는 이유는?',['가볍고 반복 굽힘에 비교적 유리해서','투명도가 항상 최고라서','기어 마찰이 가장 작아서','고무 탄성이 가장 커서'],0,'PP는 가볍고 힌지 구조에 활용하기 좋은 특성이 있습니다.'),
+      shortQuestion('q069',4,'수지 특성','PA의 한글 재료명을 쓰세요.','폴리아미드(나일론)',['폴리아미드','나일론'],'PA는 폴리아미드 계열이며 흔히 나일론이라고 부릅니다.',1),
+      mcQuestion('q070',4,'수지 특성','POM 기어에서 기대하는 특성은?',['치수 안정성과 미끄럼성','높은 흡습성','고무 같은 신율만','투명성만'],0,'POM은 마찰과 치수 안정성이 중요한 기어에 쓰입니다.'),
+      mcQuestion('q071',4,'수지 특성','TPE를 그립 부품에 쓰는 가장 큰 이유는?',['부드러운 촉감과 탄성','높은 투명성만','높은 흡습성','금속성 강도'],0,'TPE는 손에 닿는 부품의 촉감과 탄성을 개선합니다.'),
+      mcQuestion('q072',4,'수지 특성','ABS가 외관 부품에 적합한 이유로 알맞은 것은?',['외관과 가공성이 좋기 때문','항상 고무처럼 늘어나기 때문','수분을 많이 머금기 때문','기어 마찰이 매우 낮기 때문'],0,'ABS는 표면 외관과 성형 가공성의 균형이 좋습니다.'),
+      mcQuestion('q073',4,'수지 특성','PC를 커버류에 쓰는 이유는?',['투명성과 강도를 함께 기대할 수 있어서','항상 가장 가벼워서','고무 탄성이 있어서','건조가 전혀 필요 없어서'],0,'PC는 투명 보호 커버와 강도가 필요한 부품에 적합합니다.'),
+      mcQuestion('q074',4,'수지 특성','흡습성 수지를 건조할 때 사용하는 대표 장비는?',['제습 건조기','이젝터 핀','타이바','러너'],0,'제습 건조기는 수지의 수분을 낮춰 성형 안정성을 높입니다.'),
+
+      mcQuestion('q075',5,'사출 불량','수지가 캐비티 끝까지 채워지지 않은 불량은?',['미성형','버','싱크','웰드라인'],0,'미성형은 충전 부족으로 제품 일부가 비는 현상입니다.'),
+      mcQuestion('q076',5,'사출 불량','파팅라인 밖으로 수지가 얇게 삐져나온 불량은?',['버(플래시)','기포','은줄','흑점'],0,'버는 형체 부족이나 파팅면 손상 등으로 발생합니다.'),
+      mcQuestion('q077',5,'사출 불량','두꺼운 부분 표면이 움푹 들어가는 불량은?',['싱크 마크','미성형','버','번 마크'],0,'싱크는 내부 수축이 표면을 끌어당겨 생기는 함몰입니다.'),
+      mcQuestion('q078',5,'사출 불량','서로 다른 유동 선단이 만난 자국은?',['웰드라인','버','싱크','은줄'],0,'웰드라인은 두 유동 선단이 만나며 생기는 선 형태 흔적입니다.'),
+      mcQuestion('q079',5,'사출 불량','취출 후 제품이 휘거나 비틀리는 불량은?',['뒤틀림(변형)','흑점','미성형','버'],0,'냉각 불균형과 잔류응력은 변형을 키울 수 있습니다.'),
+      mcQuestion('q080',5,'사출 불량','수분이나 가스가 표면에 은빛 줄무늬로 나타나는 불량은?',['은줄','싱크','버','미성형'],0,'은줄은 수분·가스·전단 등으로 표면에 은빛 흔적이 생기는 현상입니다.'),
+      mcQuestion('q081',5,'사출 불량','가스가 빠져나가지 못해 그을린 자국이 생기는 불량은?',['번 마크','웰드라인','싱크','미성형'],0,'에어 트랩과 배기 부족은 압축 가열로 번 마크를 만들 수 있습니다.'),
+      mcQuestion('q082',5,'사출 불량','제품 내부에 빈 공간이나 둥근 흔적이 생기는 현상은?',['기포·보이드','버','파팅라인','계량'],0,'가스나 수축으로 내부에 기포 또는 보이드가 생길 수 있습니다.'),
+      shortQuestion('q083',5,'사출 불량','웰드라인은 유동 선단이 어떻게 될 때 생기나요?','서로 만나 합쳐질 때',['유동 선단','만나'],'서로 다른 방향의 유동 선단이 만나면 웰드라인이 남을 수 있습니다.',2),
+      mcQuestion('q084',5,'사출 불량','수지 안의 탄화물이나 이물로 보이는 검은 점은?',['흑점','싱크','미성형','버'],0,'흑점은 오염·탄화·이물 혼입 등을 점검해야 합니다.'),
+      mcQuestion('q085',5,'사출 불량','번 마크가 반복될 때 우선 확인할 금형 요소는?',['배기(벤트)','이젝터 색상','타이바 길이','호퍼 뚜껑'],0,'가스가 빠질 배기 구조와 막힘을 먼저 확인합니다.'),
+      shortQuestion('q086',5,'사출 불량','싱크 마크가 두꺼운 부위에서 생기는 주된 이유는?','냉각 중 수축',['두꺼운','수축','냉각'],'두꺼운 부위의 내부 수축이 표면을 끌어당겨 싱크를 만듭니다.',2),
+      mcQuestion('q087',5,'사출 불량','버가 파팅라인 전체에 나타날 때 의심할 조합은?',['형체 부족 또는 과도한 충전 압력','건조 시간 부족만','냉각수 색상','제품 포장 방식'],0,'형체와 압력 조건, 파팅면 상태를 함께 확인합니다.'),
+      mcQuestion('q088',5,'사출 불량','미성형 원인으로 보기 어려운 것은?',['충전 압력 부족','수지 온도 부족','게이트 막힘','제품 포장 색상'],3,'미성형은 유동·충전 경로와 조건을 먼저 보고 포장 색상은 원인이 아닙니다.'),
+      mcQuestion('q089',5,'사출 불량','불량 원인을 좁혀 갈 때 권장하는 순서는?',['조건 → 금형 → 수지','포장 → 출하 → 라벨','수지 색상 → 포장 → 출하','이젝터 제거 → 금형 폐기 → 재가공'],0,'사출 조건을 먼저 확인하고 금형과 수지 상태로 범위를 넓히면 효율적입니다.'),
+
+      mcQuestion('q090',6,'유동 추적','용융 수지가 금형으로 이동하는 기본 순서는?',['노즐 → 스프루 → 러너 → 게이트 → 제품','게이트 → 호퍼 → 노즐 → 러너','제품 → 러너 → 호퍼 → 스프루','노즐 → 제품 → 호퍼 → 게이트'],0,'노즐에서 스프루·러너·게이트를 거쳐 캐비티로 들어갑니다.'),
+      shortQuestion('q091',6,'유동 추적','러너에서 제품 공간으로 들어가는 입구를 쓰세요.','게이트',['게이트'],'게이트는 러너와 캐비티를 잇는 유동의 입구입니다.'),
+      mcQuestion('q092',6,'유동 추적','에어 트랩이 생겼을 때 필요한 금형 기능은?',['배기(벤트)','호퍼 가열','타이바 연장','이젝터 제거'],0,'공기가 빠져나갈 벤트가 있어야 충전 끝단의 가스 압축을 줄일 수 있습니다.'),
+      shortQuestion('q093',6,'유동 추적','두 유동 선단이 만나는 위치를 미리 보면 어떤 불량을 예상할 수 있나요?','웰드라인',['웰드라인'],'유동이 갈라졌다가 만나는 곳은 웰드라인 후보가 됩니다.'),
+      mcQuestion('q094',6,'유동 추적','다수 캐비티 금형에서 러너 밸런스가 중요한 이유는?',['각 캐비티에 수지가 비슷하게 도달하도록 하기 위해','금형을 자동 세척하기 위해','수지 색을 바꾸기 위해','냉각수를 제거하기 위해'],0,'러너 밸런스가 맞아야 캐비티별 충전 편차를 줄일 수 있습니다.'),
+      mcQuestion('q095',6,'유동 추적','벤트가 막히면 가장 우려되는 현상은?',['가스가 갇혀 번 마크·미성형이 생김','형체력이 자동 증가','수지가 건조됨','게이트가 넓어짐'],0,'배기 불량은 가스 압축과 충전 방해를 일으킵니다.'),
+      mcQuestion('q096',6,'유동 추적','유동 선단(flow front)을 따라가며 확인하는 목적은?',['충전 순서와 공기·웰드 위치를 예측하기 위해','제품 포장을 고르기 위해','호퍼 용량을 재기 위해','금형 외관을 칠하기 위해'],0,'유동 선단을 추적하면 충전 불균형과 불량 위치를 예측할 수 있습니다.'),
+      mcQuestion('q097',6,'유동 추적','게이트 위치를 정할 때 고려할 항목으로 가장 적절한 것은?',['충전 균형·외관·웰드 위치','포장 색상만','작업자 이름만','출하 날짜만'],0,'게이트 위치는 유동 균형과 외관, 웰드·에어 위치에 영향을 줍니다.'),
+      shortQuestion('q098',6,'유동 추적','유동 경로를 순서대로 세 곳 이상 써 보세요.','노즐 → 스프루 → 러너 → 게이트',['노즐','스프루','러너','게이트'],'유동 경로를 말로 설명할 수 있으면 금형 구조 이해가 단단해집니다.',3),
+      mcQuestion('q099',6,'유동 추적','웰드라인과 미성형의 차이를 바르게 설명한 것은?',['웰드라인은 유동이 만난 흔적, 미성형은 충전 부족','둘 다 금형 냉각수 이름','웰드라인은 수지 건조, 미성형은 포장 문제','두 현상은 항상 같은 원인'],0,'유동이 만나는 흔적과 끝까지 채우지 못한 현상을 구분해야 합니다.'),
+      shortQuestion('q100',6,'유동 추적','유동 경로를 직접 표시하며 공부하는 가장 큰 이유는 무엇인가요?','충전과 불량 위치를 연결해 이해하기 위해',['충전','불량','위치'],'경로를 표시하면 조건·금형 구조·불량의 관계를 한 번에 연결할 수 있습니다.',2)
+    ];
     const home = document.getElementById('home');
     const viewer = document.getElementById('viewer');
+    const quiz = document.getElementById('quiz');
+    const quizIntro = document.getElementById('quizIntro');
+    const quizPlay = document.getElementById('quizPlay');
+    const quizResult = document.getElementById('quizResult');
+    const quizStats = document.getElementById('quizStats');
+    const quizProgressText = document.getElementById('quizProgressText');
+    const quizScoreText = document.getElementById('quizScoreText');
+    const quizProgressBar = document.getElementById('quizProgressBar');
+    const questionTopic = document.getElementById('questionTopic');
+    const questionType = document.getElementById('questionType');
+    const questionNumber = document.getElementById('questionNumber');
+    const questionText = document.getElementById('questionText');
+    const answerArea = document.getElementById('answerArea');
+    const submitAnswerBtn = document.getElementById('submitAnswerBtn');
+    const feedback = document.getElementById('feedback');
+    const feedbackTitle = document.getElementById('feedbackTitle');
+    const feedbackBody = document.getElementById('feedbackBody');
+    const feedbackAnswer = document.getElementById('feedbackAnswer');
+    const nextQuestionBtn = document.getElementById('nextQuestionBtn');
+    const resultScore = document.getElementById('resultScore');
+    const resultMessage = document.getElementById('resultMessage');
+    const resultSummary = document.getElementById('resultSummary');
+    const wrongList = document.getElementById('wrongList');
     const pageList = document.getElementById('pageList');
     const studyImage = document.getElementById('studyImage');
     const canvas = document.getElementById('inkCanvas');
@@ -319,13 +572,40 @@
     const preloadPage = (index) => { if (index < 0 || index >= pages.length || imageCache.has(index)) return; const page = pages[index]; const image = new Image(); image.decoding = 'async'; image.fetchPriority = 'low'; image.onerror = () => { if (page.fallback && image.src.endsWith('.webp')) image.src = page.fallback; }; image.src = page.src; imageCache.set(index, image); };
     const preloadAllPages = () => pages.forEach((_, index) => preloadPage(index));
     const updatePageList = () => { [...pageList.children].forEach((button, index) => { button.classList.toggle('has-notes', hasNotes(index)); button.setAttribute('aria-current', String(index === currentIndex)); }); const count = pages.reduce((total, _, index) => total + (hasNotes(index) ? 1 : 0), 0); pickerSummary.textContent = `${currentIndex === null ? 1 : currentIndex + 1} / ${pages.length} · ${count} 필기`; };
+    const quizStorageKey = 'snapwork-quiz-progress-v1';
+    const readQuizProgress = () => { try { const saved = localStorage.getItem(quizStorageKey); const parsed = saved ? JSON.parse(saved) : {}; return parsed && typeof parsed === 'object' ? parsed : {}; } catch (_) { return {}; } };
+    let quizProgress = readQuizProgress();
+    let quizSession = null;
+    const saveQuizProgress = () => { try { localStorage.setItem(quizStorageKey, JSON.stringify(quizProgress)); } catch (_) {} };
+    const quizStat = (question) => quizProgress[question.id] || { attempts:0, correct:0, wrong:0, streak:0, due:0 };
+    const quizWeight = (question, now) => { const stat = quizStat(question); const attempts = Number(stat.attempts) || 0; let weight = attempts === 0 ? 10 : 2; if (!stat.due || stat.due <= now) weight += 14; if (stat.wrong) weight += Math.min(18, stat.wrong * 4); if (attempts && stat.correct / attempts < .7) weight += 8; if (attempts && stat.streak === 0) weight += 6; return weight; };
+    const weightedPick = (candidates, now) => { const total = candidates.reduce((sum, question) => sum + quizWeight(question, now), 0); let cursor = Math.random() * total; for (const question of candidates) { cursor -= quizWeight(question, now); if (cursor <= 0) return question; } return candidates[candidates.length - 1]; };
+    const selectQuizQuestions = () => { const now = Date.now(); const selected = []; const used = new Set(); pages.forEach((_, page) => { const candidates = quizQuestions.filter((question) => question.page === page && !used.has(question.id)); if (candidates.length) { const question = weightedPick(candidates, now); selected.push(question); used.add(question.id); } }); while (selected.length < Math.min(10, quizQuestions.length)) { const candidates = quizQuestions.filter((question) => !used.has(question.id)); if (!candidates.length) break; const question = weightedPick(candidates, now); selected.push(question); used.add(question.id); } return selected; };
+    const updateQuizStats = () => { const stats = Object.values(quizProgress); const attempts = stats.reduce((sum, stat) => sum + (Number(stat.attempts) || 0), 0); const correct = stats.reduce((sum, stat) => sum + (Number(stat.correct) || 0), 0); const review = stats.filter((stat) => stat.due && stat.due <= Date.now() && stat.wrong > stat.correct).length; quizStats.textContent = attempts ? `누적 ${attempts}회 응답 · 정답 ${correct}회 · 복습 우선 ${review}문제` : '아직 푼 문제가 없습니다.'; };
+    const normalizeAnswer = (value) => String(value || '').toLowerCase().replace(/[\s.,?!·:;()\[\]{}"'“”‘’→←]/g, '');
+    const recordQuizResult = (question, correct) => { const previous = quizStat(question); const now = Date.now(); const attempts = (Number(previous.attempts) || 0) + 1; const next = { attempts, correct:(Number(previous.correct) || 0) + (correct ? 1 : 0), wrong:(Number(previous.wrong) || 0) + (correct ? 0 : 1), streak:correct ? (Number(previous.streak) || 0) + 1 : 0, lastSeen:now }; if (correct) { const intervals = [0, 1, 3, 7, 14, 30]; next.intervalDays = intervals[Math.min(next.streak, intervals.length - 1)]; next.due = now + next.intervalDays * 86400000; } else { next.intervalDays = 0; next.due = now + 5 * 60 * 1000; } quizProgress[question.id] = next; saveQuizProgress(); updateQuizStats(); };
+    const renderQuizIntro = () => { quizIntro.hidden = false; quizPlay.hidden = true; quizResult.hidden = true; updateQuizStats(); };
+    const openQuiz = (pushHistory = true) => { home.hidden = true; viewer.hidden = true; quiz.hidden = false; if (pushHistory) history.pushState({ quiz:true }, '', '#quiz'); renderQuizIntro(); window.scrollTo({ top:0, behavior:'smooth' }); };
+    const showQuizFeedback = (question, correct) => { feedback.classList.toggle('is-wrong', !correct); feedbackTitle.textContent = correct ? '정답이에요!' : '다시 복습할 문제예요.'; feedbackBody.textContent = question.explanation; feedbackAnswer.textContent = `핵심 답: ${question.answerText}`; feedback.hidden = false; nextQuestionBtn.hidden = false; submitAnswerBtn.hidden = true; };
+    const evaluateQuizAnswer = () => { if (!quizSession || quizSession.answered) return; const question = quizSession.questions[quizSession.index]; let userAnswer = ''; let correct = false; if (question.type === 'mc') { if (quizSession.selectedAnswer === null) return; userAnswer = question.options[quizSession.selectedAnswer]; correct = quizSession.selectedAnswer === question.answer; } else { const input = document.getElementById('shortAnswerInput'); userAnswer = input ? input.value.trim() : ''; if (!userAnswer) { if (input) input.focus(); return; } const normalized = normalizeAnswer(userAnswer); const hits = question.keywords.filter((keyword) => normalized.includes(normalizeAnswer(keyword))).length; correct = hits >= question.minKeywords; } quizSession.answered = true; quizSession.results.push({ question, correct, userAnswer }); if (correct) quizSession.correct += 1; recordQuizResult(question, correct); if (question.type === 'mc') { [...answerArea.querySelectorAll('.answer-option')].forEach((option, index) => { option.disabled = true; if (index === question.answer) option.classList.add('correct'); if (index === quizSession.selectedAnswer && !correct) option.classList.add('incorrect'); }); } else { const input = document.getElementById('shortAnswerInput'); if (input) input.disabled = true; } quizScoreText.textContent = `${quizSession.correct * 10}점`; showQuizFeedback(question, correct); };
+    const renderQuizQuestion = () => { const question = quizSession.questions[quizSession.index]; if (!question) return; quizSession.answered = false; quizSession.selectedAnswer = null; quizProgressText.textContent = `문제 ${quizSession.index + 1} / ${quizSession.questions.length}`; quizScoreText.textContent = `${quizSession.correct * 10}점`; quizProgressBar.style.width = `${((quizSession.index + 1) / quizSession.questions.length) * 100}%`; questionTopic.textContent = question.topic; questionType.textContent = question.type === 'mc' ? '객관식' : '주관식'; questionNumber.textContent = `QUESTION ${String(quizSession.index + 1).padStart(2, '0')}`; questionText.textContent = question.question; answerArea.innerHTML = ''; feedback.hidden = true; nextQuestionBtn.hidden = true; nextQuestionBtn.textContent = quizSession.index === quizSession.questions.length - 1 ? '결과 보기 ✓' : '다음 문제 →'; submitAnswerBtn.hidden = true; if (question.type === 'mc') { question.options.forEach((optionText, index) => { const option = document.createElement('button'); option.type = 'button'; option.className = 'answer-option'; option.dataset.index = String(index); option.innerHTML = `<span class="option-key">${String.fromCharCode(65 + index)}</span><span>${optionText}</span>`; option.addEventListener('click', () => { if (quizSession.answered) return; quizSession.selectedAnswer = index; [...answerArea.querySelectorAll('.answer-option')].forEach((item) => item.classList.toggle('selected', item === option)); evaluateQuizAnswer(); }); answerArea.appendChild(option); }); } else { const hint = document.createElement('p'); hint.className = 'short-hint'; hint.textContent = '핵심 단어를 포함해 짧게 답해 보세요.'; answerArea.appendChild(hint); const input = document.createElement('textarea'); input.id = 'shortAnswerInput'; input.className = 'short-answer'; input.rows = 3; input.placeholder = '답을 입력하세요'; input.addEventListener('keydown', (event) => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') evaluateQuizAnswer(); }); answerArea.appendChild(input); submitAnswerBtn.hidden = false; } };
+    const showQuizResult = () => { quizPlay.hidden = true; quizResult.hidden = false; const total = quizSession.questions.length; const score = quizSession.correct * 10; const wrong = quizSession.results.filter((result) => !result.correct); resultScore.textContent = String(score); resultMessage.textContent = score === 100 ? '완벽합니다. 핵심 개념을 모두 잡았어요.' : score >= 70 ? '좋아요. 틀린 문제만 한 번 더 복습해 보세요.' : '괜찮아요. 오답부터 다시 보면 빠르게 좋아집니다.'; resultSummary.textContent = `${total}문제 중 ${quizSession.correct}문제 정답 · 오답은 다음 세션에서 우선 출제됩니다.`; wrongList.innerHTML = ''; if (wrong.length) { const heading = document.createElement('p'); heading.className = 'wrong-heading'; heading.textContent = '이번 세션에서 다시 볼 문제'; wrongList.appendChild(heading); wrong.forEach(({ question }) => { const item = document.createElement('div'); item.className = 'wrong-item'; item.innerHTML = `<strong>${question.topic}</strong><span>${question.question}</span><span>정답: ${question.answerText}</span>`; wrongList.appendChild(item); }); } else { const done = document.createElement('p'); done.className = 'all-correct'; done.textContent = '이번 세션에는 오답이 없습니다.'; wrongList.appendChild(done); } updateQuizStats(); };
+    const startQuizSession = () => { quizSession = { questions:selectQuizQuestions(), index:0, correct:0, results:[] }; quizIntro.hidden = true; quizResult.hidden = true; quizPlay.hidden = false; renderQuizQuestion(); window.scrollTo({ top:0, behavior:'smooth' }); };
+    const nextQuizQuestion = () => { if (!quizSession || !quizSession.answered) return; if (quizSession.index >= quizSession.questions.length - 1) showQuizResult(); else { quizSession.index += 1; renderQuizQuestion(); window.scrollTo({ top:0, behavior:'smooth' }); } };
     const renderPage = (index) => { currentIndex = index; const page = pages[index]; const saved = readSavedState(index); preloadPage(index); strokes = saved.strokes; textMemo.value = saved.memo; dirty = false; activeStroke = null; tapCandidate = null; pinchStart = null; pointers.clear(); pagePicker.open = false; resetZoom(); pageNumber.textContent = String(index + 1).padStart(2, '0'); studyTitle.textContent = page.title; studyHint.textContent = page.hint; progressText.textContent = `${index + 1} / ${pages.length}`; progressBar.style.width = `${((index + 1) / pages.length) * 100}%`; document.getElementById('prevBtn').disabled = index === 0; document.getElementById('nextBtn').textContent = index === pages.length - 1 ? '처음 페이지로 ↺' : '다음 페이지 →'; studyImage.alt = `${page.title} 학습 이미지`; studyImage.decoding = 'async'; studyImage.fetchPriority = 'high'; studyImage.onload = resizeCanvas; studyImage.onerror = () => { studyImage.onerror = null; if (page.fallback) studyImage.src = page.fallback; }; studyImage.src = page.src; if (studyImage.complete) requestAnimationFrame(resizeCanvas); saveState.textContent = strokes.length || textMemo.value ? '저장된 필기와 메모를 불러왔습니다.' : '필기와 메모는 저장 버튼을 눌러 보관합니다.'; updatePageList(); window.scrollTo({ top:0, behavior:'smooth' }); };
     pages.forEach((page, index) => { const button = document.createElement('button'); button.type = 'button'; button.className = 'page-button'; button.dataset.page = String(index); button.innerHTML = `<span class="page-index">${String(index + 1).padStart(2, '0')}</span><span><strong>${page.title}</strong><small>${page.subtitle}</small></span><span class="page-check" aria-hidden="true">✓</span>`; button.addEventListener('click', () => navigateToPage(index)); pageList.appendChild(button); });
-    const openViewer = (index, pushHistory = true) => { preloadAllPages(); home.hidden = true; viewer.hidden = false; if (pushHistory) history.pushState({ viewer:true, index, focus:false }, '', `#page-${index + 1}`); renderPage(index); };
+    const openViewer = (index, pushHistory = true) => { preloadAllPages(); home.hidden = true; quiz.hidden = true; viewer.hidden = false; if (pushHistory) history.pushState({ viewer:true, index, focus:false }, '', `#page-${index + 1}`); renderPage(index); };
     const navigateToPage = (index) => { if (viewer.classList.contains('focus-mode')) viewer.classList.remove('focus-mode'); resetZoom(); history.replaceState({ viewer:true, index, focus:false }, '', `#page-${index + 1}`); renderPage(index); };
     history.replaceState({ home:true }, '', `${window.location.pathname}${window.location.search}`);
     document.querySelectorAll('.lesson-entry').forEach((button) => button.addEventListener('click', () => openViewer(Number(button.dataset.page))));
     document.getElementById('startBtn').addEventListener('click', () => openViewer(currentIndex === null ? 0 : currentIndex));
+    document.getElementById('quizBtn').addEventListener('click', () => openQuiz(true));
+    document.getElementById('startQuizBtn').addEventListener('click', startQuizSession);
+    submitAnswerBtn.addEventListener('click', evaluateQuizAnswer);
+    nextQuestionBtn.addEventListener('click', nextQuizQuestion);
+    document.getElementById('retryQuizBtn').addEventListener('click', startQuizSession);
+    document.getElementById('resultHomeBtn').addEventListener('click', () => { if (history.state && history.state.quiz) history.back(); else { quiz.hidden = true; home.hidden = false; } });
+    document.getElementById('quizBackBtn').addEventListener('click', () => { if (history.state && history.state.quiz) history.back(); else { quiz.hidden = true; home.hidden = false; } });
     document.getElementById('backBtn').addEventListener('click', navigateHome);
     exitFocusBtn.addEventListener('click', (event) => { event.stopPropagation(); exitFocusMode(true); });
     document.getElementById('prevBtn').addEventListener('click', () => { if (currentIndex > 0) navigateToPage(currentIndex - 1); });
@@ -364,8 +644,8 @@
       canvas.addEventListener('touchcancel', finishStroke, { passive:false });
     }
     window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('popstate', (event) => { const state = event.state; if (state && state.viewer) { home.hidden = true; viewer.hidden = false; if (state.focus) { viewer.classList.add('focus-mode'); renderPage(state.index); } else { viewer.classList.remove('focus-mode'); renderPage(state.index); } requestAnimationFrame(resizeCanvas); } else { viewer.classList.remove('focus-mode'); resetZoom(); viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); } });
-    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !colorMenu.hidden) { closeColorMenu(); return; } if (viewer.hidden || ['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if (event.key === 'ArrowLeft' && currentIndex > 0) navigateToPage(currentIndex - 1); if (event.key === 'ArrowRight') navigateToPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); if (event.key === 'Escape') document.getElementById('backBtn').click(); });
+    window.addEventListener('popstate', (event) => { const state = event.state; if (state && state.quiz) { home.hidden = true; viewer.hidden = true; quiz.hidden = false; renderQuizIntro(); } else if (state && state.viewer) { home.hidden = true; quiz.hidden = true; viewer.hidden = false; if (state.focus) { viewer.classList.add('focus-mode'); renderPage(state.index); } else { viewer.classList.remove('focus-mode'); renderPage(state.index); } requestAnimationFrame(resizeCanvas); } else { viewer.classList.remove('focus-mode'); resetZoom(); quiz.hidden = true; viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); } });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !colorMenu.hidden) { closeColorMenu(); return; } if (!quiz.hidden) { if (event.key === 'Escape' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) document.getElementById('quizBackBtn').click(); return; } if (viewer.hidden || ['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if (event.key === 'ArrowLeft' && currentIndex > 0) navigateToPage(currentIndex - 1); if (event.key === 'ArrowRight') navigateToPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); if (event.key === 'Escape') document.getElementById('backBtn').click(); });
     syncPenControls();
     updatePageList();
     const scheduleImagePreload = () => { const run = () => preloadAllPages(); if ('requestIdleCallback' in window) window.requestIdleCallback(run, { timeout:1200 }); else setTimeout(run, 200); };
