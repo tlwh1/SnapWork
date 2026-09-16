@@ -77,6 +77,11 @@ const userIdFor = (request) => {
   return value && value.trim() ? value.trim().slice(0, 160) : null;
 };
 
+const emailFor = (request) => {
+  const value = request.headers.get('oai-authenticated-user-email');
+  return value && value.trim() ? value.trim().slice(0, 240) : '';
+};
+
 const handleQuizState = async (request, env) => {
   const userId = userIdFor(request);
   if (!userId) return json({ authenticated: false, error: 'sign_in_required' }, 401);
@@ -84,7 +89,7 @@ const handleQuizState = async (request, env) => {
   try {
     if (request.method === 'GET') {
       const row = await env.DB.prepare('SELECT progress_json, session_json, updated_at FROM quiz_state WHERE user_id = ?1').bind(userId).first();
-      return json({ authenticated: true, progress: parseObject(row?.progress_json, {}), session: row?.session_json ? parseObject(row.session_json, null) : null, updatedAt: Number(row?.updated_at) || 0 });
+      return json({ authenticated: true, email: emailFor(request), progress: parseObject(row?.progress_json, {}), session: row?.session_json ? parseObject(row.session_json, null) : null, updatedAt: Number(row?.updated_at) || 0 });
     }
     if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405);
     const length = Number(request.headers.get('content-length')) || 0;
