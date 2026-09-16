@@ -89,8 +89,19 @@
     .tool-btn.primary-tool { border-color:var(--red); color:var(--red-dark); background:#fff5f1; }
     .tool-btn:disabled { cursor:not-allowed; opacity:.42; }
     .pen-control { display:inline-flex; align-items:center; gap:9px; min-height:42px; padding:0 11px; border:1px solid #d5dbe2; border-radius:11px; color:#65748a; background:#fff; font-size:.83rem; font-weight:750; }
-    .pen-control input { width:94px; accent-color:var(--red); }
-    .pen-control select { max-width:92px; border:0; color:#46566b; background:transparent; cursor:pointer; font-size:.83rem; font-weight:750; }
+    .pen-control input { width:94px; accent-color:var(--range-color,var(--red)); }
+    .color-control { position:relative; }
+    .color-toggle { display:inline-flex; align-items:center; gap:6px; min-width:78px; padding:5px 7px; border:1px solid transparent; border-radius:8px; color:#46566b; background:transparent; cursor:pointer; font:inherit; font-weight:800; }
+    .color-toggle:hover, .color-toggle:focus-visible { border-color:#c4ccd5; outline:none; }
+    .color-dot, .pen-preview { display:inline-block; flex:none; border-radius:50%; }
+    .color-dot { width:16px; height:16px; box-shadow:0 0 0 2px rgba(255,255,255,.65),0 0 0 3px rgba(20,37,61,.18); }
+    .color-caret { color:#91a0af; font-size:.9rem; }
+    .color-menu { position:absolute; z-index:20; top:calc(100% + 6px); left:0; display:grid; min-width:126px; gap:3px; padding:6px; border:1px solid #d5dbe2; border-radius:11px; background:#fff; box-shadow:0 12px 28px rgba(20,37,61,.2); }
+    .color-option { display:flex; align-items:center; gap:8px; width:100%; padding:8px 7px; border:1px solid transparent; border-radius:7px; color:#46566b; background:transparent; cursor:pointer; font:inherit; font-size:.82rem; font-weight:750; text-align:left; }
+    .color-option:hover, .color-option[aria-selected="true"] { border-color:rgba(228,72,72,.3); background:#fff5f1; }
+    .pen-preview { width:12px; height:12px; background:var(--red); box-shadow:0 0 0 2px rgba(228,72,72,.16); transition:width .12s ease,height .12s ease,background .12s ease,opacity .12s ease; }
+    .opacity-preview { display:inline-block; width:30px; height:8px; border-radius:99px; background:var(--red); box-shadow:inset 0 0 0 1px rgba(255,255,255,.28); transition:background .12s ease,opacity .12s ease; }
+    .sr-only { position:absolute !important; width:1px !important; height:1px !important; padding:0 !important; margin:-1px !important; overflow:hidden !important; clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important; }
     .zoom-controls { display:none; align-items:center; gap:4px; }
     .draw-tools { display:none; }
     .focus-mode .draw-tools { display:flex; }
@@ -122,6 +133,7 @@
     .focus-mode .study-card { padding:0; border:0; border-radius:0; box-shadow:none; background:transparent; }
     .focus-mode .zoom-controls { display:flex; }
     .focus-mode .focus-exit { display:inline-flex; align-items:center; }
+    .focus-mode .color-menu { top:auto; bottom:calc(100% + 6px); }
     .focus-mode .canvas-wrap { border:0; border-radius:0; box-shadow:none; }
     .focus-mode .toolbar { margin:0; padding:12px 14px; background:#0d1726; }
     :root { color-scheme:dark; --navy:#f1f5fb; --navy-2:#294263; --ink:#e9eff7; --muted:#a8b6c8; --paper:#131e2f; --paper-2:#1a293e; --line:#344861; --red:#ff6d68; --red-dark:#ff918b; --blue:#66a9e5; }
@@ -146,6 +158,13 @@
     .tool-btn, .pen-control { border-color:#3a4d65; color:#d4deea; background:#1b2a3e; }
     .tool-btn:hover { border-color:#6c819a; background:#243750; }
     .tool-btn.primary-tool { border-color:var(--red); color:#ffaaa4; background:#3a202e; }
+    .color-toggle { color:#d4deea; }
+    .color-toggle:hover, .color-toggle:focus-visible { border-color:#6c819a; }
+    .color-menu { border-color:#3a4d65; background:#101b2b; box-shadow:0 14px 30px rgba(0,0,0,.4); }
+    .color-option { color:#d4deea; }
+    .color-option:hover, .color-option[aria-selected="true"] { border-color:rgba(255,109,104,.45); background:#3a202e; }
+    .color-dot { box-shadow:0 0 0 2px rgba(16,27,43,.85),0 0 0 3px rgba(172,193,216,.34); }
+    .opacity-preview { box-shadow:inset 0 0 0 1px rgba(255,255,255,.34); }
     .pen-control select { color:#d4deea; }
     .text-memo { border-color:#3a4d65; color:#e2e9f1; background:#101b2b; }
     .text-memo::placeholder { color:#8292a6; }
@@ -213,7 +232,7 @@
           </div>
           <div class="memo-wrap"><label for="textMemo">텍스트 메모 <span>저장 버튼을 눌러 보관</span></label><textarea id="textMemo" class="text-memo" rows="3" placeholder="이 페이지에서 외울 내용을 적어 보세요."></textarea></div>
           <div class="toolbar">
-            <div class="toolbar-group draw-tools"><button id="undoBtn" class="tool-btn" type="button">실행 취소</button><button id="clearBtn" class="tool-btn" type="button">그림 전체 지우기</button><label class="pen-control">색상 <select id="penColor" aria-label="필기 색상"><option value="#e44848">빨강</option><option value="#ef7d32">주황</option><option value="#2e6fae">파랑</option><option value="#1f7a5a">초록</option><option value="#5d4fc7">보라</option></select></label><label class="pen-control">굵기 <input id="penSize" type="range" min="2" max="14" value="5"><span id="penValue">5px</span></label><label class="pen-control">투명도 <input id="penOpacity" type="range" min="20" max="100" value="85"><span id="opacityValue">85%</span></label></div>
+            <div class="toolbar-group draw-tools"><button id="undoBtn" class="tool-btn" type="button">실행 취소</button><button id="clearBtn" class="tool-btn" type="button">그림 전체 지우기</button><div class="pen-control color-control"><span>색상</span><button id="colorToggle" class="color-toggle" type="button" aria-haspopup="listbox" aria-expanded="false"><span id="colorSwatch" class="color-dot" aria-hidden="true"></span><span id="colorName">빨강</span><span class="color-caret" aria-hidden="true">⌄</span></button><select id="penColor" class="sr-only" aria-label="필기 색상"><option value="#e44848">빨강</option><option value="#ef7d32">주황</option><option value="#2e6fae">파랑</option><option value="#1f7a5a">초록</option><option value="#5d4fc7">보라</option></select><div id="colorMenu" class="color-menu" role="listbox" aria-label="필기 색상 선택" hidden><button class="color-option" type="button" role="option" data-color="#e44848" data-label="빨강" aria-selected="true"><span class="color-dot" style="background:#e44848" aria-hidden="true"></span><span>빨강</span></button><button class="color-option" type="button" role="option" data-color="#ef7d32" data-label="주황" aria-selected="false"><span class="color-dot" style="background:#ef7d32" aria-hidden="true"></span><span>주황</span></button><button class="color-option" type="button" role="option" data-color="#2e6fae" data-label="파랑" aria-selected="false"><span class="color-dot" style="background:#2e6fae" aria-hidden="true"></span><span>파랑</span></button><button class="color-option" type="button" role="option" data-color="#1f7a5a" data-label="초록" aria-selected="false"><span class="color-dot" style="background:#1f7a5a" aria-hidden="true"></span><span>초록</span></button><button class="color-option" type="button" role="option" data-color="#5d4fc7" data-label="보라" aria-selected="false"><span class="color-dot" style="background:#5d4fc7" aria-hidden="true"></span><span>보라</span></button></div></div><label class="pen-control">굵기 <span id="penPreview" class="pen-preview" aria-hidden="true"></span><input id="penSize" type="range" min="2" max="14" value="5" aria-label="펜 굵기"><span id="penValue">5px</span></label><label class="pen-control">투명도 <span id="opacityPreview" class="opacity-preview" aria-hidden="true"></span><input id="penOpacity" type="range" min="20" max="100" value="85" aria-label="펜 투명도"><span id="opacityValue">85%</span></label></div>
             <div class="toolbar-group"><div class="zoom-controls" aria-label="이미지 확대 축소"><button id="zoomOutBtn" class="tool-btn" type="button" aria-label="이미지 축소">−</button><button id="zoomResetBtn" class="tool-btn" type="button" aria-label="확대 초기화">100%</button><button id="zoomInBtn" class="tool-btn" type="button" aria-label="이미지 확대">＋</button></div><button id="saveBtn" class="tool-btn primary-tool" type="button">필기·메모 저장</button></div>
           </div>
           <p id="saveState" class="save-state" aria-live="polite">필기와 메모는 저장 버튼을 눌러 보관합니다.</p>
@@ -258,6 +277,13 @@
     const penColor = document.getElementById('penColor');
     const penOpacity = document.getElementById('penOpacity');
     const opacityValue = document.getElementById('opacityValue');
+    const penPreview = document.getElementById('penPreview');
+    const opacityPreview = document.getElementById('opacityPreview');
+    const colorToggle = document.getElementById('colorToggle');
+    const colorSwatch = document.getElementById('colorSwatch');
+    const colorName = document.getElementById('colorName');
+    const colorMenu = document.getElementById('colorMenu');
+    const colorOptions = [...document.querySelectorAll('.color-option')];
     let currentIndex = null;
     let strokes = [];
     let activeStroke = null;
@@ -274,6 +300,8 @@
     const hasNotes = (index) => { const saved = readSavedState(index); return saved.strokes.length > 0 || saved.memo.trim().length > 0; };
     const markDraft = (message = '저장 버튼을 눌러 보관하세요.') => { dirty = true; saveState.textContent = message; };
     const saveCurrent = (message = '필기와 메모를 저장했습니다.') => { if (currentIndex === null) return; try { localStorage.setItem(storageKey(currentIndex), JSON.stringify({ strokes, memo:textMemo.value })); dirty = false; saveState.textContent = message; } catch (_) { saveState.textContent = '브라우저 저장 공간을 사용할 수 없습니다.'; } updatePageList(); };
+    const syncPenControls = () => { const color = penColor.value; const opacity = Number(penOpacity.value) / 100; const size = Number(penSize.value); const selected = colorOptions.find((option) => option.dataset.color === color); colorSwatch.style.background = color; colorName.textContent = selected ? selected.dataset.label : '색상'; colorOptions.forEach((option) => option.setAttribute('aria-selected', String(option.dataset.color === color))); penPreview.style.width = `${Math.round(6 + size * 1.35)}px`; penPreview.style.height = `${Math.round(6 + size * 1.35)}px`; penPreview.style.background = color; penPreview.style.opacity = String(opacity); opacityPreview.style.background = color; opacityPreview.style.opacity = String(opacity); penSize.style.setProperty('--range-color', color); penOpacity.style.setProperty('--range-color', color); };
+    const closeColorMenu = () => { colorMenu.hidden = true; colorToggle.setAttribute('aria-expanded', 'false'); };
     const clampZoom = (value) => Math.max(1, Math.min(4, value));
     const clampPan = () => { const maxX = Math.max(0, studyImage.clientWidth * zoom - canvasWrap.clientWidth); const maxY = Math.max(0, studyImage.clientHeight * zoom - canvasWrap.clientHeight); panX = Math.min(0, Math.max(-maxX, panX)); panY = Math.min(0, Math.max(-maxY, panY)); };
     const applyZoom = () => { clampPan(); canvasStage.style.transform = zoom === 1 && panX === 0 && panY === 0 ? 'none' : `translate(${panX}px, ${panY}px) scale(${zoom})`; zoomResetBtn.textContent = `${Math.round(zoom * 100)}%`; };
@@ -308,9 +336,13 @@
     zoomOutBtn.addEventListener('click', () => setZoom(zoom - 0.25));
     zoomResetBtn.addEventListener('click', resetZoom);
     zoomInBtn.addEventListener('click', () => setZoom(zoom + 0.25));
+    colorToggle.addEventListener('click', (event) => { event.stopPropagation(); const willOpen = colorMenu.hidden; if (willOpen) { colorMenu.hidden = false; colorToggle.setAttribute('aria-expanded', 'true'); } else closeColorMenu(); });
+    colorOptions.forEach((option) => option.addEventListener('click', () => { penColor.value = option.dataset.color; syncPenControls(); closeColorMenu(); }));
+    penColor.addEventListener('change', syncPenControls);
+    document.addEventListener('click', (event) => { if (!event.target.closest('.color-control')) closeColorMenu(); });
     textMemo.addEventListener('input', () => markDraft('메모를 수정했습니다. 저장하려면 저장 버튼을 누르세요.'));
-    penSize.addEventListener('input', () => { penValue.textContent = `${penSize.value}px`; });
-    penOpacity.addEventListener('input', () => { opacityValue.textContent = `${penOpacity.value}%`; });
+    penSize.addEventListener('input', () => { penValue.textContent = `${penSize.value}px`; syncPenControls(); });
+    penOpacity.addEventListener('input', () => { opacityValue.textContent = `${penOpacity.value}%`; syncPenControls(); });
     const pointerPosition = (event) => { const source = event.touches && event.touches[0] ? event.touches[0] : (event.changedTouches && event.changedTouches[0] ? event.changedTouches[0] : event); return { x:source.clientX, y:source.clientY }; };
     const startPinch = () => { if (pointers.size < 2) return; const [a, b] = [...pointers.values()]; pinchStart = { distance:Math.max(1, distanceBetween(a, b)), center:midpoint(a, b), zoom, panX, panY }; activeStroke = null; tapCandidate = null; redraw(); };
     const updatePinch = () => { if (!pinchStart || pointers.size < 2) return; const [a, b] = [...pointers.values()]; const center = midpoint(a, b); zoom = clampZoom(pinchStart.zoom * distanceBetween(a, b) / pinchStart.distance); panX = pinchStart.panX + (center.x - pinchStart.center.x); panY = pinchStart.panY + (center.y - pinchStart.center.y); applyZoom(); };
@@ -333,7 +365,8 @@
     }
     window.addEventListener('resize', resizeCanvas);
     window.addEventListener('popstate', (event) => { const state = event.state; if (state && state.viewer) { home.hidden = true; viewer.hidden = false; if (state.focus) { viewer.classList.add('focus-mode'); renderPage(state.index); } else { viewer.classList.remove('focus-mode'); renderPage(state.index); } requestAnimationFrame(resizeCanvas); } else { viewer.classList.remove('focus-mode'); resetZoom(); viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); } });
-    document.addEventListener('keydown', (event) => { if (viewer.hidden || ['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if (event.key === 'ArrowLeft' && currentIndex > 0) navigateToPage(currentIndex - 1); if (event.key === 'ArrowRight') navigateToPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); if (event.key === 'Escape') document.getElementById('backBtn').click(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !colorMenu.hidden) { closeColorMenu(); return; } if (viewer.hidden || ['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if (event.key === 'ArrowLeft' && currentIndex > 0) navigateToPage(currentIndex - 1); if (event.key === 'ArrowRight') navigateToPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); if (event.key === 'Escape') document.getElementById('backBtn').click(); });
+    syncPenControls();
     updatePageList();
     const scheduleImagePreload = () => { const run = () => preloadAllPages(); if ('requestIdleCallback' in window) window.requestIdleCallback(run, { timeout:1200 }); else setTimeout(run, 200); };
     if (document.readyState === 'complete') scheduleImagePreload(); else window.addEventListener('load', scheduleImagePreload, { once:true });
