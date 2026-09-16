@@ -121,6 +121,43 @@
     .wrong-item strong { display:block; color:#8c2e2e; font-size:.8rem; }
     .wrong-item span { display:block; margin-top:4px; color:#6d5960; font-size:.82rem; line-height:1.4; }
     .result-actions { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:24px; }
+    .roadmap-screen { max-width:980px; padding-top:20px; }
+    .roadmap-topbar { display:flex; align-items:center; justify-content:space-between; gap:15px; padding-bottom:12px; border-bottom:1px solid rgba(20,37,61,.12); }
+    .roadmap-top-label { color:#8a97a5; font-size:.82rem; font-weight:780; }
+    .roadmap-shell { width:min(900px,100%); margin:0 auto; padding-top:clamp(28px,7vw,68px); }
+    .roadmap-intro { text-align:center; }
+    .roadmap-kicker { margin:0 0 12px; color:var(--red-dark); font-size:.78rem; font-weight:900; letter-spacing:.13em; text-transform:uppercase; }
+    .roadmap-intro h1 { font-size:clamp(2.3rem,6vw,4.8rem); }
+    .roadmap-intro h1 em { color:var(--red); font-style:normal; }
+    .roadmap-lead { max-width:650px; margin:22px auto 0; color:#65748a; font-size:1rem; line-height:1.7; }
+    .roadmap-account { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px; margin:17px auto 0; color:#8a97a5; font-size:.82rem; line-height:1.5; }
+    .roadmap-account.is-ready { color:#3b8d68; }
+    .roadmap-account-link { color:var(--red-dark); font-weight:800; text-decoration:none; }
+    .roadmap-account-link:hover, .roadmap-account-link:focus-visible { text-decoration:underline; outline:none; }
+    .roadmap-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:31px; text-align:left; }
+    .roadmap-entry { display:grid; grid-template-columns:42px minmax(0,1fr) 20px; align-items:center; gap:12px; min-height:108px; padding:16px; border:1px solid rgba(20,37,61,.13); border-radius:16px; color:var(--ink); background:rgba(255,253,248,.75); cursor:pointer; text-align:left; transition:transform .18s ease,border-color .18s ease,background .18s ease; }
+    .roadmap-entry:hover, .roadmap-entry:focus-visible { border-color:rgba(228,72,72,.48); background:#fff7f3; transform:translateY(-2px); outline:none; box-shadow:0 8px 24px rgba(20,37,61,.1); }
+    .roadmap-entry-num { display:grid; place-items:center; width:38px; height:38px; border-radius:12px; color:#fff; background:var(--navy-2); font-size:.82rem; font-weight:900; }
+    .roadmap-entry strong { display:block; color:var(--navy); font-size:.95rem; line-height:1.35; }
+    .roadmap-entry small { display:block; margin-top:5px; color:#7c8b9d; font-size:.76rem; line-height:1.4; }
+    .roadmap-entry-arrow { color:var(--red); font-size:1.25rem; }
+    .roadmap-detail { text-align:left; }
+    .roadmap-list-btn { display:inline-flex; align-items:center; min-height:38px; margin-bottom:22px; padding:0 12px; border:1px solid #d5dbe2; border-radius:10px; color:#65748a; background:transparent; cursor:pointer; font-size:.82rem; font-weight:800; }
+    .roadmap-list-btn:hover, .roadmap-list-btn:focus-visible { border-color:var(--red); color:var(--red-dark); outline:none; }
+    .roadmap-detail-meta { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .roadmap-detail-kicker { margin:0; color:var(--red-dark); font-size:.78rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase; }
+    .roadmap-detail-period { margin:0; color:#8a97a5; font-size:.82rem; font-weight:750; }
+    .roadmap-detail h1 { margin:12px 0 0; color:var(--navy); font-size:clamp(2rem,5vw,4.1rem); line-height:1.04; letter-spacing:-.06em; }
+    .roadmap-detail-lead { max-width:700px; margin:16px 0 0; color:#65748a; font-size:1rem; line-height:1.7; }
+    .roadmap-body { display:grid; gap:13px; margin-top:27px; }
+    .roadmap-block { padding:18px 19px; border:1px solid rgba(20,37,61,.13); border-radius:15px; background:rgba(255,253,248,.7); }
+    .roadmap-block h2 { margin:0; color:var(--navy); font-size:1.02rem; letter-spacing:-.025em; }
+    .roadmap-block p { margin:10px 0 0; color:#65748a; font-size:.9rem; line-height:1.65; }
+    .roadmap-block ul { display:grid; gap:8px; margin:11px 0 0; padding-left:19px; color:#65748a; font-size:.9rem; line-height:1.55; }
+    .roadmap-block li::marker { color:var(--red); }
+    .roadmap-route { margin:0; padding:13px 14px; border-left:4px solid var(--red); border-radius:0 10px 10px 0; color:var(--navy); background:#fff2ed; font-size:.93rem; font-weight:800; line-height:1.65; white-space:pre-line; }
+    .roadmap-nav { display:flex; justify-content:space-between; gap:10px; margin-top:25px; padding-top:18px; border-top:1px dashed #d2d8df; }
+    .roadmap-nav .tool-btn { min-width:130px; }
     .viewer-screen { padding-top:12px; }
     .viewer-header { display:flex; align-items:center; justify-content:space-between; gap:14px; padding-bottom:12px; border-bottom:1px solid rgba(20,37,61,.12); }
     .back-btn { display:inline-flex; align-items:center; gap:8px; padding:9px 0; border:0; color:var(--navy); background:transparent; cursor:pointer; font-size:.95rem; font-weight:820; }
@@ -220,6 +257,20 @@
     .secondary-btn { border-color:#3a4d65; color:#d4deea; background:#15243a; }
     .secondary-btn:hover, .secondary-btn:focus-visible { border-color:var(--red); color:#ffaaa4; background:#3a202e; }
     .quiz-topbar { border-color:#2b3d55; }
+    .roadmap-topbar { border-color:#2b3d55; }
+    .roadmap-top-label, .roadmap-lead, .roadmap-detail-lead, .roadmap-detail-period, .roadmap-block p, .roadmap-block ul { color:#91a1b4; }
+    .roadmap-account { color:#91a1b4; }
+    .roadmap-account.is-ready { color:#8ed6ad; }
+    .roadmap-account-link { color:#ffaaa4; }
+    .roadmap-entry, .roadmap-block { border-color:rgba(160,181,206,.2); background:rgba(17,28,45,.9); box-shadow:0 12px 30px rgba(0,0,0,.18); }
+    .roadmap-entry:hover, .roadmap-entry:focus-visible { border-color:rgba(255,109,104,.45); background:#202a3b; box-shadow:0 10px 26px rgba(0,0,0,.28); }
+    .roadmap-entry strong, .roadmap-detail h1, .roadmap-block h2, .roadmap-route { color:#f1f5fb; }
+    .roadmap-entry small { color:#91a1b4; }
+    .roadmap-entry-num { color:#fff; background:#31547c; }
+    .roadmap-list-btn { border-color:#3a4d65; color:#d4deea; background:#15243a; }
+    .roadmap-list-btn:hover, .roadmap-list-btn:focus-visible { border-color:var(--red); color:#ffaaa4; background:#3a202e; }
+    .roadmap-route { border-color:var(--red); background:#3a202e; }
+    .roadmap-nav { border-color:#3a4d65; }
     .quiz-top-label, .quiz-lead, .quiz-stats, .quiz-rule-grid span, .result-summary { color:#91a1b4; }
     .quiz-rule-grid div, .question-card { border-color:rgba(160,181,206,.2); background:rgba(17,28,45,.9); box-shadow:0 22px 60px rgba(0,0,0,.25); }
     .quiz-rule-grid strong, .result-message, .question-text { color:#f1f5fb; }
@@ -279,6 +330,8 @@
     @media (max-width:560px) { .screen { padding-left:0; padding-right:0; } .topline, .hero, .home-footer { margin-left:14px; margin-right:14px; } .topline { align-items:flex-start; flex-direction:column; } .viewer-screen { padding-top:8px; } .viewer-header { align-items:center; flex-direction:row; gap:10px; padding:0 14px 8px; } .back-btn { flex:0 0 auto; padding:4px 0; font-size:.82rem; } .back-btn span { font-size:1.15rem; } .progress-wrap { flex:1; width:auto; min-width:0; gap:8px; } .progress-track { height:6px; } .progress-text { font-size:.76rem; } .home-footer { flex-direction:column; gap:7px; } .page-picker { margin:8px 10px 0; border-radius:13px; } .page-picker summary { padding:10px 12px; font-size:.84rem; } .page-picker summary strong { font-size:.74rem; } .page-list { grid-template-columns:1fr; } .viewer-grid { padding-top:8px; } .study-card { padding:0; border-left:0; border-right:0; border-radius:0; box-shadow:none; } .study-kicker, .study-card h2, .study-hint, .memo-wrap, .toolbar, .save-state, .page-nav, .tip { margin-left:14px; margin-right:14px; } .canvas-wrap { border-left:0; border-right:0; border-radius:0; } .toolbar { align-items:stretch; flex-direction:column; } .toolbar-group { width:100%; } .tool-btn { flex:1; } .pen-control { justify-content:space-between; } .pen-control input { flex:1; } .page-nav .tool-btn { min-width:0; } .focus-mode .toolbar { margin:0; } }
     @media (max-width:560px) { .study-heading { align-items:stretch; flex-direction:column; gap:12px; margin:0 14px 18px; } .study-heading-copy .study-kicker, .study-heading-copy h2, .study-heading-copy .study-hint { margin-left:0; margin-right:0; } .study-heading .heading-nav { width:auto; margin:0; } .study-heading .heading-nav .tool-btn { min-width:0; } }
     @media (max-width:560px) { .home-actions { align-items:stretch; flex-direction:column; margin-top:25px; } .home-actions .primary-btn, .home-actions .secondary-btn { width:100%; } .quiz-screen { padding:8px 14px 42px; } .quiz-topbar { gap:8px; padding-bottom:8px; } .quiz-top-label { font-size:.72rem; white-space:nowrap; } .quiz-shell { padding-top:28px; } .quiz-intro h1 { font-size:2.35rem; } .quiz-lead { margin-top:17px; font-size:.92rem; } .quiz-rule-grid { grid-template-columns:1fr; gap:7px; margin-top:22px; } .quiz-rule-grid div { min-height:0; padding:12px 14px; } .quiz-intro .primary-btn { width:100%; } .question-card { padding:20px 16px; border-radius:18px; } .question-number { margin-top:20px; } .question-text { font-size:1.2rem; } .answer-option { padding:13px 12px; font-size:.9rem; } .result-actions { flex-direction:column; } .result-actions .primary-btn, .result-actions .secondary-btn { width:100%; } }
+    @media (max-width:700px) { .roadmap-grid { grid-template-columns:1fr; } }
+    @media (max-width:560px) { .roadmap-screen { padding:8px 14px 42px; } .roadmap-topbar { gap:8px; padding-bottom:8px; } .roadmap-top-label { font-size:.72rem; white-space:nowrap; } .roadmap-shell { padding-top:28px; } .roadmap-intro h1 { font-size:2.35rem; } .roadmap-lead { margin-top:17px; font-size:.92rem; } .roadmap-account { justify-content:flex-start; text-align:left; } .roadmap-entry { min-height:94px; padding:14px; } .roadmap-detail-meta { align-items:flex-start; flex-direction:column; gap:5px; } .roadmap-detail h1 { font-size:2.2rem; } .roadmap-detail-lead { font-size:.92rem; } .roadmap-block { padding:15px 16px; } .roadmap-block ul, .roadmap-block p { font-size:.86rem; } .roadmap-nav { flex-direction:column; } .roadmap-nav .tool-btn { width:100%; } }
   </style>
 </head>
 <body>
@@ -290,7 +343,7 @@
           <p class="eyebrow">초보 입문 01—07</p>
           <h1 id="home-title">사출공장,<br><em>한 장씩</em> 익히기</h1>
           <p class="hero-copy">사출 사이클부터 금형·조건·수지·불량·유동까지, 사진 7장을 페이지별로 넘겨 보세요. 화면 위에 빨간펜으로 직접 표시하며 외울 수 있습니다.</p>
-          <div class="home-actions"><button id="startBtn" class="primary-btn" type="button">학습 시작하기 <span aria-hidden="true">→</span></button><button id="quizBtn" class="secondary-btn" type="button">10문제 문제풀이 <span aria-hidden="true">✦</span></button></div>
+          <div class="home-actions"><button id="startBtn" class="primary-btn" type="button">학습 시작하기 <span aria-hidden="true">→</span></button><button id="roadmapBtn" class="secondary-btn" type="button">내 학습 로드맵 <span aria-hidden="true">↗</span></button><button id="quizBtn" class="secondary-btn" type="button">10문제 문제풀이 <span aria-hidden="true">✦</span></button></div>
           <p class="local-note">필기와 메모는 저장 버튼을 눌렀을 때만 이 기기에 저장됩니다.</p>
           <div id="accountStatus" class="account-status" role="status"><span class="account-status-dot" aria-hidden="true"></span><span id="accountStatusText">동기화 상태를 확인하는 중…</span><a id="mainSignInBtn" class="account-action" href="/signin-with-chatgpt?return_to=/" target="_top">로그인</a><a id="mainSignOutBtn" class="account-action" href="/signout-with-chatgpt?return_to=/" target="_top" hidden>로그아웃</a></div>
         </div>
@@ -308,6 +361,26 @@
         </aside>
       </div>
       <div class="home-footer"><span>사진 기반 사출 학습 노트</span><span>빨간펜으로 핵심만 표시해 보세요.</span></div>
+    </section>
+    <section id="roadmap" class="screen roadmap-screen" hidden aria-labelledby="roadmapTitle">
+      <div class="roadmap-topbar"><button id="roadmapBackBtn" class="back-btn" type="button"><span aria-hidden="true">←</span> 학습장으로 돌아가기</button><span class="roadmap-top-label">나의 학습 로드맵 · 2026—2027</span></div>
+      <div class="roadmap-shell">
+        <div id="roadmapIndex" class="roadmap-intro">
+          <p class="roadmap-kicker">현장 경험 → 기사 역량</p>
+          <h1 id="roadmapTitle">사출 기술자,<br><em>한 단계씩</em> 성장하기</h1>
+          <p class="roadmap-lead">현재의 자격증과 입사 시점을 기준으로, 현장 실무를 사출금형기사 준비와 연결한 개인 학습 로드맵입니다. 카드를 눌러 한 페이지씩 확인해 보세요.</p>
+          <p id="roadmapAccountStatus" class="roadmap-account" role="status"><span id="roadmapAccountText">로그인 상태를 확인하는 중…</span><a id="roadmapSignInBtn" class="roadmap-account-link" href="/signin-with-chatgpt?return_to=/#roadmap" target="_top" hidden>로그인</a></p>
+          <div id="roadmapPageList" class="roadmap-grid"></div>
+        </div>
+        <article id="roadmapDetail" class="roadmap-detail" hidden>
+          <button id="roadmapListBtn" class="roadmap-list-btn" type="button">← 로드맵 목록</button>
+          <div class="roadmap-detail-meta"><p id="roadmapPageKicker" class="roadmap-detail-kicker"></p><p id="roadmapPagePeriod" class="roadmap-detail-period"></p></div>
+          <h1 id="roadmapPageTitle"></h1>
+          <p id="roadmapPageLead" class="roadmap-detail-lead"></p>
+          <div id="roadmapPageBody" class="roadmap-body"></div>
+          <div class="roadmap-nav"><button id="roadmapPrevBtn" class="tool-btn" type="button">← 이전 페이지</button><button id="roadmapNextBtn" class="tool-btn primary-tool" type="button">다음 페이지 →</button></div>
+        </article>
+      </div>
     </section>
     <section id="quiz" class="screen quiz-screen" hidden aria-labelledby="quizTitle">
       <div class="quiz-topbar"><button id="quizBackBtn" class="back-btn" type="button"><span aria-hidden="true">←</span> 학습장으로 돌아가기</button><span class="quiz-top-label">이해도 점검 · 100문제</span></div>
@@ -502,7 +575,61 @@
       mcQuestion('q099',6,'유동 추적','웰드라인과 미성형의 차이를 바르게 설명한 것은?',['웰드라인은 유동이 만난 흔적, 미성형은 충전 부족','둘 다 금형 냉각수 이름','웰드라인은 수지 건조, 미성형은 포장 문제','두 현상은 항상 같은 원인'],0,'유동이 만나는 흔적과 끝까지 채우지 못한 현상을 구분해야 합니다.'),
       shortQuestion('q100',6,'유동 추적','유동 경로를 직접 표시하며 공부하는 가장 큰 이유는 무엇인가요?','충전과 불량 위치를 연결해 이해하기 위해',['충전','불량','위치'],'경로를 표시하면 조건·금형 구조·불량의 관계를 한 번에 연결할 수 있습니다.',2)
     ];
+    const roadmapPages = [
+      { kicker:'14 · 자격증 현황', period:'현재 확인 완료', title:'확인된 출발점', lead:'사출 현장에 새로 들어왔지만, 이미 국가기술자격을 취득하고 시험을 끝까지 완주한 경험이 있습니다.', blocks:[
+        { title:'현재 학습자 프로필', items:['플라스틱 사출 관련 업체 입사 3일차 수준의 신입','사출조건·불량·금형·CAD를 현장 기술로 연결하는 것이 목표','2026년 9월부터 실무와 기사 준비를 함께 시작'] },
+        { title:'Q-Net에서 확인한 자격증', items:['컴퓨터응용선반기능사(검정형) · 최종합격 1998.07.20','정보처리산업기사(검정형) · 필기 2004.06.07 / 최종합격 2004.08.16'] },
+        { title:'학습에 적용할 점', text:'자격증 취득 경험은 시험 계획을 세우는 강점으로 활용하되, 오래된 기계·도면 지식은 현재 기준으로 기초부터 다시 복습합니다.' }
+      ] },
+      { kicker:'15 · 응시자격 계획', period:'2027년 9월 전후 확인', title:'사출금형기사까지의 조건', lead:'정보처리산업기사 보유 이력과 사출 실무 1년을 연결해 기사 직접 응시를 우선 목표로 둡니다.', blocks:[
+        { route:'정보처리산업기사 취득\n→ 2026년 9월 사출 업무 입사\n→ 2027년 9월 전후 실무 1년\n→ Q-Net·한국산업인력공단 경력 인정 확인\n→ 사출금형기사 응시' },
+        { title:'현재 핵심 조건', items:['산업기사 등급 이상 자격 보유 사실','사출금형기사와 동일·유사 직무분야로 인정되는 실무경력 1년'] },
+        { title:'반드시 공식 확인할 것', text:'현재 회사에서 수행하는 업무가 동일·유사 직무분야에 해당하는지는 업무 내용과 경력증명서를 준비해 한국산업인력공단의 최종 심사를 받아야 합니다. 이 페이지는 응시자격을 확정하는 문서가 아닙니다.' }
+      ] },
+      { kicker:'16 · 경력증명서 관리', period:'앞으로 1년', title:'실무를 증명할 기록 만들기', lead:'재직기간만 채우는 것이 아니라 실제로 어떤 사출 업무를 수행했는지 남겨야 합니다.', blocks:[
+        { title:'업무기록에 남길 항목', items:['플라스틱 사출성형 업무','사출성형기 운전 및 관리','사출조건 설정·관리','금형 교환 및 셋업','사출공정 관리','성형불량 확인 및 개선','금형·사출설비 점검','사출제품 생산관리'] },
+        { title:'기록 원칙', items:['생산직·현장직·기계조작처럼 넓은 표현보다 실제 담당 업무를 구체적으로 기록','날짜·제품·금형·원료·불량·변경 조건·결과를 개인 노트에도 남기기','경력증명서에는 실제 수행한 업무만 기재하고 과장하지 않기'] },
+        { title:'SnapWork 기록 연결', text:'현장에서 배운 내용은 개인 사출 데이터베이스 표에 추가합니다. 이 기록은 나중에 경력증명서 내용을 확인하고 트러블슈팅 실력을 돌아보는 근거가 됩니다.' }
+      ] },
+      { kicker:'17–18 · 전략과 목표', period:'앞으로 1년', title:'기사 준비와 현장 실력 함께 키우기', lead:'현재는 사출금형산업기사를 거치는 것보다 실무 1년과 사출금형기사 직접 준비를 우선합니다.', blocks:[
+        { title:'자격증 전략', items:['정보처리산업기사 재취득은 현재 계획에 포함하지 않기','사출금형산업기사는 필수 중간 경로가 아닌 보조 선택지로 두기','시험제도나 응시자격 심사 결과가 달라지면 계획 갱신'] },
+        { title:'앞으로 1년의 3가지 목표', items:['사출 실무경력 확보: 공정과 조건을 실제로 이해하기','사출금형기사 준비: 필기와 실기를 함께 고려하기','현장 판단력 확보: 불량의 원인 범주화와 결과 확인을 반복하기'] },
+        { title:'문제 해결 프레임', route:'불량 발생\n→ 현상 확인\n→ 조건·금형·원료·설비로 원인 범주화\n→ 한 번에 하나씩 변경\n→ 결과 확인·기록' }
+      ] },
+      { kicker:'19 · 기사 준비 우선순위', period:'입사 0~12개월', title:'시기를 나눠 공부하기', lead:'입사 초기에는 기출 암기보다 현장 원리와 용어를 먼저 익히고, 실무가 쌓일수록 기사 준비 비중을 높입니다.', blocks:[
+        { title:'0~3개월 · 장비·조건 기초', items:['사출기 구조와 사출 사이클','사출속도·압력·보압·냉각 등 조건','원료 관리와 대표 성형불량','산출물: 장비 용어표·불량 확인 순서'] },
+        { title:'3~6개월 · 금형·셋업', items:['금형구조·금형교환·게이트·러너','냉각·벤트·이젝터 구조','산출물: 금형 부품 스케치·셋업 체크리스트'] },
+        { title:'6~9개월 · 도면·CAD', items:['기계제도·도면해독·공차·끼워맞춤','SolidWorks 등 3D 모델링 기초','산출물: 도면 읽기 연습·간단한 3D 모델'] },
+        { title:'9~12개월 · 기사 본격 준비', items:['필기 기출·금형설계 이론','실기 CAD·도면 연습','산출물: 오답노트·실기 연습 기록'] },
+        { title:'경력 1년 전후 · 응시 확인', text:'Q-Net 응시자격과 경력증명서를 준비하고 한국산업인력공단 심사 후 시험 일정을 확정합니다.' }
+      ] },
+      { kicker:'20 · 강점과 보완점', period:'현재 기준', title:'경험은 활용하고 기초는 새로 다지기', lead:'과거 자격증 취득 경험은 분명한 강점이지만, 오래된 지식은 현재 업무에 맞게 다시 연결해야 합니다.', blocks:[
+        { title:'활용할 강점', items:['국가기술자격 시험의 학습·응시 절차를 경험함','컴퓨터응용선반기능사로 기계가공·기계 분야의 과거 경험이 있음','정보처리산업기사 취득 경험으로 장기 학습을 완주해 본 적이 있음'] },
+        { title:'다시 채울 기초', items:['기계제도·가공 관련 내용은 처음부터 복습','현재 사출기·금형·수지 용어를 회사 장비와 연결','자격증이 실무를 대신하지 않는다는 점을 항상 전제로 두기'] },
+        { title:'학습 확인 질문', text:'“이 조건을 바꾸면 제품의 무엇이 왜 달라지는가?”를 설명할 수 있는지, 실제 현장에서 확인하고 문제풀이로 다시 점검합니다.' }
+      ] },
+      { kicker:'21–22 · 최종 방향', period:'장기 성장 기준', title:'사출 기술자에서 공정 개선자로', lead:'최종 목표는 자격증 이름이 아니라 현상을 설명하고 개선 결과를 재현할 수 있는 기술자입니다.', blocks:[
+        { title:'먼저 갖출 조합', route:'사출 현장경력\n+ 사출조건 셋업·트러블슈팅\n+ 금형구조 이해\n+ 기계도면·CAD\n+ 사출금형기사' },
+        { title:'이후 확장할 영역', items:['유압·공압','전기·센서','PLC','자동화·로봇','품질·SPC','DOE·공정최적화','설비보전'] },
+        { title:'앞으로 AI가 참고할 상태', items:['현재는 2026년 9월 입사 초기의 사출 신입','최우선 자격증 목표는 사출금형기사 직접 응시','답변은 단순 암기보다 조건·불량·금형·CAD의 연결에 초점','응시자격과 경력 인정은 Q-Net·한국산업인력공단 공식 확인을 우선'] }
+      ] }
+    ];
     const home = document.getElementById('home');
+    const roadmap = document.getElementById('roadmap');
+    const roadmapIndex = document.getElementById('roadmapIndex');
+    const roadmapDetail = document.getElementById('roadmapDetail');
+    const roadmapPageList = document.getElementById('roadmapPageList');
+    const roadmapAccountStatus = document.getElementById('roadmapAccountStatus');
+    const roadmapAccountText = document.getElementById('roadmapAccountText');
+    const roadmapSignInBtn = document.getElementById('roadmapSignInBtn');
+    const roadmapPageKicker = document.getElementById('roadmapPageKicker');
+    const roadmapPagePeriod = document.getElementById('roadmapPagePeriod');
+    const roadmapPageTitle = document.getElementById('roadmapPageTitle');
+    const roadmapPageLead = document.getElementById('roadmapPageLead');
+    const roadmapPageBody = document.getElementById('roadmapPageBody');
+    const roadmapPrevBtn = document.getElementById('roadmapPrevBtn');
+    const roadmapNextBtn = document.getElementById('roadmapNextBtn');
+    let currentRoadmapIndex = 0;
     const viewer = document.getElementById('viewer');
     const quiz = document.getElementById('quiz');
     const quizIntro = document.getElementById('quizIntro');
@@ -612,7 +739,7 @@
     const saveLocalQuizSession = () => { try { if (quizSession) localStorage.setItem(quizSessionStorageKey, JSON.stringify(quizSessionPayload())); else localStorage.removeItem(quizSessionStorageKey); } catch (_) {} };
     const hydrateQuizSession = (saved) => { if (!saved || !Array.isArray(saved.questions)) return null; const byId = new Map(quizQuestions.map((question) => [question.id, question])); const questions = saved.questions.map((id) => byId.get(id)).filter(Boolean); if (!questions.length) return null; const results = Array.isArray(saved.results) ? saved.results.map((result) => ({ question:byId.get(result.questionId), correct:Boolean(result.correct), userAnswer:typeof result.userAnswer === 'string' ? result.userAnswer : '' })).filter((result) => result.question) : []; return { questions, index:Math.max(0, Math.min(Number(saved.index) || 0, questions.length - 1)), correct:Number(saved.correct) || results.filter((result) => result.correct).length, answered:Boolean(saved.answered), selectedAnswer:Number.isInteger(saved.selectedAnswer) ? saved.selectedAnswer : null, results }; };
     const setQuizSyncStatus = (message, kind = '') => { quizSyncStatus.textContent = message; quizSyncStatus.className = `quiz-sync-status${kind ? ` is-${kind}` : ''}`; };
-    const updateAccountUI = () => { const serverMode = quizCloud.mode === 'server'; const authRequired = quizCloud.mode === 'auth-required'; accountStatus.classList.toggle('is-ready', serverMode); if (serverMode) { accountStatusText.textContent = quizCloud.email ? `로그인됨 · ${quizCloud.email}` : '로그인됨 · 서버 동기화 사용 중'; mainSignInBtn.hidden = true; mainSignOutBtn.hidden = false; } else if (authRequired) { accountStatusText.textContent = '로그인하면 PC·모바일 학습 기록을 이어갈 수 있어요.'; mainSignInBtn.hidden = false; mainSignOutBtn.hidden = true; } else if (quizCloud.mode === 'local') { accountStatusText.textContent = '현재 기기에만 임시 저장됩니다.'; mainSignInBtn.hidden = false; mainSignOutBtn.hidden = true; } else { accountStatusText.textContent = '동기화 상태를 확인하는 중…'; mainSignInBtn.hidden = true; mainSignOutBtn.hidden = true; } };
+    const updateAccountUI = () => { const serverMode = quizCloud.mode === 'server'; const authRequired = quizCloud.mode === 'auth-required'; const localMode = quizCloud.mode === 'local'; accountStatus.classList.toggle('is-ready', serverMode); if (serverMode) { accountStatusText.textContent = quizCloud.email ? `로그인됨 · ${quizCloud.email}` : '로그인됨 · 서버 동기화 사용 중'; mainSignInBtn.hidden = true; mainSignOutBtn.hidden = false; } else if (authRequired) { accountStatusText.textContent = '로그인하면 PC·모바일 학습 기록을 이어갈 수 있어요.'; mainSignInBtn.hidden = false; mainSignOutBtn.hidden = true; } else if (localMode) { accountStatusText.textContent = '현재 기기에만 임시 저장됩니다.'; mainSignInBtn.hidden = false; mainSignOutBtn.hidden = true; } else { accountStatusText.textContent = '동기화 상태를 확인하는 중…'; mainSignInBtn.hidden = true; mainSignOutBtn.hidden = true; } if (roadmapAccountStatus && roadmapAccountText && roadmapSignInBtn) { roadmapAccountStatus.classList.toggle('is-ready', serverMode); if (serverMode) { roadmapAccountText.textContent = quizCloud.email ? `로그인됨 · ${quizCloud.email} · 나의 로드맵` : '로그인됨 · 나의 로드맵'; roadmapSignInBtn.hidden = true; } else if (authRequired) { roadmapAccountText.textContent = '로드맵은 바로 볼 수 있어요. 로그인하면 문제풀이 기록도 이어집니다.'; roadmapSignInBtn.hidden = false; } else if (localMode) { roadmapAccountText.textContent = '로드맵은 바로 볼 수 있어요. 현재 문제풀이는 이 기기에만 임시 저장됩니다.'; roadmapSignInBtn.hidden = false; } else { roadmapAccountText.textContent = '로그인 상태를 확인하는 중…'; roadmapSignInBtn.hidden = true; } } };
     const updateQuizSyncUI = () => { const serverMode = quizCloud.mode === 'server'; const canStart = serverMode || quizCloud.mode === 'local'; startQuizBtn.disabled = !canStart; quizSignInBtn.hidden = serverMode; updateAccountUI(); if (serverMode) { setQuizSyncStatus(quizSession ? `서버에 저장된 진행 중 세션이 있습니다 · 문제 ${quizSession.index + 1}부터 이어 풉니다.` : '서버 동기화됨 · PC와 모바일에서 같은 학습 기록을 이어갑니다.', 'ready'); startQuizBtn.innerHTML = `${quizSession ? '이어서 풀기' : '10문제 시작하기'} <span aria-hidden="true">→</span>`; } else if (quizCloud.mode === 'auth-required') { setQuizSyncStatus('기기 간 이어풀기는 로그인 후 사용할 수 있습니다.'); } else if (quizCloud.mode === 'local') { setQuizSyncStatus('로컬 미리보기 모드 · 공개 페이지에서는 로그인하면 서버에 동기화됩니다.', 'warning'); startQuizBtn.innerHTML = '10문제 시작하기 <span aria-hidden="true">→</span>'; } else if (quizCloud.mode === 'error') { setQuizSyncStatus('서버 연결을 확인하는 중입니다. 잠시 후 다시 시도해 주세요.', 'warning'); } else { setQuizSyncStatus('서버 진행 상태를 확인하는 중…'); } };
     const sendQuizState = async (sessionOverride = undefined) => { if (quizCloud.mode !== 'server') { saveLocalQuizSession(); return; } const payload = { progress:quizProgress, session:sessionOverride === undefined ? quizSessionPayload() : sessionOverride }; quizCloud.pending = (quizCloud.pending || Promise.resolve()).then(async () => { const response = await fetch('/api/quiz/state', { method:'POST', headers:{ 'content-type':'application/json' }, body:JSON.stringify(payload), cache:'no-store', keepalive:true }); if (!response.ok) throw new Error(`sync-${response.status}`); }).catch((error) => { quizCloud.lastError = error.message; setQuizSyncStatus('서버 저장에 실패했습니다. 연결을 확인하면 자동으로 다시 시도합니다.', 'warning'); }); return quizCloud.pending; };
     const loadQuizState = async () => { const localProgress = readQuizProgress(); const localSession = hydrateQuizSession(readLocalQuizSession()); updateQuizSyncUI(); try { const response = await fetch('/api/quiz/state', { headers:{ accept:'application/json' }, cache:'no-store' }); if (response.status === 401) { quizCloud.mode = 'auth-required'; quizCloud.email = ''; quizProgress = {}; quizSession = null; updateQuizSyncUI(); updateQuizStats(); return; } if (response.status === 404) { quizCloud.mode = 'local'; quizCloud.email = ''; quizProgress = localProgress; quizSession = localSession; updateQuizSyncUI(); updateQuizStats(); return; } if (!response.ok) throw new Error(`load-${response.status}`); const saved = await response.json(); quizCloud.mode = 'server'; quizCloud.email = typeof saved.email === 'string' ? saved.email : ''; const serverProgress = saved.progress && typeof saved.progress === 'object' ? saved.progress : {}; const migrateLocal = !Object.keys(serverProgress).length && Object.keys(localProgress).length > 0; quizProgress = migrateLocal ? localProgress : serverProgress; quizSession = hydrateQuizSession(saved.session) || (migrateLocal ? localSession : null); updateQuizSyncUI(); updateQuizStats(); if (quizSession) saveLocalQuizSession(); if (migrateLocal) sendQuizState(); } catch (error) { quizCloud.lastError = error.message; quizCloud.mode = 'local'; quizCloud.email = ''; quizProgress = localProgress; quizSession = localSession; updateQuizSyncUI(); updateQuizStats(); } };
@@ -624,22 +751,30 @@
     const normalizeAnswer = (value) => String(value || '').toLowerCase().replace(/[\s.,?!·:;()\[\]{}"'“”‘’→←]/g, '');
     const recordQuizResult = (question, correct) => { const previous = quizStat(question); const now = Date.now(); const attempts = (Number(previous.attempts) || 0) + 1; const next = { attempts, correct:(Number(previous.correct) || 0) + (correct ? 1 : 0), wrong:(Number(previous.wrong) || 0) + (correct ? 0 : 1), streak:correct ? (Number(previous.streak) || 0) + 1 : 0, lastSeen:now }; if (correct) { const intervals = [0, 1, 3, 7, 14, 30]; next.intervalDays = intervals[Math.min(next.streak, intervals.length - 1)]; next.due = now + next.intervalDays * 86400000; } else { next.intervalDays = 0; next.due = now + 5 * 60 * 1000; } quizProgress[question.id] = next; saveQuizProgress(); saveLocalQuizSession(); sendQuizState(); updateQuizStats(); };
     const renderQuizIntro = () => { quizIntro.hidden = false; quizPlay.hidden = true; quizResult.hidden = true; updateQuizStats(); updateQuizSyncUI(); };
-    const openQuiz = (pushHistory = true) => { home.hidden = true; viewer.hidden = true; quiz.hidden = false; if (pushHistory) history.pushState({ quiz:true }, '', '#quiz'); renderQuizIntro(); loadQuizState(); window.scrollTo({ top:0, behavior:'smooth' }); };
+    const openQuiz = (pushHistory = true) => { home.hidden = true; viewer.hidden = true; roadmap.hidden = true; quiz.hidden = false; if (pushHistory) history.pushState({ quiz:true }, '', '#quiz'); renderQuizIntro(); loadQuizState(); window.scrollTo({ top:0, behavior:'smooth' }); };
     const showQuizFeedback = (question, correct) => { feedback.classList.toggle('is-wrong', !correct); feedbackTitle.textContent = correct ? '정답이에요!' : '다시 복습할 문제예요.'; feedbackBody.textContent = question.explanation; feedbackAnswer.textContent = `핵심 답: ${question.answerText}`; feedback.hidden = false; nextQuestionBtn.hidden = false; submitAnswerBtn.hidden = true; };
     const restoreQuizAnswer = (question, savedSelected, savedResult) => { if (!savedResult) return; if (question.type === 'mc') { const options = [...answerArea.querySelectorAll('.answer-option')]; options.forEach((option, index) => { option.disabled = true; if (index === question.answer) option.classList.add('correct'); if (index === savedSelected && !savedResult.correct) option.classList.add('incorrect'); if (index === savedSelected) option.classList.add('selected'); }); } else { const input = document.getElementById('shortAnswerInput'); if (input) { input.value = savedResult.userAnswer || ''; input.disabled = true; } } showQuizFeedback(question, savedResult.correct); };
     const evaluateQuizAnswer = () => { if (!quizSession || quizSession.answered) return; const question = quizSession.questions[quizSession.index]; let userAnswer = ''; let correct = false; if (question.type === 'mc') { if (quizSession.selectedAnswer === null) return; userAnswer = question.options[quizSession.selectedAnswer]; correct = quizSession.selectedAnswer === question.answer; } else { const input = document.getElementById('shortAnswerInput'); userAnswer = input ? input.value.trim() : ''; if (!userAnswer) { if (input) input.focus(); return; } const normalized = normalizeAnswer(userAnswer); const hits = question.keywords.filter((keyword) => normalized.includes(normalizeAnswer(keyword))).length; correct = hits >= question.minKeywords; } quizSession.answered = true; quizSession.results.push({ question, correct, userAnswer }); if (correct) quizSession.correct += 1; recordQuizResult(question, correct); if (question.type === 'mc') { [...answerArea.querySelectorAll('.answer-option')].forEach((option, index) => { option.disabled = true; if (index === question.answer) option.classList.add('correct'); if (index === quizSession.selectedAnswer && !correct) option.classList.add('incorrect'); }); } else { const input = document.getElementById('shortAnswerInput'); if (input) input.disabled = true; } quizScoreText.textContent = `${quizSession.correct * 10}점`; showQuizFeedback(question, correct); };
     const renderQuizQuestion = () => { const question = quizSession.questions[quizSession.index]; if (!question) return; const savedAnswered = Boolean(quizSession.answered); const savedSelected = quizSession.selectedAnswer; const savedResult = savedAnswered ? quizSession.results.slice().reverse().find((result) => result.question.id === question.id) : null; quizSession.answered = false; quizSession.selectedAnswer = null; quizProgressText.textContent = `문제 ${quizSession.index + 1} / ${quizSession.questions.length}`; quizScoreText.textContent = `${quizSession.correct * 10}점`; quizProgressBar.style.width = `${((quizSession.index + 1) / quizSession.questions.length) * 100}%`; questionTopic.textContent = question.topic; questionType.textContent = question.type === 'mc' ? '객관식' : '주관식'; questionNumber.textContent = `QUESTION ${String(quizSession.index + 1).padStart(2, '0')}`; questionText.textContent = question.question; answerArea.innerHTML = ''; feedback.hidden = true; nextQuestionBtn.hidden = true; nextQuestionBtn.textContent = quizSession.index === quizSession.questions.length - 1 ? '결과 보기 ✓' : '다음 문제 →'; submitAnswerBtn.hidden = true; if (question.type === 'mc') { question.options.forEach((optionText, index) => { const option = document.createElement('button'); option.type = 'button'; option.className = 'answer-option'; option.dataset.index = String(index); option.innerHTML = `<span class="option-key">${String.fromCharCode(65 + index)}</span><span>${optionText}</span>`; option.addEventListener('click', () => { if (quizSession.answered) return; quizSession.selectedAnswer = index; [...answerArea.querySelectorAll('.answer-option')].forEach((item) => item.classList.toggle('selected', item === option)); evaluateQuizAnswer(); }); answerArea.appendChild(option); }); } else { const hint = document.createElement('p'); hint.className = 'short-hint'; hint.textContent = '핵심 단어를 포함해 짧게 답해 보세요.'; answerArea.appendChild(hint); const input = document.createElement('textarea'); input.id = 'shortAnswerInput'; input.className = 'short-answer'; input.rows = 3; input.placeholder = '답을 입력하세요'; input.addEventListener('keydown', (event) => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') evaluateQuizAnswer(); }); answerArea.appendChild(input); submitAnswerBtn.hidden = false; } if (savedAnswered && savedResult) { quizSession.answered = true; quizSession.selectedAnswer = savedSelected; restoreQuizAnswer(question, savedSelected, savedResult); } };
+    const renderRoadmapIndex = () => { roadmapIndex.hidden = false; roadmapDetail.hidden = true; roadmapPageList.innerHTML = ''; roadmapPages.forEach((page, index) => { const button = document.createElement('button'); button.type = 'button'; button.className = 'roadmap-entry'; button.innerHTML = `<span class="roadmap-entry-num">${String(index + 1).padStart(2, '0')}</span><span><strong>${page.kicker.split(' · ').slice(1).join(' · ')}</strong><small>${page.period}</small></span><span class="roadmap-entry-arrow" aria-hidden="true">→</span>`; button.addEventListener('click', () => renderRoadmapPage(index, true)); roadmapPageList.appendChild(button); }); updateAccountUI(); };
+    const renderRoadmapPage = (index, pushHistory = false) => { const page = roadmapPages[index]; if (!page) return; currentRoadmapIndex = index; roadmapIndex.hidden = true; roadmapDetail.hidden = false; roadmapPageKicker.textContent = page.kicker; roadmapPagePeriod.textContent = page.period; roadmapPageTitle.textContent = page.title; roadmapPageLead.textContent = page.lead; roadmapPageBody.innerHTML = page.blocks.map((block) => block.route ? `<p class="roadmap-route">${block.route}</p>` : `<section class="roadmap-block"><h2>${block.title}</h2>${block.text ? `<p>${block.text}</p>` : ''}${block.items ? `<ul>${block.items.map((item) => `<li>${item}</li>`).join('')}</ul>` : ''}</section>`).join(''); roadmapPrevBtn.disabled = roadmapPages.length < 2; roadmapNextBtn.textContent = index === roadmapPages.length - 1 ? '처음 페이지로 ↺' : '다음 페이지 →'; if (pushHistory) history.pushState({ roadmap:true, page:index }, '', `#roadmap-${index + 1}`); window.scrollTo({ top:0, behavior:'smooth' }); updateAccountUI(); };
+    const openRoadmap = (pushHistory = true) => { home.hidden = true; viewer.hidden = true; quiz.hidden = true; roadmap.hidden = false; renderRoadmapIndex(); if (pushHistory) history.pushState({ roadmap:true }, '', '#roadmap'); window.scrollTo({ top:0, behavior:'smooth' }); };
     const showQuizResult = () => { quizPlay.hidden = true; quizResult.hidden = false; const total = quizSession.questions.length; const score = quizSession.correct * 10; const wrong = quizSession.results.filter((result) => !result.correct); resultScore.textContent = String(score); resultMessage.textContent = score === 100 ? '완벽합니다. 핵심 개념을 모두 잡았어요.' : score >= 70 ? '좋아요. 틀린 문제만 한 번 더 복습해 보세요.' : '괜찮아요. 오답부터 다시 보면 빠르게 좋아집니다.'; resultSummary.textContent = `${total}문제 중 ${quizSession.correct}문제 정답 · 오답은 다음 세션에서 우선 출제됩니다.`; wrongList.innerHTML = ''; if (wrong.length) { const heading = document.createElement('p'); heading.className = 'wrong-heading'; heading.textContent = '이번 세션에서 다시 볼 문제'; wrongList.appendChild(heading); wrong.forEach(({ question }) => { const item = document.createElement('div'); item.className = 'wrong-item'; item.innerHTML = `<strong>${question.topic}</strong><span>${question.question}</span><span>정답: ${question.answerText}</span>`; wrongList.appendChild(item); }); } else { const done = document.createElement('p'); done.className = 'all-correct'; done.textContent = '이번 세션에는 오답이 없습니다.'; wrongList.appendChild(done); } updateQuizStats(); };
     const startQuizSession = (forceNew = false) => { if (quizCloud.mode !== 'server' && quizCloud.mode !== 'local') return; if (forceNew || !quizSession) quizSession = { questions:selectQuizQuestions(), index:0, correct:0, answered:false, selectedAnswer:null, results:[] }; quizIntro.hidden = true; quizResult.hidden = true; quizPlay.hidden = false; saveLocalQuizSession(); sendQuizState(); updateQuizSyncUI(); renderQuizQuestion(); window.scrollTo({ top:0, behavior:'smooth' }); };
     const nextQuizQuestion = () => { if (!quizSession || !quizSession.answered) return; if (quizSession.index >= quizSession.questions.length - 1) { showQuizResult(); quizSession = null; saveLocalQuizSession(); sendQuizState(null); updateQuizSyncUI(); } else { quizSession.index += 1; quizSession.answered = false; quizSession.selectedAnswer = null; saveLocalQuizSession(); sendQuizState(); renderQuizQuestion(); window.scrollTo({ top:0, behavior:'smooth' }); } };
     const renderPage = (index) => { currentIndex = index; const page = pages[index]; const saved = readSavedState(index); preloadPage(index); strokes = saved.strokes; textMemo.value = saved.memo; dirty = false; activeStroke = null; tapCandidate = null; pinchStart = null; pointers.clear(); pagePicker.open = false; resetZoom(); pageNumber.textContent = String(index + 1).padStart(2, '0'); studyTitle.textContent = page.title; studyHint.textContent = page.hint; progressText.textContent = `${index + 1} / ${pages.length}`; progressBar.style.width = `${((index + 1) / pages.length) * 100}%`; document.getElementById('prevBtn').disabled = index === 0; document.getElementById('nextBtn').textContent = index === pages.length - 1 ? '처음 페이지로 ↺' : '다음 페이지 →'; studyImage.alt = `${page.title} 학습 이미지`; studyImage.decoding = 'async'; studyImage.fetchPriority = 'high'; studyImage.onload = resizeCanvas; studyImage.onerror = () => { studyImage.onerror = null; if (page.fallback) studyImage.src = page.fallback; }; studyImage.src = page.src; if (studyImage.complete) requestAnimationFrame(resizeCanvas); saveState.textContent = strokes.length || textMemo.value ? '저장된 필기와 메모를 불러왔습니다.' : '필기와 메모는 저장 버튼을 눌러 보관합니다.'; updatePageList(); window.scrollTo({ top:0, behavior:'smooth' }); };
     pages.forEach((page, index) => { const button = document.createElement('button'); button.type = 'button'; button.className = 'page-button'; button.dataset.page = String(index); button.innerHTML = `<span class="page-index">${String(index + 1).padStart(2, '0')}</span><span><strong>${page.title}</strong><small>${page.subtitle}</small></span><span class="page-check" aria-hidden="true">✓</span>`; button.addEventListener('click', () => navigateToPage(index)); pageList.appendChild(button); });
-    const openViewer = (index, pushHistory = true) => { preloadAllPages(); home.hidden = true; quiz.hidden = true; viewer.hidden = false; if (pushHistory) history.pushState({ viewer:true, index, focus:false }, '', `#page-${index + 1}`); renderPage(index); };
+    const openViewer = (index, pushHistory = true) => { preloadAllPages(); home.hidden = true; roadmap.hidden = true; quiz.hidden = true; viewer.hidden = false; if (pushHistory) history.pushState({ viewer:true, index, focus:false }, '', `#page-${index + 1}`); renderPage(index); };
     const navigateToPage = (index) => { if (viewer.classList.contains('focus-mode')) viewer.classList.remove('focus-mode'); resetZoom(); history.replaceState({ viewer:true, index, focus:false }, '', `#page-${index + 1}`); renderPage(index); };
     history.replaceState({ home:true }, '', `${window.location.pathname}${window.location.search}`);
     document.querySelectorAll('.lesson-entry').forEach((button) => button.addEventListener('click', () => openViewer(Number(button.dataset.page))));
     document.getElementById('startBtn').addEventListener('click', () => openViewer(currentIndex === null ? 0 : currentIndex));
+    document.getElementById('roadmapBtn').addEventListener('click', () => openRoadmap(true));
     document.getElementById('quizBtn').addEventListener('click', () => openQuiz(true));
+    document.getElementById('roadmapBackBtn').addEventListener('click', () => { if (history.state && history.state.roadmap) history.back(); else { roadmap.hidden = true; home.hidden = false; } });
+    document.getElementById('roadmapListBtn').addEventListener('click', () => { if (history.state && history.state.roadmap && Number.isInteger(history.state.page)) history.back(); else { history.replaceState({ roadmap:true }, '', '#roadmap'); renderRoadmapIndex(); } });
+    roadmapPrevBtn.addEventListener('click', () => renderRoadmapPage((currentRoadmapIndex - 1 + roadmapPages.length) % roadmapPages.length, true));
+    roadmapNextBtn.addEventListener('click', () => renderRoadmapPage((currentRoadmapIndex + 1) % roadmapPages.length, true));
     startQuizBtn.addEventListener('click', () => startQuizSession(false));
     submitAnswerBtn.addEventListener('click', evaluateQuizAnswer);
     nextQuestionBtn.addEventListener('click', nextQuizQuestion);
@@ -684,7 +819,7 @@
       canvas.addEventListener('touchcancel', finishStroke, { passive:false });
     }
     window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('popstate', (event) => { const state = event.state; if (state && state.quiz) { home.hidden = true; viewer.hidden = true; quiz.hidden = false; renderQuizIntro(); } else if (state && state.viewer) { home.hidden = true; quiz.hidden = true; viewer.hidden = false; if (state.focus) { viewer.classList.add('focus-mode'); renderPage(state.index); } else { viewer.classList.remove('focus-mode'); renderPage(state.index); } requestAnimationFrame(resizeCanvas); } else { viewer.classList.remove('focus-mode'); resetZoom(); quiz.hidden = true; viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); } });
+    window.addEventListener('popstate', (event) => { const state = event.state; if (state && state.roadmap) { home.hidden = true; viewer.hidden = true; quiz.hidden = true; roadmap.hidden = false; if (Number.isInteger(state.page)) renderRoadmapPage(state.page, false); else renderRoadmapIndex(); } else if (state && state.quiz) { home.hidden = true; viewer.hidden = true; roadmap.hidden = true; quiz.hidden = false; renderQuizIntro(); } else if (state && state.viewer) { home.hidden = true; roadmap.hidden = true; quiz.hidden = true; viewer.hidden = false; if (state.focus) { viewer.classList.add('focus-mode'); renderPage(state.index); } else { viewer.classList.remove('focus-mode'); renderPage(state.index); } requestAnimationFrame(resizeCanvas); } else { viewer.classList.remove('focus-mode'); resetZoom(); quiz.hidden = true; roadmap.hidden = true; viewer.hidden = true; home.hidden = false; window.scrollTo({ top:0, behavior:'smooth' }); } });
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !colorMenu.hidden) { closeColorMenu(); return; } if (!quiz.hidden) { if (event.key === 'Escape' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) document.getElementById('quizBackBtn').click(); return; } if (viewer.hidden || ['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return; if (event.key === 'ArrowLeft' && currentIndex > 0) navigateToPage(currentIndex - 1); if (event.key === 'ArrowRight') navigateToPage(currentIndex === pages.length - 1 ? 0 : currentIndex + 1); if (event.key === 'Escape') document.getElementById('backBtn').click(); });
     syncPenControls();
     updatePageList();
