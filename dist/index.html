@@ -70,6 +70,9 @@
     .page-check { color:var(--red); font-size:.9rem; opacity:0; }
     .page-button.has-notes .page-check { opacity:1; }
     .study-card { min-width:0; padding:clamp(19px,3vw,32px); border:1px solid rgba(20,37,61,.12); border-radius:25px; background:var(--paper); box-shadow:0 20px 50px rgba(28,51,77,.12); }
+    .study-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:22px; margin-bottom:22px; }
+    .study-heading-copy { min-width:0; flex:1; }
+    .study-heading .study-hint { margin-bottom:0; }
     .study-kicker { margin:0 0 9px; color:var(--red-dark); font-size:.8rem; font-weight:850; letter-spacing:.1em; text-transform:uppercase; }
     h2 { margin:0; color:var(--navy); font-size:clamp(1.7rem,3.5vw,3rem); line-height:1.1; letter-spacing:-.055em; }
     .study-hint { max-width:760px; margin:13px 0 22px; color:#617187; font-size:1rem; line-height:1.6; }
@@ -114,7 +117,7 @@
     .text-memo::placeholder { color:#9aa6b3; }
     .text-memo:focus-visible { border-color:var(--red); outline:none; box-shadow:0 0 0 3px rgba(228,72,72,.18); }
     .focus-mode { padding-left:0; padding-right:0; }
-    .focus-mode .viewer-header, .focus-mode .page-picker, .focus-mode .study-kicker, .focus-mode #studyTitle, .focus-mode .study-hint, .focus-mode .memo-wrap, .focus-mode .page-nav, .focus-mode .tip { display:none; }
+    .focus-mode .viewer-header, .focus-mode .page-picker, .focus-mode .study-heading, .focus-mode .memo-wrap, .focus-mode .page-nav, .focus-mode .tip { display:none; }
     .focus-mode .viewer-grid { padding-top:0; }
     .focus-mode .study-card { padding:0; border:0; border-radius:0; box-shadow:none; background:transparent; }
     .focus-mode .zoom-controls { display:flex; }
@@ -149,7 +152,10 @@
     .save-state { color:#91a1b4; }
     .page-nav { border-color:#3a4d65; }
     .tip { color:#e0c990; background:#2c281d; }
+    .heading-nav { margin-top:0; padding-top:0; border-top:0; flex:0 0 auto; }
+    .heading-nav .tool-btn { min-width:116px; }
     @media (max-width:560px) { .screen { padding-left:0; padding-right:0; } .topline, .hero, .home-footer { margin-left:14px; margin-right:14px; } .topline, .viewer-header { align-items:flex-start; flex-direction:column; } .viewer-header { padding-left:14px; padding-right:14px; } .progress-wrap { width:100%; min-width:0; } .home-footer { flex-direction:column; gap:7px; } .page-picker { margin:12px 10px 0; } .page-list { grid-template-columns:1fr; } .viewer-grid { padding-top:12px; } .study-card { padding:0; border-left:0; border-right:0; border-radius:0; box-shadow:none; } .study-kicker, .study-card h2, .study-hint, .memo-wrap, .toolbar, .save-state, .page-nav, .tip { margin-left:14px; margin-right:14px; } .canvas-wrap { border-left:0; border-right:0; border-radius:0; } .toolbar { align-items:stretch; flex-direction:column; } .toolbar-group { width:100%; } .tool-btn { flex:1; } .pen-control { justify-content:space-between; } .pen-control input { flex:1; } .page-nav .tool-btn { min-width:0; } .focus-mode .toolbar { margin:0; } }
+    @media (max-width:560px) { .study-heading { align-items:stretch; flex-direction:column; gap:12px; margin:0 14px 18px; } .study-heading-copy .study-kicker, .study-heading-copy h2, .study-heading-copy .study-hint { margin-left:0; margin-right:0; } .study-heading .heading-nav { width:auto; margin:0; } .study-heading .heading-nav .tool-btn { min-width:0; } }
   </style>
 </head>
 <body>
@@ -190,9 +196,14 @@
       </details>
       <div class="viewer-grid">
         <article class="study-card">
-          <p class="study-kicker">PAGE <span id="pageNumber">01</span></p>
-          <h2 id="studyTitle">사출 한 사이클 이해하기</h2>
-          <p id="studyHint" class="study-hint"></p>
+          <div class="study-heading">
+            <div class="study-heading-copy">
+              <p class="study-kicker">PAGE <span id="pageNumber">01</span></p>
+              <h2 id="studyTitle">사출 한 사이클 이해하기</h2>
+              <p id="studyHint" class="study-hint"></p>
+            </div>
+            <div class="page-nav heading-nav"><button id="prevBtn" class="tool-btn" type="button">← 이전 페이지</button><button id="nextBtn" class="tool-btn primary-tool" type="button">다음 페이지 →</button></div>
+          </div>
           <div class="canvas-wrap">
             <div id="canvasStage" class="canvas-stage">
               <img id="studyImage" src="images/01-cycle.webp" alt="사출 한 사이클 이해하기 학습 이미지" decoding="async" loading="eager" fetchpriority="high">
@@ -206,7 +217,6 @@
             <div class="toolbar-group"><div class="zoom-controls" aria-label="이미지 확대 축소"><button id="zoomOutBtn" class="tool-btn" type="button" aria-label="이미지 축소">−</button><button id="zoomResetBtn" class="tool-btn" type="button" aria-label="확대 초기화">100%</button><button id="zoomInBtn" class="tool-btn" type="button" aria-label="이미지 확대">＋</button></div><button id="saveBtn" class="tool-btn primary-tool" type="button">필기·메모 저장</button></div>
           </div>
           <p id="saveState" class="save-state" aria-live="polite">필기와 메모는 저장 버튼을 눌러 보관합니다.</p>
-          <div class="page-nav"><button id="prevBtn" class="tool-btn" type="button">← 이전 페이지</button><button id="nextBtn" class="tool-btn primary-tool" type="button">다음 페이지 →</button></div>
           <p class="tip">사용 팁: 기본 화면에서 이미지를 탭하면 집중 보기로 전환됩니다. 집중 보기에서는 한 손가락으로 표시하고 두 손가락으로 확대·이동하세요. 필기와 메모는 저장 버튼을 눌러야 함께 보관되며, 저장하지 않은 변경은 페이지 이동·새로고침 시 사라집니다.</p>
         </article>
       </div>
