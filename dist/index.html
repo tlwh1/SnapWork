@@ -690,6 +690,7 @@
     updatePageList();
     const scheduleImagePreload = () => { const run = () => preloadAllPages(); if ('requestIdleCallback' in window) window.requestIdleCallback(run, { timeout:1200 }); else setTimeout(run, 200); };
     if (document.readyState === 'complete') scheduleImagePreload(); else window.addEventListener('load', scheduleImagePreload, { once:true });
+    loadQuizState();
   </script>
 </body>
 </html>
