@@ -45,24 +45,28 @@
 
 ## 저장 방식
 
-데이터는 서버로 전송하지 않고 현재 브라우저의 `localStorage`에만 저장됩니다.
+이미지 필기·텍스트 메모는 실수로 덮어쓰지 않도록 기존처럼 저장 버튼을 눌렀을 때만 현재 브라우저에 보관합니다. 문제풀이 기록과 진행 중인 10문제 세션은 로그인한 사용자의 서버(D1)에 저장되어 새로고침·재접속·다른 기기에서도 이어집니다.
 
 - 키: `snapwork-study-0` ~ `snapwork-study-6` (페이지 번호는 0부터 시작)
 - 값 형식: `{ "strokes": [...], "memo": "..." }`
 - 필기 좌표는 이미지 대비 0~1 비율로 저장되므로 화면 크기가 달라도 다시 맞춰 그려집니다.
 - 저장 버튼을 누르지 않은 변경사항은 페이지 이동·새로고침 시 버려집니다.
 - 이전 버전 키인 `snapwork-redpen-*`도 읽을 수 있도록 호환 처리가 남아 있습니다.
-- 문제풀이 진행 키: `snapwork-quiz-progress-v1`
-- 문제풀이 기록은 문제별 시도 수, 정답·오답 수, 연속 정답, 다음 복습 시각을 저장합니다.
+- 문제풀이 기록은 문제별 시도 수, 정답·오답 수, 연속 정답, 다음 복습 시각과 진행 중 세션(문제 순서·현재 위치·응답)을 서버에 저장합니다.
+- 공개 페이지에서 로그인하지 않은 경우에는 기기 간 동기화를 위해 `로그인하고 기기 간 동기화`를 먼저 선택합니다. 로컬 미리보기(정적 HTTP 서버)는 기존 `localStorage`를 사용합니다.
+- 서버 동기화가 일시적으로 끊기면 진행 상태를 로컬 임시 저장하고 연결이 회복될 때 다시 전송합니다.
 
 ## 저장소 구조
 
 ```text
 SnapWork/
 ├─ dist/
-│  ├─ index.html             # HTML·CSS·JavaScript가 포함된 정적 앱
+│  ├─ index.html             # HTML·CSS·JavaScript가 포함된 학습 앱
+│  ├─ server/index.js        # 화면과 문제풀이 API를 제공하는 Cloudflare Worker
 │  ├─ images/                # 7개 원본 PNG와 웹 최적화 WebP
 │  └─ .openai/hosting.json   # Sites 프로젝트 설정 사본
+├─ drizzle/0000_quiz_state.sql # D1 문제풀이 상태 테이블
+├─ scripts/build-worker.cjs  # 화면을 Worker 번들로 패키징
 ├─ docs/SESSION_HANDOFF.md   # 세션 종료용 인수인계 문서
 └─ README.md
 ```
@@ -85,6 +89,7 @@ python -m http.server 8787 --directory dist
 - GitHub 원격: `origin`
 - Sites 원격: `sites`
 - Sites 프로젝트 설정은 `.openai/hosting.json`의 `project_id`를 사용합니다.
+- 문제풀이 서버 저장에는 `.openai/hosting.json`의 D1 `DB` 바인딩을 사용합니다.
 - 배포 전에는 `dist/`를 기준으로 패키징하고, 실제 소스 커밋 SHA와 일치하는지 확인해야 합니다.
 - Sites 저장소 인증 토큰은 단기 자격증명으로만 사용하며 문서나 커밋에 기록하지 않습니다.
 

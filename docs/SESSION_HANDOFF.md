@@ -8,8 +8,8 @@
 - 공개 URL: <https://snapwork.kimkkkkm.chatgpt.site/>
 - GitHub: <https://github.com/tlwh1/SnapWork>
 - 브랜치: `main`
-- 마지막 커밋: `d39b38918d9fc32424514bc44be15a56bd306101` (`Separate image focus editing from basic view`)
-- 마지막 Sites 저장 버전: v8
+- 마지막 커밋: 문제풀이 서버 동기화 변경 후 갱신
+- 마지막 Sites 저장 버전: 서버 동기화 배포 버전
 - `.openai/hosting.json`의 `project_id`를 그대로 사용해야 합니다.
 
 ## 이번 세션에서 확정한 UX
@@ -30,14 +30,16 @@
 
 ## 구현 메모
 
-- 앱은 `dist/index.html` 단일 정적 파일에 HTML, CSS, JavaScript를 포함합니다.
+- 앱 화면은 `dist/index.html`에 HTML, CSS, JavaScript를 포함하고, `scripts/build-worker.cjs`가 WebP를 번들한 `dist/server/index.js` Cloudflare Worker를 생성합니다.
+- Worker의 `/api/quiz/state`가 D1 `quiz_state` 테이블에 진행 상태를 GET/POST합니다. D1 논리 바인딩은 `.openai/hosting.json`의 `DB`입니다.
 - 이미지 파일은 `dist/images/`에 PNG 원본과 WebP 최적화본이 함께 있습니다.
 - 초기 로드 후 7개 WebP를 선로드합니다.
 - 필기 좌표는 이미지 대비 비율로 저장하며, 캔버스 DPR은 최대 2로 제한합니다.
 - 확대 상태는 페이지 이동 시 100%로 초기화됩니다.
 - 페이지별 저장 키는 `snapwork-study-0`부터 `snapwork-study-6`입니다.
-- 문제풀이 진행 키는 `snapwork-quiz-progress-v1`이며 문제별 시도·정답·오답·연속 정답·복습 시각을 저장합니다.
-- 저장 데이터는 브라우저 로컬에만 존재하며 계정·서버 동기화는 없습니다.
+- 문제풀이 기록은 로그인한 사용자의 서버 D1 `quiz_state`에 저장합니다. 문제별 시도·정답·오답·연속 정답·복습 시각과 진행 중 세션(문제 순서·현재 위치·응답)을 함께 보관합니다.
+- `oai-authenticated-user-id`를 서버 키로 사용하므로 같은 ChatGPT 계정으로 PC·모바일에서 이어풀 수 있습니다.
+- 로그인하지 않은 공개 방문자는 퀴즈 화면에서 `로그인하고 기기 간 동기화`를 선택해야 하며, 정적 로컬 미리보기에서는 기존 `localStorage` 임시 모드를 사용합니다.
 
 ## 검증 결과
 
@@ -52,6 +54,7 @@
 - 집중 보기 종료 및 브라우저 뒤로가기 단계 확인
 - 10문제 세션 진행·즉시 피드백·세션 결과 및 오답 목록 확인
 - 문제풀이 진행 데이터 저장과 다음 세션 오답 우선 출제 확인
+- Worker API의 비로그인 401·인증 사용자 GET/POST·D1 업서트와 진행 세션 복원 확인
 - 콘솔 오류 없음
 
 ## 다음 작업 시 주의
@@ -64,6 +67,7 @@
 
 ## 알려진 범위
 
-- 저장 데이터는 브라우저별·기기별로 분리됩니다. 브라우저 데이터 삭제 시 메모도 사라집니다.
-- 오프라인 앱이나 계정 기반 동기화는 제공하지 않습니다.
+- 이미지 필기·텍스트 메모는 브라우저별 저장이며, 문제풀이 기록만 서버 계정 동기화를 제공합니다.
+- 서버 장애나 일시적인 네트워크 단절 때는 진행 중 퀴즈를 로컬 임시 보관하고 연결이 회복되면 다시 전송합니다.
+- 오프라인에서 새 답을 계속 풀 수는 있지만 서버 동기화가 완료되기 전까지 다른 기기에는 반영되지 않습니다.
 - 매우 오래된 브라우저는 Pointer Events가 없어 보조 터치 이벤트 경로를 사용하므로, 새 기능은 최신 Chrome·Edge 기준으로 확인합니다.
