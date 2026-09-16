@@ -6,7 +6,7 @@
 
 - 사이트: <https://snapwork.kimkkkkm.chatgpt.site/>
 - GitHub: <https://github.com/tlwh1/SnapWork>
-- 현재 배포 기준 커밋: `d39b38918d9fc32424514bc44be15a56bd306101`
+- 현재 배포 기준 커밋은 GitHub `main`의 최신 커밋입니다.
 
 ## 학습 내용
 
